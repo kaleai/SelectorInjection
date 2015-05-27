@@ -1,5 +1,6 @@
 # SelectorInjection    
 一个强大的selector注入器。它可以给view注入selector状态，免去了你写selector的步骤。  
+如果你的需求很简单，不妨试试这篇文章讲到的一张图片实现selector的方法：[http://www.cnblogs.com/tianzhijiexian/p/4505190.html](http://www.cnblogs.com/tianzhijiexian/p/4505190.html)
   
 ![image](./demoPic/logo.png)  
  

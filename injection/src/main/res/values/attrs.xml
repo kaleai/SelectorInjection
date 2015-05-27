@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 底色 -->
+    <attr name="normal_color" format="color" />
+    <!-- 按下后的颜色 -->
+    <attr name="pressed_color" format="color" />
+    <!-- 边界描边的颜色 -->
+    <attr name="stroke_color" format="color" />
+    <!--外界描边的宽度 -->
+    <attr name="stroke_width" format="dimension" />
+    <!-- 常规状态下-->
+    <attr name="normal_drawable" format="reference" />
+    <!-- 按下/获得焦点 -->
+    <attr name="pressed_drawable" format="reference" />
+    <!-- 是否是自动计算的 -->
+    <attr name="smart" format="boolean" />
+    
+    <declare-styleable name="SelectorImageButton">
+        <attr name="normal_color" />
+        <attr name="pressed_color" />
+        <attr name="stroke_color" />
+        <attr name="stroke_width" />
+        <attr name="normal_drawable" />
+        <attr name="pressed_drawable" />
+        <attr name="smart" />
+    </declare-styleable>
+
+    <declare-styleable name="SelectorTextView">
+        <attr name="normal_color" />
+        <attr name="pressed_color" />
+        <attr name="stroke_color" />
+        <attr name="stroke_width" />
+        <attr name="normal_drawable" />
+        <attr name="pressed_drawable" />
+        <attr name="smart" />
+    </declare-styleable>
+</resources>
+

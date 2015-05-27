@@ -1,0 +1,139 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    >
+
+
+    <kale.injection.SelectorTextView
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:normal_color="#ff0000"
+        android:text="扁平椭圆"
+        android:textColor="@android:color/white"
+        app:normal_drawable="@drawable/btn_oval_shape"
+        />
+    
+
+    <view
+        class="kale.injection.SelectorTextView"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        app:normal_color="#0000ff"
+        app:normal_drawable="@drawable/btn_round_rectangle_shape"
+        app:stroke_color="#ff0000"
+        app:stroke_width="4dp"
+        android:text="扁平圆角矩形"
+        android:textColor="#ffffff"
+        />
+
+    <view
+        android:id="@+id/view2"
+        class="kale.injection.SelectorTextView"
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:normal_color="#00ff00"
+        app:normal_drawable="@drawable/btn_rectangle_shape"
+        android:text="扁平矩形"
+        />
+
+    <view
+        android:id="@+id/view4"
+        class="kale.injection.SelectorTextView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:normal_color="#0000ff"
+        app:normal_drawable="@drawable/btn_rectangle_shadow_bg_layerlist"
+        android:layout_alignTop="@+id/view3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="带底部阴影的圆角矩形"
+        android:textColor="#ffffff"
+        />
+
+    <view
+        android:id="@+id/view"
+        class="kale.injection.SelectorTextView"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        app:normal_color="#ff0000"
+        android:text="有内阴影的矩形"
+        android:textColor="#ffff"
+        android:textSize="10sp"
+        app:normal_drawable="@drawable/btn_round_rectangle_flat_shadow_bg_layerlist"
+        />
+
+    <view
+        android:id="@+id/view3"
+        class="kale.injection.SelectorTextView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:normal_drawable="@drawable/kale"
+        app:pressed_drawable="@drawable/pressed_drawable"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <view
+        android:id="@+id/view5"
+        class="kale.injection.SelectorTextView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        app:normal_color="#ff0000"
+        app:normal_drawable="@drawable/btn_oval_shape"
+        app:pressed_drawable="@drawable/btn_oval_shadow_bg_layerlist"
+        app:smart="false"
+        />
+
+    <view
+        class="kale.injection.SelectorTextView"
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+
+        app:normal_color="#00ff00"
+        app:normal_drawable="@drawable/btn_rectangle_shape"
+        app:pressed_color="#ff0000"
+        app:pressed_drawable="@drawable/btn_rectangle_shadow_bg_layerlist"
+        app:smart="false"
+        android:layout_alignTop="@+id/view6"
+        android:layout_alignLeft="@+id/view2"
+        android:layout_alignStart="@+id/view2"
+        />
+
+    <view
+        class="kale.injection.SelectorImageButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:normal_color="#0000ff"
+        app:normal_drawable="@drawable/btn_rectangle_shadow_bg_layerlist"
+        app:pressed_color="#ff0000"
+        app:pressed_drawable="@drawable/kale"
+        app:smart="false"
+        android:src="@drawable/pressed_drawable"
+        app:stroke_color="#ff0000"
+        app:stroke_width="4dp"
+        android:id="@+id/view6"
+        />
+</RelativeLayout>

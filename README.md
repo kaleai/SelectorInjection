@@ -1,14 +1,15 @@
-# SelectorInjection  
-
-selector注入器。它可以给view注入一个selector状态，免去了你写selector的麻烦。  
+# SelectorInjection    
+一个强大的selector注入器。它可以给view注入selector状态，免去了你写selector的步骤。  
+  
 --  
 
-## 前言   
-之前特别讨厌写selector，所以最近想要干掉它，借鉴了[https://github.com/hanks-zyh/SelectorButton](https://github.com/hanks-zyh/SelectorButton)和[https://github.com/navasmdc/MaterialDesignLibrary](https://github.com/navasmdc/MaterialDesignLibrary)两个开源库的写法，最终融汇贯通，产生了能将颜色和形状两两组合的selector注入器。现在这个注入器支持且**不仅仅**支持下列的按钮，你可以通过layer-list和shape的组合产生更多的按钮。  
+### 前言   
+之前特别讨厌写selector，所以最近想要干掉它，借鉴了[https://github.com/hanks-zyh/SelectorButton](https://github.com/hanks-zyh/SelectorButton)和[https://github.com/navasmdc/MaterialDesignLibrary](https://github.com/navasmdc/MaterialDesignLibrary)两个开源库的写法，最终融汇贯通，产生了能将颜色和形状两两组合的selector注入器。  
+现在这个注入器支持且**不仅仅**支持下列的按钮，你可以通过layer-list和shape的组合产生更多的按钮。  
 ![image](./demoPic/view.png) 
  
 
-## 使用方式 
+### 使用方式 
 我们可以根据需要将其注入到任何一个view中去，本项目中将其注入到了ImageButton和TextView中，下面是将其注入到ImageButton的过程。
 
 **PS**:SelectorImageButton、SelectorTextView已经在lib库中写好，可以直接引用。  
@@ -65,7 +66,7 @@ public class SelectorImageButton extends ImageButton {
         />  
 ```   
 
-## 还有更多  
+### 还有更多  
 你以为它仅仅是干掉了selector么？当然不是，它还对shape有着巨牛逼的支持。我们定义一个shape，然后传入一个normalColor，它会自动将normalColor填充到shape中并且自动产生按下后的点击效果。而shape中我们可以做的事情就多了，比如添加个边框、加个虚线什么的。但shape仅仅能画的是简单且扁平化的形状，能不能让它支持阴影什么的呢？当然可以，SelectorInjection还支持了layer-list。你可以将阴影的框架和shape进行叠加，这样就能产生很多其他的效果了。至于具体的做法嘛，还是去看看源码吧。  
 下面是全部的attribute和解释：  
  
@@ -86,7 +87,7 @@ public class SelectorImageButton extends ImageButton {
     <attr name="smart" format="boolean" />  
 ```
 
-## 原理  
+### 原理  
 这个注入器就一个类文件，原理是将按钮的形状和颜色进行组合，产生多种样式的按钮，同时根据普通状态下的颜色进行了计算，自动生成了按下后的按钮颜色值。类源码如下：  
 ```java
 package kale.injection;
@@ -293,13 +294,13 @@ public class SelectorInjection {
 ```   
 
 
-## 开发者
+### 开发者
 ![](https://avatars3.githubusercontent.com/u/9552155?v=3&s=460)
 
 Jack Tony: <developer_kale@.com>  
 
 
-## License
+### License
 
     Copyright 2015 Jack Tony
 

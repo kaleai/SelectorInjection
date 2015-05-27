@@ -1,6 +1,8 @@
 # SelectorInjection    
 一个强大的selector注入器。它可以给view注入selector状态，免去了你写selector的步骤。  
   
+![image](./demoPic/logo.png)  
+ 
 --  
 
 ### 前言   

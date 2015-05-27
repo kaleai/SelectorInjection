@@ -9,7 +9,7 @@ selector注入器。它可以给view注入一个selector状态，免去了你写
  
 
 ## 使用方式 
-我们可以根据需要将其注入到任何一个view中去，本项目中将其注入到了ImageButton和TextView中，你还可以根据需要将其注入到其他的view中。 
+我们可以根据需要将其注入到任何一个view中去，本项目中将其注入到了ImageButton和TextView中，下面是将其注入到ImageButton的过程。
 
 **PS**:SelectorImageButton、SelectorTextView已经在lib库中写好，可以直接引用。  
 
@@ -66,7 +66,9 @@ public class SelectorImageButton extends ImageButton {
 ```   
 
 ## 还有更多  
-你以为她仅仅是干掉了selector么？当然不是，它还对shape有着巨牛逼的支持。我们定义一个shape，然后传入一个normalColor，它会自动将normalColor填充到shape中并且自动产生按下后的点击效果。而shape中我们可以做的事情就多了，比如添加个边框什么的。但shape仅仅能画的是简单且扁平化的形状，能不能让它支持阴影什么的呢？当然可以，selectorInjection还支持了layer-list。你可以将阴影的框架和shape进行叠加，这样就能产生很多其他的效果了。具体的做法见工程的源码~  
+你以为它仅仅是干掉了selector么？当然不是，它还对shape有着巨牛逼的支持。我们定义一个shape，然后传入一个normalColor，它会自动将normalColor填充到shape中并且自动产生按下后的点击效果。而shape中我们可以做的事情就多了，比如添加个边框、加个虚线什么的。但shape仅仅能画的是简单且扁平化的形状，能不能让它支持阴影什么的呢？当然可以，SelectorInjection还支持了layer-list。你可以将阴影的框架和shape进行叠加，这样就能产生很多其他的效果了。至于具体的做法嘛，还是去看看源码吧。  
+下面是全部的attribute和解释：  
+ 
 ```xml
     <!-- 底色 -->
     <attr name="normal_color" format="color" />
@@ -85,7 +87,7 @@ public class SelectorImageButton extends ImageButton {
 ```
 
 ## 原理  
-这个注入器就一个类文件，原理是将按钮的形状和颜色进行组合起来产生多种状态的样式，同时根据普通状态下的颜色进行了计算，自动生成了按下后的按钮颜色值。下面是这个类的源码：  
+这个注入器就一个类文件，原理是将按钮的形状和颜色进行组合，产生多种样式的按钮，同时根据普通状态下的颜色进行了计算，自动生成了按下后的按钮颜色值。类源码如下：  
 ```java
 package kale.injection;
 

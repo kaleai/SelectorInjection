@@ -80,9 +80,8 @@
         app:normal_drawable="@drawable/btn_round_rectangle_flat_shadow_bg_layerlist"
         />
 
-    <view
+    <kale.injection.SelectorImageButton
         android:id="@+id/view3"
-        class="kale.injection.SelectorTextView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:normal_drawable="@drawable/kale"

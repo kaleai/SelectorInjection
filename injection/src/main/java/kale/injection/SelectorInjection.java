@@ -6,8 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
-import android.os.Build;
 import android.view.View;
+import android.widget.ImageButton;
 
 /**
  * view的一个selector注入装置，通过构造函数即可注入。之后调用injection()即可.
@@ -17,7 +17,7 @@ import android.view.View;
  */
 public class SelectorInjection {
 
-    private static final int DEFAULT_COLOR = android.R.color.transparent;
+    private static int DEFAULT_COLOR;
 
     public static final int DEFAULT_STROKE_WIDTH = 2;
 
@@ -37,8 +37,7 @@ public class SelectorInjection {
      * 按下后的颜色（smart关闭后才有效）
      */
     private int mPressedColor;
-
-
+    
     /**
      * 描边的颜色
      */
@@ -49,7 +48,6 @@ public class SelectorInjection {
      */
     private int mStrokeWidth;
 
-
     /**
      * 正常情况下的drawable
      */
@@ -59,6 +57,8 @@ public class SelectorInjection {
      * 按下后的drawable
      */
     private Drawable mPressed;
+    
+    private boolean mIsSrc;
 
 
     SelectorInjection(View view, Drawable normal, Drawable pressed, int normalColor, int pressedColor) {
@@ -66,11 +66,13 @@ public class SelectorInjection {
     }
 
     SelectorInjection(View view, Drawable normal, Drawable pressed, int normalColor, int pressedColor, boolean isSmart) {
-        this(view, normal, pressed, normalColor, pressedColor, isSmart, DEFAULT_COLOR, DEFAULT_STROKE_WIDTH);// 2是默认的描边宽度
+        this(view, normal, pressed, normalColor, pressedColor, isSmart, 
+                view.getResources().getColor(R.color.default_color), DEFAULT_STROKE_WIDTH);
     }
 
     SelectorInjection(View view, Drawable normal, Drawable pressed, int normalColor, int pressedColor, boolean isSmart,
             int strokeColor, int strokeWidth) {
+        DEFAULT_COLOR = view.getResources().getColor(R.color.default_color);
         mView = view;
         mNormal = normal;
         mPressed = pressed;
@@ -93,10 +95,11 @@ public class SelectorInjection {
         mStrokeWidth = typedArray.getDimensionPixelSize(R.styleable.SelectorImageButton_stroke_width, DEFAULT_STROKE_WIDTH);
         mNormal = typedArray.getDrawable(R.styleable.SelectorImageButton_normal_drawable);
         mPressed = typedArray.getDrawable(R.styleable.SelectorImageButton_pressed_drawable);
+        mIsSrc = typedArray.getBoolean(R.styleable.SelectorImageButton_isSrc, false);
         // typedArray.recycle();
     }
 
-    protected void injection() {
+    public void injection() {
         StateListDrawable selector = new StateListDrawable();// 背景选择器
         // 是否启动智能模式
         if (mIsSmart && mNormal != null && mNormalColor != DEFAULT_COLOR) {
@@ -113,7 +116,7 @@ public class SelectorInjection {
         }
         Drawable pressedDrawable;
         if (mPressed instanceof LayerDrawable
-                && (pressedDrawable = ((LayerDrawable) mPressed).findDrawableByLayerId(R.id.background_shape)) instanceof GradientDrawable) {
+                && (pressedDrawable = ((LayerDrawable) mPressed).findDrawableByLayerId(android.R.id.background)) instanceof GradientDrawable) {
             // 如果是layer-list
             setPressedColor(mIsSmart, (GradientDrawable) pressedDrawable, mNormalColor, mPressedColor);
             setStroke((GradientDrawable) pressedDrawable, mStrokeColor, mStrokeWidth);
@@ -135,7 +138,7 @@ public class SelectorInjection {
         }
         Drawable normalDrawable;
         if (mNormal instanceof LayerDrawable
-                && (normalDrawable = ((LayerDrawable) mNormal).findDrawableByLayerId(R.id.background_shape)) instanceof GradientDrawable) {
+                && (normalDrawable = ((LayerDrawable) mNormal).findDrawableByLayerId(android.R.id.background)) instanceof GradientDrawable) {
             // 如果是layer-list
             ((GradientDrawable) normalDrawable).setColor(mNormalColor);
             setStroke((GradientDrawable) normalDrawable, mStrokeColor, mStrokeWidth);
@@ -147,10 +150,11 @@ public class SelectorInjection {
         int animationTime = 10;
         selector.setEnterFadeDuration(animationTime);
         selector.setExitFadeDuration(animationTime);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            mView.setBackground(selector);
-        } else {
+        
+        if (mView instanceof ImageButton && mIsSrc) {
+            ((ImageButton) mView).setImageDrawable(selector);
+            mView.setBackgroundDrawable(null);
+        }else {
             mView.setBackgroundDrawable(selector);
         }
     }
@@ -186,7 +190,7 @@ public class SelectorInjection {
      * Make a dark color to press effect
      * 可重写
      */
-    protected static int getPressedColor(int normalColor) {
+    protected int getPressedColor(int normalColor) {
         int alpha = 255;
         int r = (normalColor >> 16) & 0xFF;
         int g = (normalColor >> 8) & 0xFF;
@@ -197,4 +201,12 @@ public class SelectorInjection {
         return Color.argb(alpha, r, g, b);
     }
 
+
+    public void setNormalColor(int color) {
+        mNormalColor = color;
+    }
+
+    public void setStrokeColor(int color) {
+        mStrokeColor = color;
+    }
 }

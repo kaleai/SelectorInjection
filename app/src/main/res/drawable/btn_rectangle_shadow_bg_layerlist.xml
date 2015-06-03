@@ -3,7 +3,7 @@
 
     <item android:drawable="@drawable/btn_rectangle_shadow_mask">
     </item>
-    <item android:id="@+id/background_shape">
+    <item android:id="@android:id/background">
         <shape android:shape="rectangle" >
             <corners android:radius="2dp" />
 

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 默认的layer-list，请不要删除-->
-    <item
-        android:id="@+id/background_shape"
-        android:drawable="@android:color/transparent" />
-</layer-list>

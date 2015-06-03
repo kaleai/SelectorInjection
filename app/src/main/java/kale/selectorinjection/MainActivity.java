@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import kale.injection.SelectorImageButton;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +15,16 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final SelectorImageButton button = (SelectorImageButton) findViewById(R.id.view6);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button.getInjection().setNormalColor(getResources().getColor(R.color.dark));
+                button.getInjection().setStrokeColor(getResources().getColor(R.color.tran));
+                button.getInjection().injection();
+            }
+        });
     }
 
     @Override

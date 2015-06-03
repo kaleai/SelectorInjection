@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 public class SelectorTextView extends TextView {
 
+    private SelectorInjection injection;
+
     public SelectorTextView(Context context) {
         super(context);
     }
@@ -19,7 +21,7 @@ public class SelectorTextView extends TextView {
     public SelectorTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SelectorImageButton);
-        SelectorInjection injection = new SelectorInjection(this, array);
+        injection = new SelectorInjection(this, array);
         injection.injection();
         array.recycle();
 
@@ -27,6 +29,9 @@ public class SelectorTextView extends TextView {
         setGravity(Gravity.CENTER);
     }
 
+    public SelectorInjection getInjection() {
+        return injection;
+    }
 
     @Override
     public void setEnabled(boolean enabled) {

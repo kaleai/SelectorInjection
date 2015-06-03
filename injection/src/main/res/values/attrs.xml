@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="default_color">#00000000</color>
+    
     <!-- 底色 -->
     <attr name="normal_color" format="color" />
     <!-- 按下后的颜色 -->
@@ -15,6 +17,8 @@
     <attr name="pressed_drawable" format="reference" />
     <!-- 是否是自动计算的 -->
     <attr name="smart" format="boolean" />
+
+    <attr name="isSrc" format="boolean" />
     
     <declare-styleable name="SelectorImageButton">
         <attr name="normal_color" />
@@ -24,6 +28,7 @@
         <attr name="normal_drawable" />
         <attr name="pressed_drawable" />
         <attr name="smart" />
+        <attr name="isSrc" />
     </declare-styleable>
 
     <declare-styleable name="SelectorTextView">
@@ -34,6 +39,7 @@
         <attr name="normal_drawable" />
         <attr name="pressed_drawable" />
         <attr name="smart" />
+        <attr name="isSrc" />
     </declare-styleable>
 </resources>
 

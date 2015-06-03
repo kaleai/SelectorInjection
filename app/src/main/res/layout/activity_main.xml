@@ -119,8 +119,8 @@
         android:layout_alignStart="@+id/view2"
         />
 
-    <view
-        class="kale.injection.SelectorImageButton"
+    <kale.injection.SelectorImageButton
+        android:id="@+id/view6"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
@@ -133,6 +133,5 @@
         android:src="@drawable/pressed_drawable"
         app:stroke_color="#ff0000"
         app:stroke_width="4dp"
-        android:id="@+id/view6"
         />
 </RelativeLayout>

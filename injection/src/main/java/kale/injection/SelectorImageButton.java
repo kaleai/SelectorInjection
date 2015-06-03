@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 
 public class SelectorImageButton extends ImageButton {
 
+    private SelectorInjection injection;
+    
     public SelectorImageButton(Context context) {
         super(context);
     }
@@ -19,11 +21,15 @@ public class SelectorImageButton extends ImageButton {
     public SelectorImageButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SelectorImageButton);
-        SelectorInjection injection = new SelectorInjection(this, array);
+        injection = new SelectorInjection(this, array);
         injection.injection();
         array.recycle();
     }
 
+    public SelectorInjection getInjection() {
+        return  injection;
+    }
+    
 
     @Override
     public void setEnabled(boolean enabled) {

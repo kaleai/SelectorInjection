@@ -21,7 +21,7 @@ public class SelectorTextView extends TextView implements Checkable {
 
     public SelectorTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SelectorImageButton);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
         injection = new SelectorInjection(this, array);
         injection.injection();
         array.recycle();

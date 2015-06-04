@@ -110,23 +110,23 @@ public class SelectorInjection {
 
     SelectorInjection(View view, TypedArray typedArray) {
         mView = view;
-        mIsSmart = typedArray.getBoolean(R.styleable.SelectorImageButton_smart, true);
+        mIsSmart = typedArray.getBoolean(R.styleable.SelectorInjection_smart, true);
 
-        mNormal = typedArray.getDrawable(R.styleable.SelectorImageButton_normal_drawable);
-        mPressed = typedArray.getDrawable(R.styleable.SelectorImageButton_pressed_drawable);
-        mChecked = typedArray.getDrawable(R.styleable.SelectorImageButton_checked_drawable);
+        mNormal = typedArray.getDrawable(R.styleable.SelectorInjection_normal_drawable);
+        mPressed = typedArray.getDrawable(R.styleable.SelectorInjection_pressed_drawable);
+        mChecked = typedArray.getDrawable(R.styleable.SelectorInjection_checked_drawable);
 
-        mNormalColor = typedArray.getColor(R.styleable.SelectorImageButton_normal_color, DEFAULT_COLOR);
-        mPressedColor = typedArray.getColor(R.styleable.SelectorImageButton_pressed_color, DEFAULT_COLOR);
-        mCheckedColor = typedArray.getColor(R.styleable.SelectorImageButton_checked_color, DEFAULT_COLOR);
+        mNormalColor = typedArray.getColor(R.styleable.SelectorInjection_normal_color, DEFAULT_COLOR);
+        mPressedColor = typedArray.getColor(R.styleable.SelectorInjection_pressed_color, DEFAULT_COLOR);
+        mCheckedColor = typedArray.getColor(R.styleable.SelectorInjection_checked_color, DEFAULT_COLOR);
 
-        mStrokeColor = typedArray.getColor(R.styleable.SelectorImageButton_stroke_color, DEFAULT_COLOR);
-        mStrokeWidth = typedArray.getDimension(R.styleable.SelectorImageButton_stroke_width, DEFAULT_STROKE_WIDTH);
+        mStrokeColor = typedArray.getColor(R.styleable.SelectorInjection_stroke_color, DEFAULT_COLOR);
+        mStrokeWidth = typedArray.getDimension(R.styleable.SelectorInjection_stroke_width, DEFAULT_STROKE_WIDTH);
         // 目前还没支持pressed状态下的描边改变，默认是用正常状态下的描边样式
-        mCheckedStrokeColor = typedArray.getColor(R.styleable.SelectorImageButton_checked_stroke_color, DEFAULT_COLOR);
-        mCheckedStrokeWidth = typedArray.getDimension(R.styleable.SelectorImageButton_checked_stroke_width, DEFAULT_STROKE_WIDTH);
+        mCheckedStrokeColor = typedArray.getColor(R.styleable.SelectorInjection_checked_stroke_color, DEFAULT_COLOR);
+        mCheckedStrokeWidth = typedArray.getDimension(R.styleable.SelectorInjection_checked_stroke_width, DEFAULT_STROKE_WIDTH);
 
-        mIsSrc = typedArray.getBoolean(R.styleable.SelectorImageButton_isSrc, false);
+        mIsSrc = typedArray.getBoolean(R.styleable.SelectorInjection_isSrc, false);
         // typedArray.recycle();
     }
 

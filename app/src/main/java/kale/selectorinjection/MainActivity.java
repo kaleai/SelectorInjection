@@ -1,7 +1,7 @@
 package kale.selectorinjection;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,11 +20,14 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                button.getInjection().setNormalColor(getResources().getColor(R.color.dark));
-                button.getInjection().setStrokeColor(getResources().getColor(R.color.tran));
-                button.getInjection().injection();
+                /*button.getInjection().setNormalColor(getResources().getColor(R.color.dark));
+                button.getInjection().setStrokeColor(getResources().getColor(R.color.dark));
+                button.getInjection().injection();*/
+                button.setChecked(true);
             }
         });
+        //button.setChecked(true);
+        //button.setEnabled(false);
     }
 
     @Override

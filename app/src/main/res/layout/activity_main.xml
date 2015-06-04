@@ -118,7 +118,7 @@
         android:layout_alignLeft="@+id/view2"
         android:layout_alignStart="@+id/view2"
         />
-
+    
     <kale.injection.SelectorImageButton
         android:id="@+id/view6"
         android:layout_width="100dp"
@@ -133,5 +133,8 @@
         android:src="@drawable/pressed_drawable"
         app:stroke_color="#ff0000"
         app:stroke_width="4dp"
+        app:checked_drawable="@drawable/btn_oval_shape"
+        app:checked_color="#00fff0"
+        app:checked_stroke_color="#00fff0"
         />
 </RelativeLayout>

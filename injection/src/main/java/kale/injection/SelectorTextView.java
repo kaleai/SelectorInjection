@@ -4,9 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.widget.Checkable;
 import android.widget.TextView;
 
-public class SelectorTextView extends TextView {
+public class SelectorTextView extends TextView implements Checkable {
 
     private SelectorInjection injection;
 
@@ -39,5 +40,43 @@ public class SelectorTextView extends TextView {
         if (!enabled) {
             setAlpha(0.3f);
         }
+    }
+
+    private boolean mIsChecked = false;
+
+    private static final int[] CHECKED_STATE_SET = {
+            android.R.attr.state_checked
+    };
+
+    @Override
+    public int[] onCreateDrawableState(int extraSpace) {
+        final int[] drawableState = super.onCreateDrawableState(extraSpace + 1);
+        if (isChecked()) {
+            mergeDrawableStates(drawableState, CHECKED_STATE_SET);
+        }
+        return drawableState;
+    }
+
+    /**
+     * <p>Changes the checked state of this button.</p>
+     *
+     * @param checked true to check the button, false to uncheck it
+     */
+    @Override
+    public void setChecked(boolean checked) {
+        if (mIsChecked != checked) {
+            mIsChecked = checked;
+            refreshDrawableState();
+        }
+    }
+
+    @Override
+    public boolean isChecked() {
+        return mIsChecked;
+    }
+
+    @Override
+    public void toggle() {
+        setChecked(!mIsChecked);
     }
 }

@@ -17,7 +17,7 @@ import android.widget.ImageButton;
  */
 public class SelectorInjection {
 
-    private static int DEFAULT_COLOR;
+    private static int DEFAULT_COLOR = 0x0106000d;
 
     public static final int DEFAULT_STROKE_WIDTH = 2;
 
@@ -46,7 +46,7 @@ public class SelectorInjection {
     /**
      * 描边的宽度，如果不设置会根据默认的宽度进行描边
      */
-    private float mStrokeWidth;
+    private int mStrokeWidth;
 
     /**
      * 选中后的描边颜色
@@ -56,7 +56,7 @@ public class SelectorInjection {
     /**
      * 选中后的描边宽度
      */
-    private float mCheckedStrokeWidth;
+    private int mCheckedStrokeWidth;
 
     /**
      * 正常情况下的drawable
@@ -121,10 +121,10 @@ public class SelectorInjection {
         mCheckedColor = typedArray.getColor(R.styleable.SelectorInjection_checked_color, DEFAULT_COLOR);
 
         mStrokeColor = typedArray.getColor(R.styleable.SelectorInjection_stroke_color, DEFAULT_COLOR);
-        mStrokeWidth = typedArray.getDimension(R.styleable.SelectorInjection_stroke_width, DEFAULT_STROKE_WIDTH);
+        mStrokeWidth = typedArray.getDimensionPixelSize(R.styleable.SelectorInjection_stroke_width, DEFAULT_STROKE_WIDTH);
         // 目前还没支持pressed状态下的描边改变，默认是用正常状态下的描边样式
         mCheckedStrokeColor = typedArray.getColor(R.styleable.SelectorInjection_checked_stroke_color, DEFAULT_COLOR);
-        mCheckedStrokeWidth = typedArray.getDimension(R.styleable.SelectorInjection_checked_stroke_width, DEFAULT_STROKE_WIDTH);
+        mCheckedStrokeWidth = typedArray.getDimensionPixelSize(R.styleable.SelectorInjection_checked_stroke_width, DEFAULT_STROKE_WIDTH);
 
         mIsSrc = typedArray.getBoolean(R.styleable.SelectorInjection_isSrc, false);
         // typedArray.recycle();
@@ -133,8 +133,9 @@ public class SelectorInjection {
     public void injection() {
         StateListDrawable selector = new StateListDrawable();// 背景选择器
         // 是否启动智能模式
-        if (mIsSmart && mNormal != null && mNormalColor != DEFAULT_COLOR) {
+        if (mIsSmart && mNormal != null) {
             mPressed = mNormal.getConstantState().newDrawable();
+            mChecked = mNormal.getConstantState().newDrawable();
         }
 
         setPressedDrawable(selector);
@@ -163,17 +164,16 @@ public class SelectorInjection {
             if (mPressed instanceof GradientDrawable) {
                 // 如果是shape
                 setPressedColor(mIsSmart, (GradientDrawable) mPressed, mNormalColor, mPressedColor);
-                setStroke((GradientDrawable) mPressed, mStrokeColor, (int) mStrokeWidth);
+                setStroke((GradientDrawable) mPressed, mStrokeColor, mStrokeWidth);
             }
             Drawable pressedDrawable;
             if (mPressed instanceof LayerDrawable
                     && (pressedDrawable = ((LayerDrawable) mPressed).findDrawableByLayerId(android.R.id.background)) instanceof GradientDrawable) {
                 // 如果是layer-list
                 setPressedColor(mIsSmart, (GradientDrawable) pressedDrawable, mNormalColor, mPressedColor);
-                setStroke((GradientDrawable) pressedDrawable, mStrokeColor, (int) mStrokeWidth);
+                setStroke((GradientDrawable) pressedDrawable, mStrokeColor, mStrokeWidth);
             }
             // 设置pressed的selector
-
             selector.addState(new int[]{android.R.attr.state_pressed}, mPressed);
             selector.addState(new int[]{android.R.attr.state_focused}, mPressed);
             mPressed.mutate();
@@ -187,17 +187,17 @@ public class SelectorInjection {
         if (mChecked != null) {
             if (mChecked instanceof GradientDrawable) {
                 ((GradientDrawable) mChecked).setColor(mCheckedColor);
-                setStroke((GradientDrawable) mChecked, mCheckedStrokeColor, (int) mCheckedStrokeWidth);
+                setStroke((GradientDrawable) mChecked, mCheckedStrokeColor, mCheckedStrokeWidth);
             }
-
             Drawable checkedDrawable;
             if (mChecked instanceof LayerDrawable
                     && (checkedDrawable = ((LayerDrawable) mChecked).findDrawableByLayerId(android.R.id.background)) instanceof GradientDrawable) {
                 // 如果是layer-list
                 ((GradientDrawable) checkedDrawable).setColor(mCheckedColor);
-                setStroke((GradientDrawable) checkedDrawable, mCheckedStrokeColor, (int) mCheckedStrokeWidth);
+                setStroke((GradientDrawable) checkedDrawable, mCheckedStrokeColor, mCheckedStrokeWidth);
             }
             selector.addState(new int[]{android.R.attr.state_checked}, mChecked);
+            mChecked.mutate();
         }
     }
     
@@ -205,19 +205,19 @@ public class SelectorInjection {
      * 开始设置普通状态时的样式（颜色，描边）
      */
     private void setNormalDrawable(StateListDrawable selector) {
-        if (mNormal instanceof GradientDrawable) {
-            // 如果是shape
-            ((GradientDrawable) mNormal).setColor(mNormalColor);
-            setStroke((GradientDrawable) mNormal, mStrokeColor, (int) mStrokeWidth);
-        }
-        Drawable normalDrawable;
-        if (mNormal instanceof LayerDrawable
-                && (normalDrawable = ((LayerDrawable) mNormal).findDrawableByLayerId(android.R.id.background)) instanceof GradientDrawable) {
-            // 如果是layer-list
-            ((GradientDrawable) normalDrawable).setColor(mNormalColor);
-            setStroke((GradientDrawable) normalDrawable, mStrokeColor, (int) mStrokeWidth);
-        }
         if (mNormal != null) {
+            if (mNormal instanceof GradientDrawable) {
+                // 如果是shape
+                ((GradientDrawable) mNormal).setColor(mNormalColor);
+                setStroke((GradientDrawable) mNormal, mStrokeColor, mStrokeWidth);
+            }
+            Drawable normalDrawable;
+            if (mNormal instanceof LayerDrawable
+                    && (normalDrawable = ((LayerDrawable) mNormal).findDrawableByLayerId(android.R.id.background)) instanceof GradientDrawable) {
+                // 如果是layer-list
+                ((GradientDrawable) normalDrawable).setColor(mNormalColor);
+                setStroke((GradientDrawable) normalDrawable, mStrokeColor, mStrokeWidth);
+            }
             selector.addState(new int[]{}, mNormal);
         }
     }
@@ -264,7 +264,6 @@ public class SelectorInjection {
         return Color.argb(alpha, r, g, b);
     }
 
-
     public void setNormalColor(int color) {
         mNormalColor = color;
     }
@@ -272,4 +271,5 @@ public class SelectorInjection {
     public void setStrokeColor(int color) {
         mStrokeColor = color;
     }
+    
 }

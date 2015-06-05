@@ -127,14 +127,9 @@
         android:layout_alignParentRight="true"
         app:normal_color="#0000ff"
         app:normal_drawable="@drawable/btn_rectangle_shadow_bg_layerlist"
-        app:pressed_color="#ff0000"
-        app:pressed_drawable="@drawable/kale"
-        app:smart="false"
-        android:src="@drawable/pressed_drawable"
-        app:stroke_color="#ff0000"
-        app:stroke_width="4dp"
-        app:checked_drawable="@drawable/btn_oval_shape"
+        app:stroke_color="#0000ff"
         app:checked_color="#00fff0"
-        app:checked_stroke_color="#00fff0"
+        app:checked_stroke_width="4dp"
+        app:checked_stroke_color="#00ff00"
         />
 </RelativeLayout>

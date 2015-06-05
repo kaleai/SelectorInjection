@@ -22,7 +22,7 @@ public class SelectorTextView extends TextView implements Checkable {
     public SelectorTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
-        injection = getSInjection(array);
+        injection = initSelectorInjection(array);
         injection.injection();
         array.recycle();
 
@@ -30,7 +30,7 @@ public class SelectorTextView extends TextView implements Checkable {
         setGravity(Gravity.CENTER);
     }
 
-    protected SelectorInjection getSInjection(TypedArray array) {
+    protected SelectorInjection initSelectorInjection(TypedArray array) {
         return new SelectorInjection(this, array);
     }
     

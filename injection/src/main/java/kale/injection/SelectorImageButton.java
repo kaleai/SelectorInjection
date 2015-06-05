@@ -22,12 +22,12 @@ public class SelectorImageButton extends ImageButton implements Checkable {
     public SelectorImageButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
-        injection = getSInjection(array);
+        injection = initSelectorInjection(array);
         injection.injection();
         array.recycle();
     }
 
-    protected SelectorInjection getSInjection(TypedArray array) {
+    protected SelectorInjection initSelectorInjection(TypedArray array) {
         return new SelectorInjection(this, array);
     }
 

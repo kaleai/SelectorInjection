@@ -108,7 +108,7 @@ public class SelectorInjection {
 
     }*/
 
-    SelectorInjection(View view, TypedArray typedArray) {
+    public SelectorInjection(View view, TypedArray typedArray) {
         mView = view;
         mIsSmart = typedArray.getBoolean(R.styleable.SelectorInjection_smart, true);
 

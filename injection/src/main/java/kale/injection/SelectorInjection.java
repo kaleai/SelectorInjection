@@ -133,8 +133,11 @@ public class SelectorInjection {
     public void injection() {
         StateListDrawable selector = new StateListDrawable();// 背景选择器
         // 是否启动智能模式
-        if (mIsSmart && mNormal != null) {
+        if (mIsSmart && mNormal != null && mPressed == null) {
             mPressed = mNormal.getConstantState().newDrawable();
+        }
+
+        if (mIsSmart && mNormal != null && mChecked == null) {
             mChecked = mNormal.getConstantState().newDrawable();
         }
 

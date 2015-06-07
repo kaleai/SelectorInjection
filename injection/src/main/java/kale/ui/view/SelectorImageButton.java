@@ -1,10 +1,13 @@
-package kale.injection;
+package kale.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.Checkable;
 import android.widget.ImageButton;
+
+import kale.injection.R;
+import kale.injection.SelectorInjection;
 
 
 public class SelectorImageButton extends ImageButton implements Checkable {

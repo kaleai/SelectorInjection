@@ -63,7 +63,7 @@ public class SelectorImageButton extends ImageButton {
 ```  
 最后，可以愉快的使用这个view了  
 ```xml
-	<kale.injection.SelectorImageButton
+	<kale.ui.view.SelectorImageButton
         app:normal_drawable="@drawable/kale"
         app:pressed_drawable="@drawable/pressed_drawable"
         />  

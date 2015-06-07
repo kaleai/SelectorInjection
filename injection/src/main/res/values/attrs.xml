@@ -29,7 +29,7 @@
     <attr name="checked_stroke_width" format="dimension" />
     
     <!-- 是否是自动计算的 -->
-    <attr name="smart" format="boolean" />
+    <attr name="isSmart" format="boolean" />
 
     <!-- 是否将图片设置到src中 -->
     <attr name="isSrc" format="boolean" />
@@ -47,7 +47,7 @@
         <attr name="pressed_stroke_width"/>
         <attr name="checked_stroke_color"/>
         <attr name="checked_stroke_width"/>
-        <attr name="smart"/>
+        <attr name="isSmart"/>
         <attr name="isSrc"/>
     </declare-styleable>
    

@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 /**
- * view的一个selector注入装置，通过构造函数即可注入。之后调用injection()即可.
+ * View的一个selector注入装置，通过构造函数即可注入。之后调用injection()即可.
  *
  * @author Jack Tony
  * @date 2015/5/25
@@ -83,34 +83,10 @@ public class SelectorInjection {
      */
     private int mCheckedColor;
 
-
-/*    SelectorInjection(View view, Drawable normal, Drawable pressed, int normalColor, int pressedColor) {
-        this(view, normal, pressed, normalColor, pressedColor, true);
-    }
-
-    SelectorInjection(View view, Drawable normal, Drawable pressed, int normalColor, int pressedColor, boolean isSmart) {
-        this(view, normal, pressed, normalColor, pressedColor, isSmart, 
-                view.getResources().getColor(R.color.default_color), DEFAULT_STROKE_WIDTH);
-    }
-
-    SelectorInjection(View view, Drawable normal, Drawable pressed, int normalColor, int pressedColor, boolean isSmart,
-            int strokeColor, int strokeWidth) {
-        DEFAULT_COLOR = view.getResources().getColor(R.color.default_color);
-        mView = view;
-        mNormal = normal;
-        mPressed = pressed;
-        mNormalColor = normalColor;
-
-        mPressedColor = pressedColor;
-        mIsSmart = isSmart;
-        mStrokeColor = strokeColor;
-        mStrokeWidth = strokeWidth;
-
-    }*/
-
+    
     public SelectorInjection(View view, TypedArray typedArray) {
         mView = view;
-        mIsSmart = typedArray.getBoolean(R.styleable.SelectorInjection_smart, true);
+        mIsSmart = typedArray.getBoolean(R.styleable.SelectorInjection_isSmart, true);
 
         mNormal = typedArray.getDrawable(R.styleable.SelectorInjection_normal_drawable);
         mPressed = typedArray.getDrawable(R.styleable.SelectorInjection_pressed_drawable);
@@ -153,7 +129,7 @@ public class SelectorInjection {
 
         if (mView instanceof ImageButton && mIsSrc) {
             ((ImageButton) mView).setImageDrawable(selector);
-            mView.setBackgroundDrawable(null);
+            //mView.setBackgroundDrawable(null);
         } else {
             mView.setBackgroundDrawable(selector);
         }

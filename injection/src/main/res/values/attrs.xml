@@ -3,7 +3,7 @@
 
     <color name="default_color">#00000000</color>
     
-    <!-- 底色 -->
+    <!-- 普通状态的颜色 -->
     <attr name="normal_color" format="color" />
     <!-- 按下后的颜色 -->
     <attr name="pressed_color" format="color" />

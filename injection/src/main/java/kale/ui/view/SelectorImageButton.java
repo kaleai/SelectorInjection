@@ -13,7 +13,7 @@ import kale.injection.SelectorInjection;
 public class SelectorImageButton extends ImageButton implements Checkable {
 
     private SelectorInjection injection;
-    
+
     public SelectorImageButton(Context context) {
         super(context);
     }
@@ -35,15 +35,13 @@ public class SelectorImageButton extends ImageButton implements Checkable {
     }
 
     public SelectorInjection getInjection() {
-        return  injection;
+        return injection;
     }
 
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        if (!enabled) {
-            setAlpha(0.3f);
-        }
+        setAlpha(!enabled ? 0.3f : 1);
     }
 
     private boolean mIsChecked = false;

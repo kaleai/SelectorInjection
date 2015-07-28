@@ -44,9 +44,7 @@ public class SelectorTextView extends TextView implements Checkable {
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        if (!enabled) {
-            setAlpha(0.3f);
-        }
+        setAlpha(!enabled ? 0.3f : 1);
     }
 
     private boolean mIsChecked = false;

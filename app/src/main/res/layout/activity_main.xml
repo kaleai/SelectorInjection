@@ -1,120 +1,80 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity"
     >
 
-
     <kale.ui.view.SelectorTextView
-        android:layout_width="110dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:normal_color="#ff0000"
-        android:text="扁平椭圆"
+        android:id="@+id/stv"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Click Me"
         android:textColor="@android:color/white"
-        app:normal_drawable="@drawable/btn_oval_shape"
-        />
-    
 
-    <view
-        class="kale.ui.view.SelectorTextView"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        app:normal_color="#0000ff"
-        app:normal_drawable="@drawable/btn_round_rectangle_shape"
-        app:stroke_color="#ff0000"
-        app:stroke_width="4dp"
-        android:text="扁平圆角矩形"
-        android:textColor="#ffffff"
+        app:normalColor="#03a9f4"
+        app:normalDrawable="@drawable/btn_oval_shape"
+        app:normalStrokeColor="#ffffff"
+        app:normalStrokeWidth="4dp"
         />
 
-    <view
-        android:id="@+id/view2"
-        class="kale.ui.view.SelectorTextView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        app:normal_color="#00ff00"
-        app:normal_drawable="@drawable/btn_rectangle_shape"
-        android:text="扁平矩形"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
 
-    <view
-        android:id="@+id/view4"
-        class="kale.ui.view.SelectorTextView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:normal_color="#0000ff"
-        app:normal_drawable="@drawable/btn_rectangle_shape"
-        app:pressed_drawable="@drawable/btn_rectangle_shadow_bg_layerlist"
-        app:isSmart="false"
-        android:layout_alignTop="@+id/view3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:text="带底部阴影的圆角矩形"
-        android:textColor="#ffffff"
-        />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:divider="@drawable/list_divider"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            >
 
-    <view
-        android:id="@+id/view"
-        class="kale.ui.view.SelectorTextView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        app:normal_color="#ff0000"
-        app:stroke_color="#ff0000"
-        app:checked_stroke_color="#00ff00"
-        android:text="有checked效果"
-        android:checked="true"
-        app:normal_drawable="@drawable/btn_rectangle_shape"
-        />
+            <CheckBox
+                android:id="@+id/pressed_color_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="has pressed color"
+                />
 
-    <kale.ui.view.SelectorTextView
-        android:id="@+id/view3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:normal_drawable="@drawable/kale"
-        app:pressed_drawable="@drawable/pressed_icon"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:text="用图片做\n按压效果"
-        android:textColor="#000000"
-        />
+            <CheckBox
+                android:id="@+id/pressed_drawable_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="has pressed Drawable"
+                />
 
+            <CheckBox
+                android:id="@+id/normal_stroke_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="has normal stoke"
+                />
 
-    <kale.ui.view.SelectorImageButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/pressed_icon"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        app:normal_color="#ff0000"
-        app:normal_drawable="@drawable/btn_oval_shadow_bg_layerlist"
-        app:pressed_color="#0000ff"
-        app:pressed_drawable="@drawable/btn_rectangle_shadow_bg_layerlist"
-        />
+            <CheckBox
+                android:id="@+id/pressed_stroke_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="has pressed stroke"
+                />
 
-    <kale.ui.view.SelectorImageButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/view3"
-        android:layout_alignStart="@+id/view3"
-        android:background="#00ff00"
-        app:normal_drawable="@drawable/normal_icon"
-        app:pressed_drawable="@drawable/pressed_icon"
-        app:isSrc="true"
-        />
-    
-</RelativeLayout>
+            <CheckBox
+                android:id="@+id/isSmart_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="isSmart"
+                android:checked="true"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

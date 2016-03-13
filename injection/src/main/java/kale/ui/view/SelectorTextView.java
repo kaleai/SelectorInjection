@@ -26,7 +26,7 @@ public class SelectorTextView extends TextView implements Checkable {
         super(context, attrs);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
         injection = initSelectorInjection(array);
-        injection.injection();
+        injection.injection(this);
         array.recycle();
 
         setClickable(true);
@@ -34,9 +34,9 @@ public class SelectorTextView extends TextView implements Checkable {
     }
 
     protected SelectorInjection initSelectorInjection(TypedArray array) {
-        return new SelectorInjection(this, array);
+        return new SelectorInjection(array);
     }
-    
+
     public SelectorInjection getInjection() {
         return injection;
     }
@@ -62,11 +62,6 @@ public class SelectorTextView extends TextView implements Checkable {
         return drawableState;
     }
 
-    /**
-     * <p>Changes the checked state of this button.</p>
-     *
-     * @param checked true to check the button, false to uncheck it
-     */
     @Override
     public void setChecked(boolean checked) {
         if (mIsChecked != checked) {

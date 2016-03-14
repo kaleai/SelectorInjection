@@ -2,6 +2,7 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:selectableItemBackground">@color/material_grey_600</item>
     </style>
 
 </resources>

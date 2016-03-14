@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/btn_rectangle_shadow_mask">
-    </item>
+    <item android:drawable="@drawable/btn_rectangle_shadow_mask" />
     <item android:id="@android:id/background">
-        <shape android:shape="rectangle" >
+        <shape android:shape="rectangle">
             <corners android:radius="2dp" />
 
             <solid android:color="@android:color/transparent" />
         </shape>
-    </item> 
+    </item>
 
 </layer-list>

@@ -10,14 +10,14 @@
         <attr name="pressedColor" format="color" />
         <!-- 选中后的颜色 -->
         <attr name="checkedColor" format="color" />
-        
+
         <!-- 常规状态下-->
         <attr name="normalDrawable" format="reference" />
         <!-- 按下/获得焦点 -->
         <attr name="pressedDrawable" format="reference" />
         <!-- 选中时 -->
         <attr name="checkedDrawable" format="reference" />
-        
+
         <!-- 正常的描边 -->
         <attr name="normalStrokeColor" format="color" />
         <attr name="normalStrokeWidth" format="dimension" />
@@ -27,12 +27,16 @@
         <!-- 选中后的描边 -->
         <attr name="checkedStrokeColor" format="color" />
         <attr name="checkedStrokeWidth" format="dimension" />
-        
+
         <!-- 是否是自动计算按下颜色的的 -->
         <attr name="isSmart" format="boolean" />
-        <!-- 是否将图片设置到src中（仅仅对imageView有效） -->
+        
+        <!-- 是否将图片设置到src中（仅仅对ImageButton有效） -->
         <attr name="isSrc" format="boolean" />
+        
+        <!-- 是否显示水波纹（Android5.0以上有效）-->
+        <attr name="showRipple" format="boolean" />
     </declare-styleable>
-   
+
 </resources>
 

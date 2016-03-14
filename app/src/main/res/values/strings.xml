@@ -1,11 +1,3 @@
 <resources>
     <string name="app_name">SelectorInjection</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-
-    <color name="dark">#00ff00</color>
-    <color name="tran">#00000000</color>
-
-    
 </resources>

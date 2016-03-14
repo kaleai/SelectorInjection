@@ -2,31 +2,31 @@ package kale.ui.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.widget.Button;
 import android.widget.Checkable;
-import android.widget.TextView;
 
 import kale.injection.SelectorInjection;
 
-public class SelectorTextView extends TextView implements Checkable, SelectorView {
+/**
+ * @author Kale
+ * @date 2016/3/14
+ */
+public class SelectorButton extends Button implements Checkable, SelectorView {
 
     private SelectorInjection injection;
 
-    public SelectorTextView(Context context) {
+    public SelectorButton(Context context) {
         this(context, null);
     }
 
-    public SelectorTextView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+    public SelectorButton(Context context, AttributeSet attrs, int defStyleAttr) {
+        this(context, attrs);
     }
 
-    public SelectorTextView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public SelectorButton(Context context, AttributeSet attrs) {
+        super(context, attrs);
         injection = initSelectorInjection(context, attrs);
         injection.injection(this);
-
-        setClickable(true);
-        setGravity(Gravity.CENTER);
     }
 
     @Override
@@ -34,6 +34,7 @@ public class SelectorTextView extends TextView implements Checkable, SelectorVie
         return new SelectorInjection(context, attr);
     }
 
+    @Override
     public SelectorInjection getInjection() {
         return injection;
     }
@@ -76,4 +77,5 @@ public class SelectorTextView extends TextView implements Checkable, SelectorVie
     public void toggle() {
         setChecked(!mIsChecked);
     }
+
 }

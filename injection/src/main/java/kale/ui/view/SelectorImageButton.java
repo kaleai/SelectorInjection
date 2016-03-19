@@ -2,12 +2,11 @@ package kale.ui.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Checkable;
 import android.widget.ImageButton;
 
 import kale.injection.SelectorInjection;
 
-public class SelectorImageButton extends ImageButton implements Checkable, SelectorView {
+public class SelectorImageButton extends ImageButton implements SelectorView {
 
     private SelectorInjection injection;
 
@@ -25,10 +24,12 @@ public class SelectorImageButton extends ImageButton implements Checkable, Selec
         injection.injection(this);
     }
 
+    @Override
     public SelectorInjection initSelectorInjection(Context context, AttributeSet attr) {
         return new SelectorInjection(context, attr);
     }
 
+    @Override
     public SelectorInjection getInjection() {
         return injection;
     }
@@ -36,7 +37,7 @@ public class SelectorImageButton extends ImageButton implements Checkable, Selec
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        setAlpha(!enabled ? 0.3f : 1);
+        injection.setEnabled(this, enabled);
     }
 
     ///////////////////////////////////////////////////////////////////////////

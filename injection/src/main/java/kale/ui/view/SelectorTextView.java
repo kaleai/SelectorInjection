@@ -3,12 +3,11 @@ package kale.ui.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.widget.Checkable;
-import android.widget.TextView;
+import android.widget.CheckedTextView;
 
 import kale.injection.SelectorInjection;
 
-public class SelectorTextView extends TextView implements Checkable, SelectorView {
+public class SelectorTextView extends CheckedTextView implements SelectorView {
 
     private SelectorInjection injection;
 
@@ -33,7 +32,8 @@ public class SelectorTextView extends TextView implements Checkable, SelectorVie
     public SelectorInjection initSelectorInjection(Context context, AttributeSet attr) {
         return new SelectorInjection(context, attr);
     }
-
+    
+    @Override
     public SelectorInjection getInjection() {
         return injection;
     }
@@ -41,39 +41,6 @@ public class SelectorTextView extends TextView implements Checkable, SelectorVie
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        setAlpha(!enabled ? 0.3f : 1);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // For checkable
-    ///////////////////////////////////////////////////////////////////////////
-
-    @Override
-    public int[] onCreateDrawableState(int extraSpace) {
-        final int[] drawableState = super.onCreateDrawableState(extraSpace + 1);
-        if (isChecked()) {
-            mergeDrawableStates(drawableState, CHECKED_STATE_SET);
-        }
-        return drawableState;
-    }
-
-    private boolean mIsChecked = false;
-
-    @Override
-    public void setChecked(boolean checked) {
-        if (mIsChecked != checked) {
-            mIsChecked = checked;
-            refreshDrawableState();
-        }
-    }
-
-    @Override
-    public boolean isChecked() {
-        return mIsChecked;
-    }
-
-    @Override
-    public void toggle() {
-        setChecked(!mIsChecked);
+        injection.setEnabled(this, enabled);
     }
 }

@@ -2,8 +2,7 @@ package kale.ui.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Button;
-import android.widget.Checkable;
+import android.widget.CompoundButton;
 
 import kale.injection.SelectorInjection;
 
@@ -11,7 +10,7 @@ import kale.injection.SelectorInjection;
  * @author Kale
  * @date 2016/3/14
  */
-public class SelectorButton extends Button implements Checkable, SelectorView {
+public class SelectorButton extends CompoundButton implements SelectorView {
 
     private SelectorInjection injection;
 
@@ -19,12 +18,12 @@ public class SelectorButton extends Button implements Checkable, SelectorView {
         this(context, null);
     }
 
-    public SelectorButton(Context context, AttributeSet attrs, int defStyleAttr) {
-        this(context, attrs);
+    public SelectorButton(Context context, AttributeSet attrs) {
+        this(context, attrs, android.R.attr.buttonStyle);
     }
 
-    public SelectorButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public SelectorButton(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         injection = initSelectorInjection(context, attrs);
         injection.injection(this);
     }
@@ -42,40 +41,23 @@ public class SelectorButton extends Button implements Checkable, SelectorView {
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        setAlpha(!enabled ? 0.3f : 1);
+        injection.setEnabled(this, enabled);
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // For checkable
-    ///////////////////////////////////////////////////////////////////////////
-
-    @Override
-    public int[] onCreateDrawableState(int extraSpace) {
-        final int[] drawableState = super.onCreateDrawableState(extraSpace + 1);
-        if (isChecked()) {
-            mergeDrawableStates(drawableState, CHECKED_STATE_SET);
-        }
-        return drawableState;
-    }
-
-    private boolean mIsChecked = false;
-
-    @Override
-    public void setChecked(boolean checked) {
-        if (mIsChecked != checked) {
-            mIsChecked = checked;
-            refreshDrawableState();
-        }
-    }
-
-    @Override
-    public boolean isChecked() {
-        return mIsChecked;
-    }
-
+    /**
+     * instead by {@link #toggleCompat()}
+     */
+    @Deprecated
     @Override
     public void toggle() {
-        setChecked(!mIsChecked);
+        // 覆盖选中事件
+    }
+
+    /**
+     * 代替{@link #toggle()}
+     */
+    public void toggleCompat() {
+        setChecked(!isChecked());
     }
 
 }

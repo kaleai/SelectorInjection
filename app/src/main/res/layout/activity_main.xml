@@ -21,6 +21,8 @@
         app:normalDrawable="@drawable/btn_oval_shape"
         app:normalStrokeColor="#ffffff"
         app:normalStrokeWidth="4dp"
+        
+        app:checkedDrawable="@drawable/kale"
         />
 
     <LinearLayout
@@ -70,8 +72,8 @@
                 android:id="@+id/isSmart_cb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="isSmart"
                 android:checked="true"
+                android:text="isSmart"
                 />
 
         </LinearLayout>

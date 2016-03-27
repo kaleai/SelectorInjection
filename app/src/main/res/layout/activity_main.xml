@@ -22,6 +22,8 @@
         app:normalStrokeColor="#ffffff"
         app:normalStrokeWidth="4dp"
         
+        app:pressedColor="#ffffff"
+        
         app:checkedDrawable="@drawable/kale"
         />
 

@@ -1,6 +1,7 @@
 package kale.injection;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -159,8 +160,8 @@ public class SelectorInjection {
                 RippleDrawable ripple = (RippleDrawable) view.getContext().getDrawable(R.drawable.ripple);
                 assert ripple != null;
                 ripple.setDrawableByLayerId(android.R.id.background, selector);
-                int rippleColor = pressedColor;
                 // TODO: 2016/3/19 自定义水波纹的背景 
+                ripple.setColor(createColorStateList(pressedColor, pressedColor, pressedColor, pressedColor));
                 view.setBackground(ripple);
             } else {
                 view.setBackgroundDrawable(selector);
@@ -257,6 +258,23 @@ public class SelectorInjection {
         g = (g - 50 < 0) ? 0 : g - 50;
         b = (b - 50 < 0) ? 0 : b - 50;
         return Color.argb(alpha, r, g, b);
+    }
+
+    /**
+     * 设置不同状态时其文字颜色
+     *
+     * @see "http://blog.csdn.net/sodino/article/details/6797821"
+     */
+    private ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
+        int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
+        int[][] states = new int[6][];
+        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
+        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
+        states[2] = new int[]{android.R.attr.state_enabled};
+        states[3] = new int[]{android.R.attr.state_focused};
+        states[4] = new int[]{android.R.attr.state_window_focused};
+        states[5] = new int[]{};
+        return new ColorStateList(states, colors);
     }
 
     private static int getColor(TypedArray a, int styleResId) {

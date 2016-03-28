@@ -13,6 +13,9 @@
 现在这个注入器支持且**不仅仅**支持下列的按钮，你可以通过layer-list和shape的组合产生更多的按钮。  
 ![image](./demoPic/view.png)
 
+###效果   
+![](./demoPic/demo.gif)
+
 ###引入方式  
 1.添加JitPack仓库
 

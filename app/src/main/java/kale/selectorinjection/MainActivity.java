@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         findCbAndSetListener(R.id.normal_stroke_cb);
         findCbAndSetListener(R.id.pressed_stroke_cb);
         findCbAndSetListener(R.id.isSmart_cb);
+        findCbAndSetListener(R.id.show_ripple_cb);
     }
 
     @Override
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 if (!checked && !((CompoundButton) findViewById(R.id.pressed_color_cb)).isChecked()) {
                     injection.pressedColor = SelectorInjection.DEFAULT_COLOR;
                 }
+                break;
+            case R.id.show_ripple_cb:
+                injection.showRipple = checked;
                 break;
         }
         injection.injection((View) view);

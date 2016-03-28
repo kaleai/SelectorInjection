@@ -98,7 +98,7 @@ public class SelectorInjection {
      */
     public int checkedColor;
 
-    private boolean showRipple;
+    public boolean showRipple;
 
     public SelectorInjection(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
@@ -130,19 +130,20 @@ public class SelectorInjection {
 
     public void injection(View view) {
         StateListDrawable selector = new StateListDrawable();// 背景选择器
-        // 如果是智能模式，那么按下的图片和原图都是一致的，仅仅是背景的颜色会有差别
+        // 如果是智能模式，那么自动处理按压效果
         if (isSmart && normal != null && pressed == null) {
             pressed = normal.getConstantState().newDrawable();
         }
-        if (isSmart && normal != null && checked == null) {
-            checked = normal.getConstantState().newDrawable();
+
+        if (pressed != null) {
+            setPressedDrawable(selector);
         }
-
-        setPressedDrawable(selector);
-
-        setCheckedDrawable(selector);
-
-        setNormalDrawable(selector);
+        if (checked != null) {
+            setCheckedDrawable(selector);
+        }
+        if (normal != null) {
+            setNormalDrawable(selector);
+        }
 
         setSelector(view, selector);
     }
@@ -157,10 +158,9 @@ public class SelectorInjection {
             //mView.setBackgroundDrawable(null);
         } else {
             if (showRipple && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                RippleDrawable ripple = (RippleDrawable) view.getContext().getDrawable(R.drawable.ripple);
+                RippleDrawable ripple = (RippleDrawable) view.getContext().getDrawable(R.drawable.si_ripple);
                 assert ripple != null;
                 ripple.setDrawableByLayerId(android.R.id.background, selector);
-                // TODO: 2016/3/19 自定义水波纹的背景 
                 ripple.setColor(createColorStateList(pressedColor, pressedColor, pressedColor, pressedColor));
                 view.setBackground(ripple);
             } else {
@@ -177,38 +177,31 @@ public class SelectorInjection {
      * 设置按下后的样式（颜色，描边）
      */
     private void setPressedDrawable(StateListDrawable selector) {
-        if (pressed != null) {
-            // 颜色
-            if (pressedColor == DEFAULT_COLOR) {
-                pressedColor = isSmart ? getPressedColor(normalColor) : pressedColor;
-            }
-            setColorAndStroke(pressed, pressedColor, pressedStrokeColor, pressedStrokeWidth, false);
-            // 给selector设置pressed的状态
-            selector.addState(new int[]{android.R.attr.state_pressed}, pressed);
-            selector.addState(new int[]{android.R.attr.state_focused}, pressed);
-            pressed.mutate();
+        if (pressedColor == DEFAULT_COLOR) {
+            pressedColor = isSmart ? getPressedColor(normalColor) : pressedColor;
         }
+        setColorAndStroke(pressed, pressedColor, pressedStrokeColor, pressedStrokeWidth, false);
+        // 给selector设置pressed的状态
+        selector.addState(new int[]{android.R.attr.state_pressed}, pressed);
+        selector.addState(new int[]{android.R.attr.state_focused}, pressed);
+        pressed.mutate();
     }
 
     /**
      * 设置选中状态下的样子
      */
     private void setCheckedDrawable(StateListDrawable selector) {
-        if (checked != null) {
-            setColorAndStroke(checked, checkedColor, checkedStrokeColor, checkedStrokeWidth, false);
-            selector.addState(new int[]{android.R.attr.state_checked}, checked);
-            checked.mutate();
-        }
+        setColorAndStroke(checked, checkedColor, checkedStrokeColor, checkedStrokeWidth, false);
+        selector.addState(new int[]{android.R.attr.state_checked}, checked);
+        checked.mutate();
     }
 
     /**
      * 开始设置普通状态时的样式（颜色，描边）
      */
     private void setNormalDrawable(StateListDrawable selector) {
-        if (normal != null) {
-            setColorAndStroke(normal, normalColor, normalStrokeColor, normalStrokeWidth, true);
-            selector.addState(new int[]{}, normal);
-        }
+        setColorAndStroke(normal, normalColor, normalStrokeColor, normalStrokeWidth, true);
+        selector.addState(new int[]{}, normal);
     }
 
     /**

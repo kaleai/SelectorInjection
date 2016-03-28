@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="?android:attr/selectableItemBackground"
-    ><!-- 按压的颜色 -->
+    android:color="@android:color/transparent"
+    >
+    <!-- 按压的颜色 -->
     <item android:id="@android:id/background">
         <shape android:shape="rectangle" />
     </item>

@@ -22,7 +22,7 @@
         app:normalStrokeColor="#ffffff"
         app:normalStrokeWidth="4dp"
         
-        app:pressedColor="#ffffff"
+        app:pressedColor="#03f4e8"
         
         app:checkedDrawable="@drawable/kale"
         />
@@ -76,6 +76,14 @@
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="isSmart"
+                />
+
+            <CheckBox
+                android:id="@+id/show_ripple_cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="show ripple(>=Api21)"
                 />
 
         </LinearLayout>

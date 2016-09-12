@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/white"
+        android:divider="@drawable/layer_divider_left_10dp"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        >
+
+        <kale.ui.view.SelectorTextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:drawableLeft="@drawable/svg_facebook"
+            android:drawableRight="@drawable/icon_arrow_dark"
+            
+            android:drawablePadding="16dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:text="facebook"
+            android:tint="@color/blue"
+            app:drawableLeftTint="@color/red"
+            app:drawableRightTint="@color/blue"
+            />
+
+        <kale.ui.view.SelectorTextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:drawableLeft="@drawable/svg_renren"
+            android:drawablePadding="16dp"
+            android:drawableRight="@drawable/icon_arrow_dark"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:text="renren"
+            app:drawableLeftTint="@color/blue"
+            app:drawableRightTint="@color/red"
+            />
+
+        <kale.ui.view.SelectorTextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:drawableLeft="@drawable/svg_vimeo"
+            android:drawablePadding="16dp"
+            android:drawableRight="@drawable/icon_arrow_dark"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:text="vimeo"
+
+            app:drawableLeftTint="@color/orange"
+            app:drawableRightTint="@color/green"
+            />
+
+    </LinearLayout>
+
+    <kale.selectorinjection.EqualLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="#eeeeee"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_horizontal_margin"
+        >
+
+        <kale.ui.view.SelectorImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:tint="@color/blue"
+            app:normalColor="@color/white"
+            app:normalDrawable="@drawable/btn_oval_shape"
+            app:srcCompat="@drawable/svg_facebook"
+            />
+
+        <kale.ui.view.SelectorImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:padding="15dp"
+            android:tint="@color/orange"
+            app:normalColor="@color/white"
+            app:normalDrawable="@drawable/btn_rectangle_shape"
+            app:srcCompat="@drawable/svg_renren"
+            />
+
+        <kale.ui.view.SelectorImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:tint="@color/red"
+            app:normalColor="@color/white"
+            app:normalDrawable="@drawable/btn_oval_shape"
+            app:srcCompat="@drawable/svg_vimeo"
+            />
+
+    </kale.selectorinjection.EqualLinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/white"
+        android:padding="@dimen/activity_horizontal_margin"
+        >
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:gravity="center_vertical"
+            android:tint="@color/blue"
+            app:srcCompat="@drawable/svg_facebook"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:gravity="center_vertical"
+            android:tint="@color/orange"
+            app:srcCompat="@drawable/svg_facebook"
+            />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:gravity="center_vertical"
+            android:scaleType="centerInside"
+            android:tint="@color/red"
+            app:srcCompat="@drawable/svg_facebook"
+            />
+
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:padding="10dp"
+            android:gravity="center_vertical"
+            android:tint="@color/green"
+            app:srcCompat="@drawable/svg_facebook"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/white"
+        android:drawableBottom="@drawable/svg_facebook"
+        android:drawableLeft="@drawable/svg_facebook"
+        android:drawableRight="@drawable/svg_facebook"
+        android:drawableTint="@color/green"
+        android:drawableTop="@drawable/svg_vimeo"
+        android:gravity="center_vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        />
+
+</LinearLayout>

@@ -9,22 +9,23 @@
 
     <kale.ui.view.SelectorTextView
         android:id="@+id/stv"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="center"
         android:text="Click Me"
         android:textColor="@android:color/white"
 
+        app:checkedDrawable="@drawable/kale"
         app:normalColor="#03a9f4"
         app:normalDrawable="@drawable/btn_oval_shape"
         app:normalStrokeColor="#ffffff"
+
         app:normalStrokeWidth="4dp"
-        
+
         app:pressedColor="#03f4e8"
-        
-        app:checkedDrawable="@drawable/kale"
         />
 
     <LinearLayout
@@ -37,7 +38,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_vertical_margin"
-            android:divider="@drawable/list_divider"
             android:orientation="vertical"
             android:showDividers="middle"
             >
@@ -89,4 +89,13 @@
         </LinearLayout>
 
     </LinearLayout>
+    
+    <Button
+        android:id="@+id/jump_tint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="jump tint"
+        />
 </LinearLayout>

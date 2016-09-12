@@ -1,5 +1,6 @@
 package kale.selectorinjection;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,13 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         findCbAndSetListener(R.id.pressed_stroke_cb);
         findCbAndSetListener(R.id.isSmart_cb);
         findCbAndSetListener(R.id.show_ripple_cb);
+        
+        findViewById(R.id.jump_tint).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SvgActivity.class));
+            }
+        });
     }
 
     @Override
@@ -48,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 break;
             case R.id.pressed_drawable_cb:
                 injection.pressed = checked ?
-                        getDrawableCompat(R.drawable.btn_rectangle_shadow_bg_layerlist) :
+                        getDrawableCompat(R.drawable.btn_rectangle_with_shadow_layer) :
                         getDrawableCompat(R.drawable.btn_oval_shape);
                 break;
             case R.id.normal_stroke_cb:

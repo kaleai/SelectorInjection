@@ -23,7 +23,7 @@
             android:layout_height="45dp"
             android:drawableLeft="@drawable/svg_facebook"
             android:drawableRight="@drawable/icon_arrow_dark"
-            
+
             android:drawablePadding="16dp"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -152,10 +152,7 @@
             android:layout_height="60dp"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:padding="10dp"
-            android:gravity="center_vertical"
             android:tint="@color/green"
-            app:srcCompat="@drawable/svg_facebook"
             />
 
     </LinearLayout>

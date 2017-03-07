@@ -37,7 +37,6 @@
         <!-- 是否显示水波纹（Android5.0以上有效）-->
         <attr name="showRipple" format="boolean" />
 
-
         <!-- svg support -->
         <attr name="android:drawableLeft" />
         <attr name="android:drawableRight" />

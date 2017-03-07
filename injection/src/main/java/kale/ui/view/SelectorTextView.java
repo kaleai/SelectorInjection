@@ -5,7 +5,7 @@ import android.support.v7.widget.AppCompatCheckedTextView;
 import android.util.AttributeSet;
 
 import kale.injection.SelectorInjection;
-import kale.util.AppCompatTextViewHelper;
+import kale.injection.AppCompatTextViewHelper;
 
 public class SelectorTextView extends AppCompatCheckedTextView implements SelectorView {
 

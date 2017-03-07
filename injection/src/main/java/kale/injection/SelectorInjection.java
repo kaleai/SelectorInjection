@@ -242,7 +242,7 @@ public class SelectorInjection {
      * Make a dark color to press effect
      * 自动计算得到按下的颜色，如果不满足需求可重写
      */
-    protected int getPressedColor(int normalColor) {
+    /*protected int getPressedColor(int normalColor) {
         int alpha = 255;
         int r = (normalColor >> 16) & 0xFF;
         int g = (normalColor >> 8) & 0xFF;
@@ -251,6 +251,31 @@ public class SelectorInjection {
         g = (g - 50 < 0) ? 0 : g - 50;
         b = (b - 50 < 0) ? 0 : b - 50;
         return Color.argb(alpha, r, g, b);
+    }*/
+    protected int getPressedColor(int normalColor) {
+        return darken(normalColor, 0.3f);
+    }
+
+    public static int darken(final int color, float fraction) {
+        return blendColors(Color.BLACK, color, fraction);
+    }
+
+    public static int lighten(final int color, float fraction) {
+        return blendColors(Color.WHITE, color, fraction);
+    }
+
+    /**
+     * Blend {@code color1} and {@code color2} using the given ratio.
+     *
+     * @param ratio of which to blend. 1.0 will return {@code color1}, 0.5 will give an even blend,
+     *              0.0 will return {@code color2}.
+     */
+    public static int blendColors(int color1, int color2, float ratio) {
+        final float inverseRatio = 1f - ratio;
+        float r = (Color.red(color1) * ratio) + (Color.red(color2) * inverseRatio);
+        float g = (Color.green(color1) * ratio) + (Color.green(color2) * inverseRatio);
+        float b = (Color.blue(color1) * ratio) + (Color.blue(color2) * inverseRatio);
+        return Color.rgb((int) r, (int) g, (int) b);
     }
 
     /**

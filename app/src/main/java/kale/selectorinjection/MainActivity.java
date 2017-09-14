@@ -9,11 +9,11 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import kale.injection.SelectorInjection;
-import kale.ui.view.SelectorView;
+import kale.ui.view.ISelectorView;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
-    private SelectorView view;
+    private ISelectorView view;
 
     private SelectorInjection injection;
 
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        view = (SelectorView) findViewById(R.id.stv);
+        view = (ISelectorView) findViewById(R.id.stv);
 //        view.setChecked(true);
         ((View) view).setOnClickListener(new View.OnClickListener() {
             @Override

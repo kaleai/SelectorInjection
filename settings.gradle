@@ -1,1 +1,1 @@
-include ':app', ':injection'
+include ':app', ':lib'

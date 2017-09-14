@@ -10,7 +10,7 @@ import kale.injection.SelectorInjection;
  * @author Kale
  * @date 2016/3/14
  */
-public class SelectorButton extends CompoundButton implements SelectorView {
+public class SelectorButton extends CompoundButton implements ISelectorView {
 
     private SelectorInjection injection;
 
@@ -45,19 +45,19 @@ public class SelectorButton extends CompoundButton implements SelectorView {
     }
 
     /**
+     * 代替{@link #toggle()}
+     */
+    public void toggleCompat() {
+        setChecked(!isChecked());
+    }
+
+    /**
      * instead by {@link #toggleCompat()}
      */
     @Deprecated
     @Override
     public void toggle() {
-        // 覆盖选中事件
-    }
-
-    /**
-     * 代替{@link #toggle()}
-     */
-    public void toggleCompat() {
-        setChecked(!isChecked());
+        // do nothing
     }
 
 }

@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 26
+    buildToolsVersion '26.0.0'
 
     defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 26
         applicationId "kale.selectorinjection"
-        minSdkVersion 11
-        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
-        
+
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -19,9 +19,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
-    compile project(':injection')
-    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile project(':lib')
+    compile 'com.android.support:appcompat-v7:26.0.2'
 }

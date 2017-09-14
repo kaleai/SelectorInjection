@@ -49,6 +49,10 @@
         <attr name="drawableRightTint" format="color" />
         <attr name="drawableBottomTint" format="color" />
 
+        <!-- 事件控制 -->
+        <attr name="isClicked" format="boolean" />
+        <attr name="isPressed" format="boolean" />
+        
     </declare-styleable>
 
 </resources>

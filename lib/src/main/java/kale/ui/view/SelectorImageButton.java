@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 
 import kale.injection.SelectorInjection;
 
-public class SelectorImageButton extends AppCompatImageButton implements SelectorView {
+public class SelectorImageButton extends AppCompatImageButton implements ISelectorView {
 
     private SelectorInjection injection;
 

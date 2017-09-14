@@ -10,7 +10,7 @@ import kale.injection.SelectorInjection;
  * @author Kale
  * @date 2016/3/14
  */
-public interface SelectorView extends Checkable {
+public interface ISelectorView extends Checkable {
 
     int[] CHECKED_STATE_SET = {
             android.R.attr.state_checked
@@ -19,4 +19,6 @@ public interface SelectorView extends Checkable {
     SelectorInjection initSelectorInjection(Context context,AttributeSet attr);
     
     SelectorInjection getInjection();
+
+    void setEnabled(boolean enabled);
 }

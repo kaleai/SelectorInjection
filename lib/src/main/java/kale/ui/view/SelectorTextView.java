@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import kale.injection.SelectorInjection;
 import kale.injection.AppCompatTextViewHelper;
 
-public class SelectorTextView extends AppCompatCheckedTextView implements SelectorView {
+public class SelectorTextView extends AppCompatCheckedTextView implements ISelectorView {
 
     private SelectorInjection injection;
 

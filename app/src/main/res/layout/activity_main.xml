@@ -1,5 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:preview="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,8 +11,8 @@
 
     <kale.ui.view.SelectorTextView
         android:id="@+id/stv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -18,14 +20,18 @@
         android:text="Click Me"
         android:textColor="@android:color/white"
 
+        android:textSize="20sp"
+
         app:checkedDrawable="@drawable/kale"
         app:normalColor="#03a9f4"
         app:normalDrawable="@drawable/btn_oval_shape"
-        app:normalStrokeColor="#ffffff"
+        app:normalStrokeColor="#ff9800"
+        app:normalStrokeWidth="8dp"
 
-        app:normalStrokeWidth="4dp"
+        app:pressedStrokeColor="#259b24"
+        app:pressedStrokeWidth="8dp"
 
-        app:pressedColor="#03f4e8"
+        preview:isPressed="false"
         />
 
     <LinearLayout
@@ -82,14 +88,14 @@
                 android:id="@+id/show_ripple_cb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="show ripple(>=Api21)"
                 />
 
         </LinearLayout>
 
     </LinearLayout>
-    
+
     <Button
         android:id="@+id/jump_tint"
         android:layout_width="wrap_content"

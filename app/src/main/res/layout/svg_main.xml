@@ -22,9 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:drawableLeft="@drawable/svg_facebook"
-            android:drawableRight="@drawable/icon_arrow_dark"
-
             android:drawablePadding="16dp"
+
+            android:drawableRight="@drawable/icon_arrow_dark"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"

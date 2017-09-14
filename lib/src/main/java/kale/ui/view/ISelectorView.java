@@ -16,9 +16,8 @@ public interface ISelectorView extends Checkable {
             android.R.attr.state_checked
     };
 
-    SelectorInjection initSelectorInjection(Context context,AttributeSet attr);
-    
+    SelectorInjection initSelectorInjection(Context context, AttributeSet attr);
+
     SelectorInjection getInjection();
 
-    void setEnabled(boolean enabled);
 }

@@ -10,6 +10,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
@@ -98,7 +99,12 @@ public class SelectorInjection {
      */
     public int checkedColor;
 
+    /**
+     * 是否展示水波纹
+     */
     public boolean showRipple;
+    
+    private boolean isPressedForPreview;
 
     public SelectorInjection(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
@@ -124,7 +130,12 @@ public class SelectorInjection {
 
         isSrc = a.getBoolean(R.styleable.SelectorInjection_isSrc, false);
 
-        showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, true);
+        showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, false);
+
+        String string = a.getString(R.styleable.SelectorInjection_android_contentDescription);
+        isPressedForPreview = TextUtils.equals(string, "isPressed");
+        isPressedForPreview = a.getBoolean(R.styleable.SelectorInjection_isPressed, false);
+
         a.recycle();
     }
 
@@ -136,16 +147,23 @@ public class SelectorInjection {
         }
 
         if (pressed != null) {
-            setPressedDrawable(selector);
+            configPressedDrawable(selector);
         }
         if (checked != null) {
-            setCheckedDrawable(selector);
+            configCheckedDrawable(selector);
         }
         if (normal != null) {
-            setNormalDrawable(selector);
+            configNormalDrawable(selector);
         }
 
         setSelector(view, selector);
+
+        if (view.isInEditMode()) {
+            if (isPressedForPreview) {
+                // normal -> pressed
+                view.setPressed(true);
+            }
+        }
     }
 
     public void setSelector(View view, StateListDrawable selector) {
@@ -176,7 +194,7 @@ public class SelectorInjection {
     /**
      * 设置按下后的样式（颜色，描边）
      */
-    private void setPressedDrawable(StateListDrawable selector) {
+    private void configPressedDrawable(StateListDrawable selector) {
         if (pressedColor == DEFAULT_COLOR) {
             pressedColor = isSmart ? getPressedColor(normalColor) : pressedColor;
         }
@@ -190,7 +208,7 @@ public class SelectorInjection {
     /**
      * 设置选中状态下的样子
      */
-    private void setCheckedDrawable(StateListDrawable selector) {
+    private void configCheckedDrawable(StateListDrawable selector) {
         setColorAndStroke(checked, checkedColor, checkedStrokeColor, checkedStrokeWidth, false);
         selector.addState(new int[]{android.R.attr.state_checked}, checked);
         checked.mutate();
@@ -199,7 +217,7 @@ public class SelectorInjection {
     /**
      * 开始设置普通状态时的样式（颜色，描边）
      */
-    private void setNormalDrawable(StateListDrawable selector) {
+    private void configNormalDrawable(StateListDrawable selector) {
         setColorAndStroke(normal, normalColor, normalStrokeColor, normalStrokeWidth, true);
         selector.addState(new int[]{}, normal);
     }

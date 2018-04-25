@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import kale.injection.SelectorInjection;
+import kale.utils.SelectorUtils;
 
 /**
  * @author Kale
@@ -23,12 +24,10 @@ public class SelectorRadioButton extends android.support.v7.widget.AppCompatRadi
         this(context, attrs, 0);
     }
 
-    public SelectorRadioButton(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        injection = initSelectorInjection(context, attrs);
-        injection.injection(this);
-        
-        setChecked(isChecked());
+    public SelectorRadioButton(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        injection = SelectorUtils.injectionToTextView(this, attrs, defStyle);
+//        setChecked(isChecked());
     }
 
     @Override

@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 
+import kale.utils.SelectorUtils;
+
 /**
  * View的一个selector注入装置，通过构造函数即可注入。之后调用{@link #injection(View)}即可.
  *
@@ -228,7 +230,7 @@ public class SelectorInjection {
             // do nothing
         } else {
             // tint
-            AppCompatTextViewHelper.tintDrawable(drawable, color);
+            SelectorUtils.tintDrawable(drawable, color);
         }
     }
 

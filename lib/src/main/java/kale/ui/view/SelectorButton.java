@@ -5,8 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
 
-import kale.injection.AppCompatTextViewHelper;
 import kale.injection.SelectorInjection;
+import kale.utils.SelectorUtils;
 
 /**
  * @author Kale
@@ -28,11 +28,7 @@ public class SelectorButton extends AppCompatCheckBox implements ISelectorView {
 
     public SelectorButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
-        new AppCompatTextViewHelper(this).loadFromAttributes(attrs, defStyle);
-
-        injection = initSelectorInjection(context, attrs);
-        injection.injection(this);
+        injection = SelectorUtils.injectionToTextView(this, attrs, defStyle);
 
         // TODO: 2018/4/25 描边会复制 
     }

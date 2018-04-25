@@ -5,7 +5,7 @@ import android.support.v7.widget.AppCompatCheckedTextView;
 import android.util.AttributeSet;
 
 import kale.injection.SelectorInjection;
-import kale.injection.AppCompatTextViewHelper;
+import kale.utils.SelectorUtils;
 
 public class SelectorTextView extends AppCompatCheckedTextView implements ISelectorView {
 
@@ -21,15 +21,7 @@ public class SelectorTextView extends AppCompatCheckedTextView implements ISelec
 
     public SelectorTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        
-        new AppCompatTextViewHelper(this).loadFromAttributes(attrs, defStyle);
-        
-        injection = initSelectorInjection(context, attrs);
-        injection.injection(this);
-
-
-        setClickable(true);
-//        setGravity(Gravity.CENTER);
+        injection = SelectorUtils.injectionToTextView(this, attrs, defStyle);
     }
 
     @Override

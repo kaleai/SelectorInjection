@@ -5,6 +5,7 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 
 import kale.injection.SelectorInjection;
+import kale.utils.SelectorUtils;
 
 public class SelectorImageButton extends AppCompatImageButton implements ISelectorView {
 
@@ -20,8 +21,7 @@ public class SelectorImageButton extends AppCompatImageButton implements ISelect
 
     public SelectorImageButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        injection = initSelectorInjection(context, attrs);
-        injection.injection(this);
+        injection = SelectorUtils.injectionToTextView(this, attrs, defStyle);
     }
 
     @Override

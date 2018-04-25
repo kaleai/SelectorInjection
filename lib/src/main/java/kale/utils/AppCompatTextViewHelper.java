@@ -1,11 +1,11 @@
-package kale.injection;
+package kale.utils;
 
-import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.TintTypedArray;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import kale.injection.R;
 
 /**
  * @author Kale
@@ -44,16 +44,9 @@ public class AppCompatTextViewHelper {
 
         for (int i = 0; i < colors.length; i++) {
             if (colors[i] != DEFAULT_COLOR && (drawable = drawables[i]) != null) {
-                tintDrawable(drawable, colors[i]);
+                SelectorUtils.tintDrawable(drawable, colors[i]);
             }
         }
-    }
-
-    public static Drawable tintDrawable(Drawable drawable, int color) {
-        drawable.mutate();
-        final Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
-        DrawableCompat.setTintList(wrappedDrawable, ColorStateList.valueOf(color));
-        return wrappedDrawable;
     }
 
 }

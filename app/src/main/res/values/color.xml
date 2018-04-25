@@ -5,4 +5,10 @@
     <color name="blue">#3F51B5</color>
     <color name="orange">#fa974f</color>
     <color name="white">#ffffff</color>
+
+    <color name="colorPrimary">#497b1d</color>
+    <color name="colorPrimaryDark">#27879f</color>
+    <color name="colorAccent">#FF4081</color>
+    
+    <color name="purple">#AE81F1</color>
 </resources>

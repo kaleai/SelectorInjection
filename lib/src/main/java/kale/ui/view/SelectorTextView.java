@@ -21,10 +21,12 @@ public class SelectorTextView extends AppCompatCheckedTextView implements ISelec
 
     public SelectorTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        
+        new AppCompatTextViewHelper(this).loadFromAttributes(attrs, defStyle);
+        
         injection = initSelectorInjection(context, attrs);
         injection.injection(this);
 
-        new AppCompatTextViewHelper(this).loadFromAttributes(attrs, defStyle);
 
         setClickable(true);
 //        setGravity(Gravity.CENTER);
@@ -36,7 +38,7 @@ public class SelectorTextView extends AppCompatCheckedTextView implements ISelec
     }
 
     @Override
-    public SelectorInjection getInjection() {
+    public SelectorInjection getSelectorInjection() {
         return injection;
     }
 

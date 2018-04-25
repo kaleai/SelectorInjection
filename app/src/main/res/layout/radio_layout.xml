@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bitmap:"
+        />
+
+    <RadioGroup
+        android:id="@+id/image_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        >
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="Paris"
+
+            app:checkedDrawable="@drawable/icon_circle_checked"
+            app:normalDrawable="@drawable/icon_circle_uncheck"
+            />
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="London"
+
+            app:checkedDrawable="@drawable/icon_circle_checked"
+            app:normalDrawable="@drawable/icon_circle_uncheck"
+            />
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="Kabul"
+
+            app:checkedDrawable="@drawable/icon_circle_checked"
+            app:normalDrawable="@drawable/icon_circle_uncheck"
+            />
+
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Shape:"
+        />
+
+    <RadioGroup
+        android:id="@+id/shape_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        >
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+
+            android:text="Paris"
+            app:checkedDrawable="@drawable/icon_circle_checked_layer"
+            app:normalDrawable="@drawable/icon_circle_uncheck_shape"
+            />
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="London"
+
+            app:checkedDrawable="@drawable/icon_circle_checked_layer"
+            app:normalDrawable="@drawable/icon_circle_uncheck_shape"
+            />
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="Kabul"
+
+            app:checkedDrawable="@drawable/icon_circle_checked_layer"
+            app:normalDrawable="@drawable/icon_circle_uncheck_shape"
+            />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="SVG:"
+        />
+
+    <RadioGroup
+        android:id="@+id/svg_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        >
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="Paris"
+
+            app:checkedColor="@color/orange"
+            app:checkedDrawable="@drawable/icon_circle_checked_svg"
+            app:normalColor="@color/blue"
+            app:normalDrawable="@drawable/icon_circle_uncheck_svg"
+            />
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="London"
+
+            app:checkedColor="@color/orange"
+            app:checkedDrawable="@drawable/icon_circle_checked_svg"
+            app:normalColor="@color/blue"
+            app:normalDrawable="@drawable/icon_circle_uncheck_svg"
+            />
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="Kabul"
+
+            app:checkedColor="@color/orange"
+            app:checkedDrawable="@drawable/icon_circle_checked_svg"
+            app:normalColor="@color/blue"
+            app:normalDrawable="@drawable/icon_circle_uncheck_svg"
+            />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="NO TEXT:"
+        />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        >
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            app:checkedColor="@color/green"
+            app:checkedDrawable="@drawable/shape_oval"
+            app:checkedStrokeColor="@color/purple"
+            app:checkedStrokeWidth="5dp"
+
+            app:normalColor="@color/green"
+            app:normalDrawable="@drawable/shape_oval"
+            app:normalStrokeColor="#0000ffff"
+            app:normalStrokeWidth="5dp"
+            android:layout_marginLeft="30dp"
+            />
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            app:checkedColor="@color/green"
+            app:checkedDrawable="@drawable/shape_oval"
+            app:checkedStrokeColor="@color/purple"
+            app:checkedStrokeWidth="5dp"
+            android:layout_marginLeft="30dp"
+
+            app:normalColor="@color/green"
+            app:normalDrawable="@drawable/shape_oval"
+            app:normalStrokeColor="#0000ffff"
+            app:normalStrokeWidth="5dp"
+            />
+
+        <kale.ui.view.SelectorRadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            app:checkedColor="@color/green"
+            app:checkedDrawable="@drawable/shape_oval"
+            app:checkedStrokeColor="@color/purple"
+            app:checkedStrokeWidth="5dp"
+            android:layout_marginLeft="30dp"
+
+            app:normalColor="@color/green"
+            app:normalDrawable="@drawable/shape_oval"
+            app:normalStrokeColor="#0000ffff"
+            app:normalStrokeWidth="5dp"
+            />
+
+    </RadioGroup>
+
+
+</LinearLayout>

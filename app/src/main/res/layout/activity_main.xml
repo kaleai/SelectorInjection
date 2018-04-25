@@ -6,25 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
     >
 
     <kale.ui.view.SelectorTextView
         android:id="@+id/stv"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:gravity="center"
         android:text="Click Me"
-        android:textColor="@android:color/white"
-
-        android:textSize="20sp"
 
         app:checkedDrawable="@drawable/kale"
+
         app:normalColor="#03a9f4"
-        app:normalDrawable="@drawable/btn_oval_shape"
+        app:normalDrawable="@drawable/shape_oval"
         app:normalStrokeColor="#ff9800"
         app:normalStrokeWidth="8dp"
 

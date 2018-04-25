@@ -1,16 +1,20 @@
 package kale.ui.view;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
-import android.widget.CompoundButton;
 
+import kale.injection.AppCompatTextViewHelper;
 import kale.injection.SelectorInjection;
 
 /**
  * @author Kale
  * @date 2016/3/14
+ *
+ * 支持阴影，不支持check状态
  */
-public class SelectorButton extends CompoundButton implements ISelectorView {
+public class SelectorButton extends AppCompatCheckBox implements ISelectorView {
 
     private SelectorInjection injection;
 
@@ -22,42 +26,31 @@ public class SelectorButton extends CompoundButton implements ISelectorView {
         this(context, attrs, android.R.attr.buttonStyle);
     }
 
-    public SelectorButton(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public SelectorButton(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+
+        new AppCompatTextViewHelper(this).loadFromAttributes(attrs, defStyle);
+
         injection = initSelectorInjection(context, attrs);
         injection.injection(this);
+
+        // TODO: 2018/4/25 描边会复制 
     }
 
     @Override
-    public SelectorInjection initSelectorInjection(Context context, AttributeSet attr) {
-        return new SelectorInjection(context, attr);
+    public SelectorInjection initSelectorInjection(Context context, AttributeSet attrs) {
+        return new SelectorInjection(context, attrs);
     }
 
     @Override
-    public SelectorInjection getInjection() {
+    public SelectorInjection getSelectorInjection() {
         return injection;
     }
 
     @Override
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
-        injection.setEnabled(this, enabled);
-    }
-
-    /**
-     * 代替{@link #toggle()}
-     */
-    public void toggleCompat() {
-        setChecked(!isChecked());
-    }
-
-    /**
-     * instead by {@link #toggleCompat()}
-     */
-    @Deprecated
-    @Override
-    public void toggle() {
-        // do nothing
+    public void setBackground(Drawable background) {
+        super.setBackground(background);
+        // FIXME: 2018/4/25 layer-list做背景时会出现padding失效的问题
     }
 
 }

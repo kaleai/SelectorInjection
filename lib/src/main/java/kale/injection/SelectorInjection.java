@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -14,6 +15,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 
 /**
  * View的一个selector注入装置，通过构造函数即可注入。之后调用{@link #injection(View)}即可.
@@ -25,64 +27,30 @@ public class SelectorInjection {
 
     public static int DEFAULT_COLOR = 0x0106000d;
 
-    public static final int DEFAULT_STROKE_WIDTH = 2;
-
-    public static final int ANIMATION_TIME = 10;
+    private static final int DEFAULT_STROKE_WIDTH = 2, ANIMATION_TIME = 10;
 
     /**
-     * 是否是智能模式，如果是的那么会自动计算按下后的颜色
+     * 颜色
      */
-    public boolean isSmart = true;
-
-    /**
-     * 正常情况颜色
-     */
-    public int normalColor;
-
-    /**
-     * 按下后的颜色（smart关闭后才有效）
-     */
-    public int pressedColor;
-
-    /**
-     * 描边的颜色
-     */
-    public int normalStrokeColor;
+    public int normalColor, pressedColor, checkedColor, disableColor;
 
     /**
      * 描边的宽度，如果不设置会根据默认的宽度进行描边
      */
-    public int normalStrokeWidth;
+    public int normalStrokeColor, normalStrokeWidth;
+
+    public int pressedStrokeColor, pressedStrokeWidth;
+
+    public int checkedStrokeColor, checkedStrokeWidth;
+
+    public int disableStrokeColor, disableStrokeWidth;
 
     /**
-     * 按下后描边的颜色
+     * drawable
      */
-    public int pressedStrokeColor;
+    public Drawable normal, pressed, checked, disable;
 
-    /**
-     * 按下后描边的宽度
-     */
-    public int pressedStrokeWidth;
-
-    /**
-     * 选中后的描边颜色
-     */
-    public int checkedStrokeColor;
-
-    /**
-     * 选中后的描边宽度
-     */
-    public int checkedStrokeWidth;
-
-    /**
-     * 正常情况下的drawable
-     */
-    public Drawable normal;
-
-    /**
-     * 按下后的drawable
-     */
-    public Drawable pressed;
+    private int normalId, pressedId, checkedId, disableId;
 
     /**
      * 是否将drawable设置到src中，如果不是那么默认是background
@@ -90,20 +58,15 @@ public class SelectorInjection {
     public boolean isSrc;
 
     /**
-     * 被选中时的图片
+     * 是否是智能模式，如果是的那么会自动计算按下后的颜色
      */
-    public Drawable checked;
-
-    /**
-     * 被选中时的颜色
-     */
-    public int checkedColor;
+    public boolean isSmart;
 
     /**
      * 是否展示水波纹
      */
     public boolean showRipple;
-    
+
     private boolean isPressedForPreview;
 
     public SelectorInjection(Context context, AttributeSet attrs) {
@@ -114,10 +77,12 @@ public class SelectorInjection {
         normal = a.getDrawable(R.styleable.SelectorInjection_normalDrawable);
         pressed = a.getDrawable(R.styleable.SelectorInjection_pressedDrawable);
         checked = a.getDrawable(R.styleable.SelectorInjection_checkedDrawable);
+        disable = a.getDrawable(R.styleable.SelectorInjection_disableDrawable);
 
         normalColor = getColor(a, R.styleable.SelectorInjection_normalColor);
         pressedColor = getColor(a, R.styleable.SelectorInjection_pressedColor);
         checkedColor = getColor(a, R.styleable.SelectorInjection_checkedColor);
+        disableColor = getColor(a, R.styleable.SelectorInjection_disableColor);
 
         normalStrokeColor = getColor(a, R.styleable.SelectorInjection_normalStrokeColor);
         normalStrokeWidth = a.getDimensionPixelSize(R.styleable.SelectorInjection_normalStrokeWidth, DEFAULT_STROKE_WIDTH);
@@ -127,6 +92,9 @@ public class SelectorInjection {
 
         checkedStrokeColor = getColor(a, R.styleable.SelectorInjection_checkedStrokeColor);
         checkedStrokeWidth = a.getDimensionPixelSize(R.styleable.SelectorInjection_checkedStrokeWidth, DEFAULT_STROKE_WIDTH);
+
+        disableStrokeColor = getColor(a, R.styleable.SelectorInjection_disableStrokeColor);
+        disableStrokeWidth = a.getDimensionPixelSize(R.styleable.SelectorInjection_disableStrokeWidth, DEFAULT_STROKE_WIDTH);
 
         isSrc = a.getBoolean(R.styleable.SelectorInjection_isSrc, false);
 
@@ -141,20 +109,19 @@ public class SelectorInjection {
 
     public void injection(View view) {
         StateListDrawable selector = new StateListDrawable();// 背景选择器
+
         // 如果是智能模式，那么自动处理按压效果
         if (isSmart && normal != null && pressed == null) {
             pressed = normal.getConstantState().newDrawable();
         }
 
-        if (pressed != null) {
-            configPressedDrawable(selector);
-        }
-        if (checked != null) {
-            configCheckedDrawable(selector);
-        }
-        if (normal != null) {
-            configNormalDrawable(selector);
-        }
+        configPressedDrawable(selector);
+
+        configCheckedDrawable(selector);
+
+        configNormalDrawable(selector);
+
+        configDisableDrawable(selector);
 
         setSelector(view, selector);
 
@@ -166,35 +133,33 @@ public class SelectorInjection {
         }
     }
 
-    public void setSelector(View view, StateListDrawable selector) {
-        selector.setEnterFadeDuration(ANIMATION_TIME);
-        selector.setExitFadeDuration(ANIMATION_TIME);
-
-        if (view instanceof ImageButton && isSrc) {
-            // 如果是imageButton，那么就看这个selector是给背景的还是给src的
-            ((ImageButton) view).setImageDrawable(selector);
-            //mView.setBackgroundDrawable(null);
+    public void setEnabled(View view, boolean enabled) {
+        if (isSmart) {
+            // 如果是智能模式，那么自动处理不可用状态效果
+            view.setAlpha(!enabled ? 0.3f : 1);
         } else {
-            if (showRipple && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                RippleDrawable ripple = (RippleDrawable) view.getContext().getDrawable(R.drawable.si_ripple);
-                assert ripple != null;
-                ripple.setDrawableByLayerId(android.R.id.background, selector);
-                ripple.setColor(createColorStateList(pressedColor, pressedColor, pressedColor, pressedColor));
-                view.setBackground(ripple);
-            } else {
-                view.setBackgroundDrawable(selector);
-            }
+            view.setEnabled(enabled);
         }
     }
 
-    public void setEnabled(View view, boolean enabled) {
-        view.setAlpha(!enabled ? 0.3f : 1);
+    /**
+     * 开始设置普通状态时的样式（颜色，描边）
+     */
+    private void configNormalDrawable(StateListDrawable selector) {
+        if (normal == null) {
+            return;
+        }
+        setColorAndStroke(normal, normalColor, normalStrokeColor, normalStrokeWidth, true);
+        selector.addState(new int[]{}, normal);
     }
 
     /**
      * 设置按下后的样式（颜色，描边）
      */
     private void configPressedDrawable(StateListDrawable selector) {
+        if (pressed == null) {
+            return;
+        }
         if (pressedColor == DEFAULT_COLOR) {
             pressedColor = isSmart ? getPressedColor(normalColor) : pressedColor;
         }
@@ -209,17 +174,42 @@ public class SelectorInjection {
      * 设置选中状态下的样子
      */
     private void configCheckedDrawable(StateListDrawable selector) {
+        if (checked == null) {
+            return;
+        }
         setColorAndStroke(checked, checkedColor, checkedStrokeColor, checkedStrokeWidth, false);
         selector.addState(new int[]{android.R.attr.state_checked}, checked);
         checked.mutate();
     }
 
-    /**
-     * 开始设置普通状态时的样式（颜色，描边）
-     */
-    private void configNormalDrawable(StateListDrawable selector) {
-        setColorAndStroke(normal, normalColor, normalStrokeColor, normalStrokeWidth, true);
-        selector.addState(new int[]{}, normal);
+    private void configDisableDrawable(StateListDrawable selector) {
+        if (disable == null) {
+            return;
+        }
+        setColorAndStroke(disable, disableColor, disableStrokeColor, disableStrokeWidth, false);
+        selector.addState(new int[]{-android.R.attr.state_enabled}, disable);
+        disable.mutate();
+    }
+
+    public void setSelector(View view, StateListDrawable selector) {
+        selector.setEnterFadeDuration(ANIMATION_TIME);
+        selector.setExitFadeDuration(ANIMATION_TIME);
+
+        if (view instanceof RadioButton) {
+            ((RadioButton) view).setButtonDrawable(selector);
+        } else if (view instanceof ImageButton && isSrc) {
+            ((ImageButton) view).setImageDrawable(selector);
+        } else {
+            if (showRipple && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                RippleDrawable ripple = (RippleDrawable) view.getContext().getDrawable(R.drawable.si_ripple);
+                assert ripple != null;
+                ripple.setDrawableByLayerId(android.R.id.background, selector);
+                ripple.setColor(createColorStateList(pressedColor, pressedColor, pressedColor, pressedColor));
+                view.setBackground(ripple);
+            } else {
+                view.setBackgroundDrawable(selector);
+            }
+        }
     }
 
     /**
@@ -234,6 +224,11 @@ public class SelectorInjection {
             if (shape instanceof GradientDrawable) {
                 setShape((GradientDrawable) shape, color, strokeColor, strokeWidth, isNormal);
             }
+        } else if (drawable instanceof BitmapDrawable) {
+            // do nothing
+        } else {
+            // tint
+            AppCompatTextViewHelper.tintDrawable(drawable, color);
         }
     }
 

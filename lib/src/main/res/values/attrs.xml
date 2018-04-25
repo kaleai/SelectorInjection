@@ -3,6 +3,8 @@
 
     <color name="default_color">#00000000</color>
 
+    <color name="red_color">#ff0000</color>
+    
     <declare-styleable name="SelectorInjection">
         <!-- 普通状态的颜色 -->
         <attr name="normalColor" format="color" />
@@ -10,24 +12,26 @@
         <attr name="pressedColor" format="color" />
         <!-- 选中后的颜色 -->
         <attr name="checkedColor" format="color" />
+        <!-- 不可用时的颜色 -->
+        <attr name="disableColor" format="color" />
 
-        <!-- 常规状态下-->
         <attr name="normalDrawable" format="reference" />
-        <!-- 按下/获得焦点 -->
         <attr name="pressedDrawable" format="reference" />
-        <!-- 选中时 -->
         <attr name="checkedDrawable" format="reference" />
+        <attr name="disableDrawable" format="reference" />
 
-        <!-- 正常的描边 -->
         <attr name="normalStrokeColor" format="color" />
         <attr name="normalStrokeWidth" format="dimension" />
-        <!-- 按下后的描边 -->
+        
         <attr name="pressedStrokeColor" format="color" />
         <attr name="pressedStrokeWidth" format="dimension" />
-        <!-- 选中后的描边 -->
+        
         <attr name="checkedStrokeColor" format="color" />
         <attr name="checkedStrokeWidth" format="dimension" />
-
+        
+        <attr name="disableStrokeColor" format="color" />
+        <attr name="disableStrokeWidth" format="dimension" />
+        
         <!-- 是否是自动计算按下颜色的的 -->
         <attr name="isSmart" format="boolean" />
 
@@ -52,7 +56,7 @@
         <!-- 事件控制 -->
         <attr name="isClicked" format="boolean" />
         <attr name="android:contentDescription" />
-        
+
         <attr name="isPressed" format="boolean" />
     </declare-styleable>
 

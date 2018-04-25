@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '25.0.0'
-
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+    
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 27
         applicationId "kale.selectorinjection"
         versionCode 1
         versionName "1.0"
@@ -26,6 +26,6 @@ android {
 }
 
 dependencies {
-    compile project(':lib')
-    compile 'com.android.support:appcompat-v7:24.2.0'
+    implementation project(':lib')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
 }

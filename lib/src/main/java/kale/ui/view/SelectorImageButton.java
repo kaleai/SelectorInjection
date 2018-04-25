@@ -30,7 +30,7 @@ public class SelectorImageButton extends AppCompatImageButton implements ISelect
     }
 
     @Override
-    public SelectorInjection getInjection() {
+    public SelectorInjection getSelectorInjection() {
         return injection;
     }
 

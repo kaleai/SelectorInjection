@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SvgActivity" />
+        <activity android:name=".SvgTextActivity" />
+        <activity android:name=".RadioActivity" />
+        <activity android:name=".ButtonActivity" />
     </application>
 
 </manifest>

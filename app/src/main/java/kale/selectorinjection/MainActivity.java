@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
             }
         });
-        injection = view.getInjection();
+        injection = view.getSelectorInjection();
 
         findCbAndSetListener(R.id.pressed_color_cb);
         findCbAndSetListener(R.id.pressed_drawable_cb);
@@ -38,11 +38,14 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         findCbAndSetListener(R.id.pressed_stroke_cb);
         findCbAndSetListener(R.id.isSmart_cb);
         findCbAndSetListener(R.id.show_ripple_cb);
-        
+
         findViewById(R.id.jump_tint).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SvgActivity.class));
+//                startActivity(new Intent(MainActivity.this, SvgTextActivity.class));
+                startActivity(new Intent(MainActivity.this, ButtonActivity.class));
+
+//                ((RadioButton) findViewById(R.id.r2)).setChecked(true);
             }
         });
     }
@@ -56,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 break;
             case R.id.pressed_drawable_cb:
                 injection.pressed = checked ?
-                        getDrawableCompat(R.drawable.btn_rectangle_with_shadow_layer) :
-                        getDrawableCompat(R.drawable.btn_oval_shape);
+                        getDrawableCompat(R.drawable.shape_rectangle_with_shadow) :
+                        getDrawableCompat(R.drawable.shape_oval);
                 break;
             case R.id.normal_stroke_cb:
                 injection.normalStrokeColor = checked ? 0xff0288d1 : 0xffffffff;

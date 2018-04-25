@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape
+            android:innerRadius="13.5dp"
+            android:shape="ring"
+            android:thickness="4dp"
+            android:useLevel="false"
+            >
+
+            <solid android:color="@color/purple" />
+        </shape>
+    </item>
+
+    <item
+        android:bottom="13dp"
+        android:left="13dp"
+        android:right="13dp"
+        android:top="13dp"
+        >
+        <shape android:shape="oval">
+            <size
+                android:width="13dp"
+                android:height="13dp"
+                />
+
+            <solid android:color="@color/purple" />
+        </shape>
+    </item>
+
+
+</layer-list>

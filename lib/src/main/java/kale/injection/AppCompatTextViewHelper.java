@@ -41,18 +41,18 @@ public class AppCompatTextViewHelper {
 
     private static void tintDrawable(Drawable[] drawables, int[] colors) {
         Drawable drawable;
-        
+
         for (int i = 0; i < colors.length; i++) {
             if (colors[i] != DEFAULT_COLOR && (drawable = drawables[i]) != null) {
-                tintDrawable(drawable, ColorStateList.valueOf(colors[i]));
+                tintDrawable(drawable, colors[i]);
             }
         }
     }
 
-    private static Drawable tintDrawable(Drawable drawable, ColorStateList colors) {
+    public static Drawable tintDrawable(Drawable drawable, int color) {
         drawable.mutate();
         final Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
-        DrawableCompat.setTintList(wrappedDrawable, colors);
+        DrawableCompat.setTintList(wrappedDrawable, ColorStateList.valueOf(color));
         return wrappedDrawable;
     }
 

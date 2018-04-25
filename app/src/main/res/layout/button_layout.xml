@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    >
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ANDROID NATIVE"
+        />
+
+    <kale.ui.view.SelectorButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="smart color"
+
+        app:normalColor="@color/orange"
+        app:normalDrawable="@drawable/shape_round_rectangle"
+        />
+
+    <kale.ui.view.SelectorButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="custom color"
+
+        app:normalColor="@color/blue"
+        app:normalDrawable="@drawable/shape_round_rectangle"
+
+        app:pressedColor="@color/red"
+        app:pressedDrawable="@drawable/shape_round_rectangle"
+        />
+
+    <kale.ui.view.SelectorButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="has stroke"
+
+        app:normalColor="@color/green"
+        app:normalDrawable="@drawable/shape_round_rectangle"
+        app:normalStrokeColor="@color/blue"
+        app:normalStrokeWidth="3dp"
+
+        app:pressedColor="@color/colorPrimary"
+        app:pressedDrawable="@drawable/shape_round_rectangle"
+        app:pressedStrokeColor="@color/red"
+        app:pressedStrokeWidth="5dp"
+        />
+
+    <kale.ui.view.SelectorButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Svg"
+        android:textSize="10sp"
+        android:textStyle="bold"
+
+        app:normalColor="@color/red"
+        app:normalDrawable="@drawable/icon_facebook_svg"
+
+        app:pressedColor="@color/blue"
+        app:pressedDrawable="@drawable/icon_renren_svg"
+        />
+
+    <kale.ui.view.SelectorButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:button="@drawable/icon_vimeo_svg"
+
+        android:buttonTint="@color/red"
+        android:drawableLeft="@drawable/icon_renren_svg"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/icon_facebook_svg"
+
+        android:padding="13dp"
+        android:paddingLeft="23dp"
+        android:text="icon"
+
+        app:drawableLeftTint="@color/green"
+        app:drawableRightTint="@color/blue"
+
+        app:normalColor="#d6d7d7"
+        app:normalDrawable="@drawable/shape_round_rectangle"
+        />
+
+    <kale.ui.view.SelectorButton
+        android:id="@+id/check_btn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+
+        android:text="un checked"
+
+        app:checkedColor="@color/purple"
+        app:checkedDrawable="@drawable/shape_oval_with_shadow"
+
+        app:normalColor="@color/red"
+        app:normalDrawable="@drawable/shape_rectangle_with_shadow"
+        />
+
+    <kale.ui.view.SelectorButton
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:enabled="false"
+
+        android:text="disable"
+
+        app:disableColor="@color/purple"
+        app:disableDrawable="@drawable/shape_rectangle_with_shadow"
+
+        app:normalColor="@color/green"
+        app:normalDrawable="@drawable/shape_oval"
+        />
+
+
+</LinearLayout>

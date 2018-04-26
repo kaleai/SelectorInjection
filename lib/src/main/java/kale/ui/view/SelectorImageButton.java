@@ -21,7 +21,7 @@ public class SelectorImageButton extends AppCompatImageButton implements ISelect
 
     public SelectorImageButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        injection = SelectorUtils.injectionToTextView(this, attrs, defStyle);
+        injection = SelectorUtils.injectionToSelectorView(this, attrs, defStyle);
     }
 
     @Override

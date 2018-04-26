@@ -26,7 +26,7 @@ public class SelectorRadioButton extends android.support.v7.widget.AppCompatRadi
 
     public SelectorRadioButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        injection = SelectorUtils.injectionToTextView(this, attrs, defStyle);
+        injection = SelectorUtils.injectionToSelectorView(this, attrs, defStyle);
 //        setChecked(isChecked());
     }
 

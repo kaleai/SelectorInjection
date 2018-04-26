@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- si = selector injection 用来避开资源冲突 -->
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
     android:color="@android:color/transparent"
     >

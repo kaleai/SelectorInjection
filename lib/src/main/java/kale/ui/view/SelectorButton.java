@@ -28,9 +28,7 @@ public class SelectorButton extends AppCompatCheckBox implements ISelectorView {
 
     public SelectorButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        injection = SelectorUtils.injectionToTextView(this, attrs, defStyle);
-
-        // TODO: 2018/4/25 描边会复制 
+        injection = SelectorUtils.injectionToSelectorView(this, attrs, defStyle);
     }
 
     @Override
@@ -41,6 +39,14 @@ public class SelectorButton extends AppCompatCheckBox implements ISelectorView {
     @Override
     public SelectorInjection getSelectorInjection() {
         return injection;
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        if (injection != null) {
+            injection.setEnabled(this, enabled);
+        }
     }
 
     @Override

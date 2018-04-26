@@ -11,6 +11,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -18,6 +19,10 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 
 import kale.utils.SelectorUtils;
+
+import static kale.utils.SelectorUtils.getColor;
+import static kale.utils.SelectorUtils.getDimension;
+import static kale.utils.SelectorUtils.getDrawable;
 
 /**
  * View的一个selector注入装置，通过构造函数即可注入。之后调用{@link #injection(View)}即可.
@@ -29,7 +34,8 @@ public class SelectorInjection {
 
     public static int DEFAULT_COLOR = 0x0106000d;
 
-    private static final int DEFAULT_STROKE_WIDTH = 2, ANIMATION_TIME = 10;
+    @Nullable
+    public Drawable normal, pressed, checked, disable;
 
     /**
      * 颜色
@@ -37,7 +43,7 @@ public class SelectorInjection {
     public int normalColor, pressedColor, checkedColor, disableColor;
 
     /**
-     * 描边的宽度，如果不设置会根据默认的宽度进行描边
+     * 描边的宽度，如果不设置会根据默认的宽度（2px）进行描边
      */
     public int normalStrokeColor, normalStrokeWidth;
 
@@ -46,13 +52,6 @@ public class SelectorInjection {
     public int checkedStrokeColor, checkedStrokeWidth;
 
     public int disableStrokeColor, disableStrokeWidth;
-
-    /**
-     * drawable
-     */
-    public Drawable normal, pressed, checked, disable;
-
-    private int normalId, pressedId, checkedId, disableId;
 
     /**
      * 是否将drawable设置到src中，如果不是那么默认是background
@@ -75,11 +74,13 @@ public class SelectorInjection {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
 
         isSmart = a.getBoolean(R.styleable.SelectorInjection_isSmart, true);
+        isSrc = a.getBoolean(R.styleable.SelectorInjection_isSrc, false);
+        showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, false);
 
-        normal = a.getDrawable(R.styleable.SelectorInjection_normalDrawable);
-        pressed = a.getDrawable(R.styleable.SelectorInjection_pressedDrawable);
-        checked = a.getDrawable(R.styleable.SelectorInjection_checkedDrawable);
-        disable = a.getDrawable(R.styleable.SelectorInjection_disableDrawable);
+        normal = getDrawable(a, R.styleable.SelectorInjection_normalDrawable);
+        pressed = getDrawable(a, R.styleable.SelectorInjection_pressedDrawable);
+        checked = getDrawable(a, R.styleable.SelectorInjection_checkedDrawable);
+        disable = getDrawable(a, R.styleable.SelectorInjection_disableDrawable);
 
         normalColor = getColor(a, R.styleable.SelectorInjection_normalColor);
         pressedColor = getColor(a, R.styleable.SelectorInjection_pressedColor);
@@ -87,20 +88,16 @@ public class SelectorInjection {
         disableColor = getColor(a, R.styleable.SelectorInjection_disableColor);
 
         normalStrokeColor = getColor(a, R.styleable.SelectorInjection_normalStrokeColor);
-        normalStrokeWidth = a.getDimensionPixelSize(R.styleable.SelectorInjection_normalStrokeWidth, DEFAULT_STROKE_WIDTH);
+        normalStrokeWidth = getDimension(a, R.styleable.SelectorInjection_normalStrokeWidth);
 
         pressedStrokeColor = getColor(a, R.styleable.SelectorInjection_pressedStrokeColor);
-        pressedStrokeWidth = a.getDimensionPixelOffset(R.styleable.SelectorInjection_pressedStrokeWidth, DEFAULT_STROKE_WIDTH);
+        pressedStrokeWidth = getDimension(a, R.styleable.SelectorInjection_pressedStrokeWidth);
 
         checkedStrokeColor = getColor(a, R.styleable.SelectorInjection_checkedStrokeColor);
-        checkedStrokeWidth = a.getDimensionPixelSize(R.styleable.SelectorInjection_checkedStrokeWidth, DEFAULT_STROKE_WIDTH);
+        checkedStrokeWidth = getDimension(a, R.styleable.SelectorInjection_checkedStrokeWidth);
 
         disableStrokeColor = getColor(a, R.styleable.SelectorInjection_disableStrokeColor);
-        disableStrokeWidth = a.getDimensionPixelSize(R.styleable.SelectorInjection_disableStrokeWidth, DEFAULT_STROKE_WIDTH);
-
-        isSrc = a.getBoolean(R.styleable.SelectorInjection_isSrc, false);
-
-        showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, false);
+        disableStrokeWidth = getDimension(a, R.styleable.SelectorInjection_disableStrokeWidth);
 
         String string = a.getString(R.styleable.SelectorInjection_android_contentDescription);
         isPressedForPreview = TextUtils.equals(string, "isPressed");
@@ -125,7 +122,7 @@ public class SelectorInjection {
 
         configDisableDrawable(selector);
 
-        setSelector(view, selector);
+        setSelectorToView(view, selector);
 
         if (view.isInEditMode()) {
             if (isPressedForPreview) {
@@ -136,7 +133,7 @@ public class SelectorInjection {
     }
 
     public void setEnabled(View view, boolean enabled) {
-        if (isSmart) {
+        if (disable == null && isSmart) {
             // 如果是智能模式，那么自动处理不可用状态效果
             view.setAlpha(!enabled ? 0.3f : 1);
         } else {
@@ -193,9 +190,12 @@ public class SelectorInjection {
         disable.mutate();
     }
 
-    public void setSelector(View view, StateListDrawable selector) {
-        selector.setEnterFadeDuration(ANIMATION_TIME);
-        selector.setExitFadeDuration(ANIMATION_TIME);
+    /**
+     * 重要方法，最终通过这个给view设置selector效果
+     */
+    private void setSelectorToView(View view, StateListDrawable selector) {
+        selector.setEnterFadeDuration(10);
+        selector.setExitFadeDuration(10);
 
         if (view instanceof RadioButton) {
             ((RadioButton) view).setButtonDrawable(selector);
@@ -267,12 +267,12 @@ public class SelectorInjection {
         b = (b - 50 < 0) ? 0 : b - 50;
         return Color.argb(alpha, r, g, b);
     }*/
-    protected int getPressedColor(int normalColor) {
-        return darken(normalColor, 0.3f);
+    private int getPressedColor(int normalColor) {
+        return darken(normalColor);
     }
 
-    public static int darken(final int color, float fraction) {
-        return blendColors(Color.BLACK, color, fraction);
+    private int darken(final int color) {
+        return blendColors(Color.BLACK, color, 0.3f);
     }
 
     public static int lighten(final int color, float fraction) {
@@ -285,7 +285,7 @@ public class SelectorInjection {
      * @param ratio of which to blend. 1.0 will return {@code color1}, 0.5 will give an even blend,
      *              0.0 will return {@code color2}.
      */
-    public static int blendColors(int color1, int color2, float ratio) {
+    private static int blendColors(int color1, int color2, float ratio) {
         final float inverseRatio = 1f - ratio;
         float r = (Color.red(color1) * ratio) + (Color.red(color2) * inverseRatio);
         float g = (Color.green(color1) * ratio) + (Color.green(color2) * inverseRatio);
@@ -308,10 +308,6 @@ public class SelectorInjection {
         states[4] = new int[]{android.R.attr.state_window_focused};
         states[5] = new int[]{};
         return new ColorStateList(states, colors);
-    }
-
-    private static int getColor(TypedArray a, int styleResId) {
-        return a.getColor(styleResId, DEFAULT_COLOR);
     }
 
 }

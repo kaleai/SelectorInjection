@@ -17,7 +17,7 @@ public class AppCompatTextViewHelper {
 
     private TextView mView;
 
-    public AppCompatTextViewHelper(TextView view) {
+    AppCompatTextViewHelper(TextView view) {
         mView = view;
     }
 
@@ -26,20 +26,19 @@ public class AppCompatTextViewHelper {
                 R.styleable.SelectorInjection, defStyleAttr, 0);
 
         Drawable[] drawables = mView.getCompoundDrawables();
-        try {
-            int leftColor = a.getColor(R.styleable.SelectorInjection_drawableLeftTint, DEFAULT_COLOR);
-            int topColor = a.getColor(R.styleable.SelectorInjection_drawableTopTint, DEFAULT_COLOR);
-            int rightColor = a.getColor(R.styleable.SelectorInjection_drawableRightTint, DEFAULT_COLOR);
-            int bottomColor = a.getColor(R.styleable.SelectorInjection_drawableBottomTint, DEFAULT_COLOR);
 
-            int[] colors = {leftColor, topColor, rightColor, bottomColor};
-            tintDrawable(drawables, colors);
-        } finally {
-            a.recycle();
-        }
+        int[] colors = {
+                a.getColor(R.styleable.SelectorInjection_drawableLeftTint, DEFAULT_COLOR),
+                a.getColor(R.styleable.SelectorInjection_drawableTopTint, DEFAULT_COLOR),
+                a.getColor(R.styleable.SelectorInjection_drawableRightTint, DEFAULT_COLOR),
+                a.getColor(R.styleable.SelectorInjection_drawableBottomTint, DEFAULT_COLOR)};
+
+        tintDrawables(drawables, colors);
+
+        a.recycle();
     }
 
-    private static void tintDrawable(Drawable[] drawables, int[] colors) {
+    private static void tintDrawables(Drawable[] drawables, int[] colors) {
         Drawable drawable;
 
         for (int i = 0; i < colors.length; i++) {

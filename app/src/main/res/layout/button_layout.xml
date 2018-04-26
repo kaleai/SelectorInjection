@@ -73,13 +73,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
 
-        android:button="@drawable/icon_vimeo_svg"
-
-        android:buttonTint="@color/red"
-        android:drawableLeft="@drawable/icon_renren_svg"
+        app:button="@drawable/icon_vimeo_svg"
+        app:buttonTint="@color/red"
         android:drawablePadding="10dp"
-        android:drawableRight="@drawable/icon_facebook_svg"
 
+        app:drawableLeft="@drawable/icon_renren_svg"
+        app:drawableRight="@drawable/icon_renren_svg"
+        
         android:padding="13dp"
         android:paddingLeft="23dp"
         android:text="icon"

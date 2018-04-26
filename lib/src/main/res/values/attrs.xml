@@ -36,7 +36,7 @@
         <attr name="isSmart" format="boolean" />
 
         <!-- 是否将图片设置到src中（仅仅对ImageButton有效） -->
-        <attr name="isSrc" format="boolean" />
+        <attr name="inSrc" format="boolean" />
 
         <!-- 是否显示水波纹（Android5.0以上有效）-->
         <attr name="showRipple" format="boolean" />
@@ -47,12 +47,23 @@
         <attr name="android:drawableTop" />
         <attr name="android:drawableBottom" />
 
-        <!-- tint support -->
+        <!-- svg & tint support -->
+
+        <attr name="button" format="reference"/>
+        <attr name="buttonTint" format="color" />
+        
         <attr name="drawableLeftTint" format="color" />
         <attr name="drawableTopTint" format="color" />
         <attr name="drawableRightTint" format="color" />
         <attr name="drawableBottomTint" format="color" />
 
+        <attr name="drawableTop" format="reference" />
+        <attr name="drawableBottom" format="reference" />
+        <attr name="drawableLeft" format="reference" />
+        <attr name="drawableRight" format="reference" />
+
+        <attr name="src" format="reference" />
+        
         <!-- 事件控制 -->
         <attr name="isClicked" format="boolean" />
         <attr name="android:contentDescription" />

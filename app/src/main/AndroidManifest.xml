@@ -20,6 +20,7 @@
         <activity android:name=".SvgTextActivity" />
         <activity android:name=".RadioActivity" />
         <activity android:name=".ButtonActivity" />
+        <activity android:name=".TextActivity" />
     </application>
 
 </manifest>

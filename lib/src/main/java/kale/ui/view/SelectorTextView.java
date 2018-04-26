@@ -7,6 +7,9 @@ import android.util.AttributeSet;
 import kale.injection.SelectorInjection;
 import kale.utils.SelectorUtils;
 
+/**
+ * 如果有设置上下左右图片宽高的需求，可以采用https://github.com/woxingxiao/VectorCompatTextView
+ */
 public class SelectorTextView extends AppCompatCheckedTextView implements ISelectorView {
 
     private SelectorInjection injection;

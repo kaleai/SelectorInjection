@@ -15,8 +15,10 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import kale.utils.SelectorUtils;
 
@@ -37,6 +39,10 @@ public class SelectorInjection {
     @Nullable
     public Drawable normal, pressed, checked, disable;
 
+    private Drawable btnDrawable, srcDrawable;
+
+    private Drawable[] textDrawables = new Drawable[4];
+
     /**
      * 颜色
      */
@@ -56,7 +62,7 @@ public class SelectorInjection {
     /**
      * 是否将drawable设置到src中，如果不是那么默认是background
      */
-    public boolean isSrc;
+    public boolean inSrc;
 
     /**
      * 是否是智能模式，如果是的那么会自动计算按下后的颜色
@@ -74,13 +80,13 @@ public class SelectorInjection {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
 
         isSmart = a.getBoolean(R.styleable.SelectorInjection_isSmart, false);
-        isSrc = a.getBoolean(R.styleable.SelectorInjection_isSrc, false);
+        inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
         showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, false);
 
-        normal = getDrawable(a, R.styleable.SelectorInjection_normalDrawable);
-        pressed = getDrawable(a, R.styleable.SelectorInjection_pressedDrawable);
-        checked = getDrawable(a, R.styleable.SelectorInjection_checkedDrawable);
-        disable = getDrawable(a, R.styleable.SelectorInjection_disableDrawable);
+        normal = getDrawable(context, a, R.styleable.SelectorInjection_normalDrawable);
+        pressed = getDrawable(context, a, R.styleable.SelectorInjection_pressedDrawable);
+        checked = getDrawable(context, a, R.styleable.SelectorInjection_checkedDrawable);
+        disable = getDrawable(context, a, R.styleable.SelectorInjection_disableDrawable);
 
         normalColor = getColor(a, R.styleable.SelectorInjection_normalColor);
         pressedColor = getColor(a, R.styleable.SelectorInjection_pressedColor);
@@ -98,6 +104,14 @@ public class SelectorInjection {
 
         disableStrokeColor = getColor(a, R.styleable.SelectorInjection_disableStrokeColor);
         disableStrokeWidth = getDimension(a, R.styleable.SelectorInjection_disableStrokeWidth);
+
+        btnDrawable = getDrawable(context, a, R.styleable.SelectorInjection_button);
+        srcDrawable = getDrawable(context, a, R.styleable.SelectorInjection_src);
+
+        textDrawables[0] = getDrawable(context, a, R.styleable.SelectorInjection_drawableLeft);
+        textDrawables[1] = getDrawable(context, a, R.styleable.SelectorInjection_drawableTop);
+        textDrawables[2] = getDrawable(context, a, R.styleable.SelectorInjection_drawableRight);
+        textDrawables[3] = getDrawable(context, a, R.styleable.SelectorInjection_drawableBottom);
 
         String string = a.getString(R.styleable.SelectorInjection_android_contentDescription);
         isPressedForPreview = TextUtils.equals(string, "isPressed");
@@ -123,6 +137,13 @@ public class SelectorInjection {
         configDisableDrawable(selector);
 
         setSelectorToView(view, selector);
+
+        if (btnDrawable != null && view instanceof CompoundButton) {
+            ((CompoundButton) view).setButtonDrawable(btnDrawable);
+        }
+        if (view instanceof TextView) {
+            ((TextView) view).setCompoundDrawablesWithIntrinsicBounds(textDrawables[0], textDrawables[1], textDrawables[2], textDrawables[3]);
+        }
 
         if (view.isInEditMode()) {
             if (isPressedForPreview) {
@@ -181,6 +202,9 @@ public class SelectorInjection {
         checked.mutate();
     }
 
+    /**
+     * https://stackoverflow.com/questions/5092649/android-how-to-update-the-selectorstatelistdrawable-programmatically
+     */
     private void configDisableDrawable(StateListDrawable selector) {
         if (disable == null) {
             return;
@@ -199,7 +223,7 @@ public class SelectorInjection {
 
         if (view instanceof RadioButton) {
             ((RadioButton) view).setButtonDrawable(selector);
-        } else if (view instanceof ImageButton && isSrc) {
+        } else if (view instanceof ImageButton && inSrc) {
             ((ImageButton) view).setImageDrawable(selector);
         } else {
             if (showRipple && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

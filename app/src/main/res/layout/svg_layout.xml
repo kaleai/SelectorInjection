@@ -21,46 +21,47 @@
         <kale.ui.view.SelectorTextView
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:drawableLeft="@drawable/icon_facebook_svg"
             android:drawablePadding="16dp"
 
-            android:drawableRight="@drawable/icon_arrow_dark"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:text="facebook"
             android:tint="@color/blue"
+
+            app:drawableLeft="@drawable/icon_facebook_svg"
             app:drawableLeftTint="@color/red"
+            app:drawableRight="@drawable/icon_arrow_dark"
             app:drawableRightTint="@color/blue"
             />
 
         <kale.ui.view.SelectorTextView
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:drawableLeft="@drawable/icon_renren_svg"
             android:drawablePadding="16dp"
-            android:drawableRight="@drawable/icon_arrow_dark"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:text="renren"
+
+            app:drawableLeft="@drawable/icon_renren_svg"
             app:drawableLeftTint="@color/blue"
+            app:drawableRight="@drawable/icon_arrow_dark"
             app:drawableRightTint="@color/red"
             />
 
         <kale.ui.view.SelectorTextView
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:drawableLeft="@drawable/icon_vimeo_svg"
             android:drawablePadding="16dp"
-            android:drawableRight="@drawable/icon_arrow_dark"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:text="vimeo"
 
+            app:drawableLeft="@drawable/icon_vimeo_svg"
             app:drawableLeftTint="@color/orange"
+            app:drawableRight="@drawable/icon_arrow_dark"
             app:drawableRightTint="@color/green"
             />
 
@@ -79,7 +80,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="15dp"
+
             android:tint="@color/blue"
+
             app:normalColor="@color/white"
             app:normalDrawable="@drawable/shape_oval"
             app:srcCompat="@drawable/icon_facebook_svg"
@@ -88,9 +91,10 @@
         <kale.ui.view.SelectorImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-
             android:padding="15dp"
+
             android:tint="@color/orange"
+
             app:normalColor="@color/white"
             app:normalDrawable="@drawable/shape_rectangle"
             app:srcCompat="@drawable/icon_renren_svg"
@@ -100,7 +104,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="15dp"
+
             android:tint="@color/red"
+
             app:normalColor="@color/white"
             app:normalDrawable="@drawable/shape_oval"
             app:srcCompat="@drawable/icon_vimeo_svg"
@@ -122,7 +128,9 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:gravity="center_vertical"
+
             android:tint="@color/blue"
+
             app:srcCompat="@drawable/icon_facebook_svg"
             />
 
@@ -133,6 +141,7 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:contentDescription="控件小于SVG的大小"
             android:gravity="center_vertical"
+
             android:tint="@color/orange"
             app:srcCompat="@drawable/icon_facebook_svg"
             />
@@ -144,10 +153,10 @@
             android:contentDescription="控件大于SVG的大小，利用centerInside"
             android:gravity="center_vertical"
             android:scaleType="centerInside"
+
             android:tint="@color/red"
             app:srcCompat="@drawable/icon_facebook_svg"
             />
-
 
         <ImageView
             android:layout_width="60dp"
@@ -155,6 +164,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:scaleType="center"
+
             android:tint="@color/green"
             app:srcCompat="@drawable/icon_facebook_svg"
             />
@@ -167,16 +177,19 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@color/white"
         android:contentDescription="上下左右icon分别着色"
-        android:drawableBottom="@drawable/icon_facebook_svg"
-        android:drawableLeft="@drawable/icon_facebook_svg"
-        android:drawableRight="@drawable/icon_facebook_svg"
-        android:drawableTop="@drawable/icon_vimeo_svg"
         android:gravity="center_vertical"
         android:padding="@dimen/activity_horizontal_margin"
-
+        
+        app:drawableBottom="@drawable/icon_facebook_svg"
         app:drawableBottomTint="@color/green"
+        
+        app:drawableLeft="@drawable/icon_facebook_svg"
         app:drawableLeftTint="@color/red"
+
+        app:drawableRight="@drawable/icon_facebook_svg"
         app:drawableRightTint="@color/green"
+        
+        app:drawableTop="@drawable/icon_vimeo_svg"
         app:drawableTopTint="@color/blue"
         />
 

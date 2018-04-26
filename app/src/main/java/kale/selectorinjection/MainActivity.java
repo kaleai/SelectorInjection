@@ -58,6 +58,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 startActivity(new Intent(MainActivity.this, ButtonActivity.class));
             }
         });
+        findViewById(R.id.text_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TextActivity.class));
+            }
+        });
     }
 
     @Override

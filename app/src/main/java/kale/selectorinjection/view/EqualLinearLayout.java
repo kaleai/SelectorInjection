@@ -1,4 +1,4 @@
-package kale.selectorinjection;
+package kale.selectorinjection.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

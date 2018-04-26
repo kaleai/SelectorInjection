@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        view = (ISelectorView) findViewById(R.id.stv);
+        view = findViewById(R.id.stv);
 //        view.setChecked(true);
         ((View) view).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
             }
         });
+        
         injection = view.getSelectorInjection();
 
         findCbAndSetListener(R.id.pressed_color_cb);
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             @Override
             public void onClick(View view) {
 //                startActivity(new Intent(MainActivity.this, SvgTextActivity.class));
-                startActivity(new Intent(MainActivity.this, ButtonActivity.class));
+                startActivity(new Intent(MainActivity.this, SvgTextActivity.class));
 
 //                ((RadioButton) findViewById(R.id.r2)).setChecked(true);
             }
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     private CompoundButton findCbAndSetListener(int id) {
-        CompoundButton btn = (CompoundButton) findViewById(id);
+        CompoundButton btn = findViewById(id);
         btn.setOnCheckedChangeListener(this);
         return btn;
     }

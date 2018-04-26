@@ -66,7 +66,7 @@
 
     </LinearLayout>
 
-    <kale.selectorinjection.EqualLinearLayout
+    <kale.selectorinjection.view.EqualLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -106,7 +106,7 @@
             app:srcCompat="@drawable/icon_vimeo_svg"
             />
 
-    </kale.selectorinjection.EqualLinearLayout>
+    </kale.selectorinjection.view.EqualLinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -165,7 +165,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@color/white"
+        android:background="@color/green"
         android:contentDescription="上下左右icon分别着色"
         android:drawableBottom="@drawable/icon_facebook_svg"
         android:drawableLeft="@drawable/icon_facebook_svg"

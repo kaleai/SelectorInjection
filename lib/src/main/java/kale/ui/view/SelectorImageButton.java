@@ -37,7 +37,9 @@ public class SelectorImageButton extends AppCompatImageButton implements ISelect
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        injection.setEnabled(this, enabled);
+        if (injection != null) {
+            injection.setEnabled(this, enabled);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////

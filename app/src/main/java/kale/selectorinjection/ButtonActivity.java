@@ -3,7 +3,9 @@ package kale.selectorinjection;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 /**
  * @author Kale
@@ -26,6 +28,14 @@ public class ButtonActivity extends AppCompatActivity {
                 } else {
                     button.setText("unchecked");
                 }
+            }
+        });
+
+        findViewById(R.id.disable_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((TextView) v).setText("disable");
+                v.setEnabled(false);
             }
         });
     }

@@ -107,18 +107,18 @@
         />
 
     <kale.ui.view.SelectorButton
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/disable_btn"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginTop="20dp"
-        android:enabled="false"
 
-        android:text="disable"
+        android:text="enable"
 
-        app:disableColor="@color/purple"
-        app:disableDrawable="@drawable/shape_rectangle_with_shadow"
+        app:normalColor="@color/purple"
+        app:normalDrawable="@drawable/shape_rectangle_with_shadow"
 
-        app:normalColor="@color/green"
-        app:normalDrawable="@drawable/shape_oval"
+        app:disableColor="@color/green"
+        app:disableDrawable="@drawable/shape_oval"
         />
 
 

@@ -37,6 +37,8 @@ public class SelectorTextView extends AppCompatCheckedTextView implements ISelec
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        injection.setEnabled(this, enabled);
+        if (injection != null) {
+            injection.setEnabled(this, enabled);
+        }
     }
 }

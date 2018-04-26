@@ -136,8 +136,6 @@ public class SelectorInjection {
         if (disable == null && isSmart) {
             // 如果是智能模式，那么自动处理不可用状态效果
             view.setAlpha(!enabled ? 0.3f : 1);
-        } else {
-            view.setEnabled(enabled);
         }
     }
 
@@ -149,7 +147,7 @@ public class SelectorInjection {
             return;
         }
         setColorAndStroke(normal, normalColor, normalStrokeColor, normalStrokeWidth, true);
-        selector.addState(new int[]{}, normal);
+        selector.addState(new int[]{-android.R.attr.state_pressed, android.R.attr.state_enabled}, normal);
     }
 
     /**
@@ -164,9 +162,8 @@ public class SelectorInjection {
         }
         setColorAndStroke(pressed, pressedColor, pressedStrokeColor, pressedStrokeWidth, false);
         // 给selector设置pressed的状态
-        selector.addState(new int[]{android.R.attr.state_pressed}, pressed);
-        selector.addState(new int[]{android.R.attr.state_focused}, pressed);
-        pressed.mutate();
+        selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_pressed}, pressed);
+        selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_focused}, pressed);
     }
 
     /**
@@ -178,7 +175,6 @@ public class SelectorInjection {
         }
         setColorAndStroke(checked, checkedColor, checkedStrokeColor, checkedStrokeWidth, false);
         selector.addState(new int[]{android.R.attr.state_checked}, checked);
-        checked.mutate();
     }
 
     private void configDisableDrawable(StateListDrawable selector) {
@@ -187,7 +183,6 @@ public class SelectorInjection {
         }
         setColorAndStroke(disable, disableColor, disableStrokeColor, disableStrokeWidth, false);
         selector.addState(new int[]{-android.R.attr.state_enabled}, disable);
-        disable.mutate();
     }
 
     /**
@@ -300,6 +295,7 @@ public class SelectorInjection {
      */
     private ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
         int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
+
         int[][] states = new int[6][];
         states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
         states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
@@ -307,6 +303,7 @@ public class SelectorInjection {
         states[3] = new int[]{android.R.attr.state_focused};
         states[4] = new int[]{android.R.attr.state_window_focused};
         states[5] = new int[]{};
+
         return new ColorStateList(states, colors);
     }
 

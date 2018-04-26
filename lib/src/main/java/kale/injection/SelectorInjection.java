@@ -73,7 +73,7 @@ public class SelectorInjection {
     public SelectorInjection(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
 
-        isSmart = a.getBoolean(R.styleable.SelectorInjection_isSmart, true);
+        isSmart = a.getBoolean(R.styleable.SelectorInjection_isSmart, false);
         isSrc = a.getBoolean(R.styleable.SelectorInjection_isSrc, false);
         showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, false);
 
@@ -148,6 +148,8 @@ public class SelectorInjection {
         }
         setColorAndStroke(normal, normalColor, normalStrokeColor, normalStrokeWidth, true);
         selector.addState(new int[]{-android.R.attr.state_pressed, android.R.attr.state_enabled}, normal);
+//        selector.addState(new int[]{}, normal);
+        normal.mutate();
     }
 
     /**
@@ -164,6 +166,7 @@ public class SelectorInjection {
         // 给selector设置pressed的状态
         selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_pressed}, pressed);
         selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_focused}, pressed);
+        pressed.mutate();
     }
 
     /**
@@ -174,7 +177,8 @@ public class SelectorInjection {
             return;
         }
         setColorAndStroke(checked, checkedColor, checkedStrokeColor, checkedStrokeWidth, false);
-        selector.addState(new int[]{android.R.attr.state_checked}, checked);
+        selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_checked}, checked);
+        checked.mutate();
     }
 
     private void configDisableDrawable(StateListDrawable selector) {
@@ -183,6 +187,7 @@ public class SelectorInjection {
         }
         setColorAndStroke(disable, disableColor, disableStrokeColor, disableStrokeWidth, false);
         selector.addState(new int[]{-android.R.attr.state_enabled}, disable);
+        disable.mutate();
     }
 
     /**

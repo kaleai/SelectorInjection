@@ -40,13 +40,22 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         findCbAndSetListener(R.id.isSmart_cb);
         findCbAndSetListener(R.id.show_ripple_cb);
 
-        findViewById(R.id.jump_tint).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.svg_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, SvgTextActivity.class));
                 startActivity(new Intent(MainActivity.this, SvgTextActivity.class));
-
-//                ((RadioButton) findViewById(R.id.r2)).setChecked(true);
+            }
+        });
+        findViewById(R.id.radio_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, RadioActivity.class));
+            }
+        });
+        findViewById(R.id.button_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ButtonActivity.class));
             }
         });
     }

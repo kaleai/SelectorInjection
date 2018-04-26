@@ -165,7 +165,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@color/green"
+        android:background="@color/white"
         android:contentDescription="上下左右icon分别着色"
         android:drawableBottom="@drawable/icon_facebook_svg"
         android:drawableLeft="@drawable/icon_facebook_svg"

@@ -91,11 +91,27 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/jump_tint"
+        android:id="@+id/svg_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="jump tint"
+        android:text="svg"
+        />
+    
+    <Button
+        android:id="@+id/radio_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="radio Button"
+        />
+    
+    <Button
+        android:id="@+id/button_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="button"
         />
 </LinearLayout>

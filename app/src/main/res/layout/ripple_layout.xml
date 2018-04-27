@@ -34,6 +34,7 @@
         android:layout_marginTop="20dp"
         android:text="Ripple"
         android:textSize="30sp"
+        android:textColor="@color/white"
 
         app:normalColor="@color/red"
         app:normalDrawable="@drawable/shape_oval_with_shadow"
@@ -70,6 +71,43 @@
         app:pressedColor="@color/green"
         app:pressedDrawable="@drawable/kale"
 
+        app:ripple="true"
+        />
+
+    <kale.ui.view.SelectorImageButton
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:scaleType="center"
+        app:srcCompat="@drawable/icon_vimeo_svg"
+        android:tint="@color/red"
+        
+        app:normalColor="@color/orange"
+        app:normalDrawable="@drawable/shape_rectangle_with_shadow"
+
+        app:pressedColor="@color/red"
+
+        app:ripple="true"
+        />
+
+    <kale.ui.view.SelectorRadioButton
+        android:id="@+id/radio_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="背景才有水波纹，所以并不支持radiobutton"
+
+        app:normalColor="@color/orange"
+        app:normalDrawable="@drawable/shape_rectangle_with_shadow"
+
+        app:pressedColor="@color/green"
+        app:pressedDrawable="@drawable/shape_rectangle_with_shadow"
+
+        app:checkedColor="@color/blue"
+        app:checkedDrawable="@drawable/shape_rectangle_with_shadow"
+        
         app:ripple="true"
         />
     

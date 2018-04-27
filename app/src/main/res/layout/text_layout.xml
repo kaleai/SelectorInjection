@@ -19,10 +19,9 @@
         app:checkedColor="@color/purple"
         app:checkedDrawable="@drawable/shape_rectangle"
 
-        app:normalColor="@color/green"
+        app:normalColor="@color/orange"
         app:normalDrawable="@drawable/shape_oval"
         />
-
 
     <kale.ui.view.SelectorTextView
         android:layout_width="wrap_content"

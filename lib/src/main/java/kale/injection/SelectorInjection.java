@@ -109,7 +109,7 @@ public class SelectorInjection {
 
         configDisableDrawable(selector);
 
-        setSelectorToView(view, selector);
+        setSelectorDrawableToView(view, selector);
 
     }
 
@@ -127,7 +127,7 @@ public class SelectorInjection {
         if (normalBean.drawable == null) {
             return;
         }
-        setColorAndStroke(normalBean.drawable, normalBean.color, normalBean.strokeColor, normalBean.strokeWidth, true);
+        setColorAndStroke(normalBean, true);
         selector.addState(new int[]{-android.R.attr.state_pressed, android.R.attr.state_enabled}, normalBean.drawable);
 //        selector.addState(new int[]{}, normal);
         normalBean.drawable.mutate();
@@ -140,7 +140,7 @@ public class SelectorInjection {
         if (pressedBean.drawable == null) {
             return;
         }
-        setColorAndStroke(pressedBean.drawable, pressedBean.color, pressedBean.strokeColor, pressedBean.strokeWidth, false);
+        setColorAndStroke(pressedBean, false);
         // 给selector设置pressed的状态
         selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_pressed}, pressedBean.drawable);
         selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_focused}, pressedBean.drawable);
@@ -154,7 +154,7 @@ public class SelectorInjection {
         if (checkedBean.drawable == null) {
             return;
         }
-        setColorAndStroke(checkedBean.drawable, checkedBean.color, checkedBean.strokeColor, checkedBean.strokeWidth, false);
+        setColorAndStroke(checkedBean, false);
         selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_checked}, checkedBean.drawable);
         checkedBean.drawable.mutate();
     }
@@ -166,7 +166,7 @@ public class SelectorInjection {
         if (disableBean.drawable == null) {
             return;
         }
-        setColorAndStroke(disableBean.drawable, disableBean.color, disableBean.strokeColor, disableBean.strokeWidth, false);
+        setColorAndStroke(disableBean, false);
         selector.addState(new int[]{-android.R.attr.state_enabled}, disableBean.drawable);
         disableBean.drawable.mutate();
     }
@@ -174,7 +174,7 @@ public class SelectorInjection {
     /**
      * 重要方法，最终通过这个给view设置selector效果
      */
-    private void setSelectorToView(View view, StateListDrawable selector) {
+    private void setSelectorDrawableToView(View view, StateListDrawable selector) {
         selector.setEnterFadeDuration(10);
         selector.setExitFadeDuration(10);
 
@@ -195,17 +195,37 @@ public class SelectorInjection {
         }
     }
 
+    private void configDrawable(SelectorBean bean, int[]... stateSets) {
+        configDrawable(bean, false, stateSets);
+    }
+
+    private void configDrawable(SelectorBean bean, boolean normalDrawable, int[]... stateSets) {
+        if (bean.drawable == null) {
+            return;
+        }
+        Drawable drawable = setColorAndStroke(bean, normalDrawable);
+        for (int[] state : stateSets) {
+            selector.addState(state, drawable);
+        }
+        drawable.mutate();
+    }
+
     /**
      * 设置背景颜色和描边的颜色/宽度
      */
-    private void setColorAndStroke(Drawable drawable, int color, int strokeColor, int strokeWidth, boolean isNormal) {
+    private Drawable setColorAndStroke(SelectorBean bean, boolean isNormal) {
+        Drawable drawable = bean.drawable;
+        int color = bean.color;
+        int strokeColor = bean.strokeColor;
+        int strokeWidth = bean.strokeWidth;
+        
         if (drawable instanceof GradientDrawable) {
-            setShape((GradientDrawable) drawable, color, strokeColor, strokeWidth, isNormal);
+            configShapeDrawable((GradientDrawable) drawable, color, strokeColor, strokeWidth, isNormal);
         } else if (drawable instanceof LayerDrawable) {
             // 如果是layer-list，先找到要设置的shape
             Drawable shape = ((LayerDrawable) drawable).findDrawableByLayerId(android.R.id.background);
             if (shape instanceof GradientDrawable) {
-                setShape((GradientDrawable) shape, color, strokeColor, strokeWidth, isNormal);
+                configShapeDrawable((GradientDrawable) shape, color, strokeColor, strokeWidth, isNormal);
             }
         } else if (drawable instanceof BitmapDrawable) {
             // do nothing
@@ -213,6 +233,7 @@ public class SelectorInjection {
             // tint
             SelectorUtils.tintDrawable(drawable, color);
         }
+        return drawable;
     }
 
     /**
@@ -223,7 +244,7 @@ public class SelectorInjection {
      * @param strokeColor shape的描边颜色
      * @param strokeWidth shape的描边宽度
      */
-    private void setShape(GradientDrawable shape, int color, int strokeColor, int strokeWidth, boolean isNormal) {
+    private void configShapeDrawable(GradientDrawable shape, int color, int strokeColor, int strokeWidth, boolean isNormal) {
         if (showRipple && !isNormal && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             shape.setColor(normalBean.color);
         } else {
@@ -245,7 +266,7 @@ public class SelectorInjection {
         return blendColors(Color.BLACK, color, 0.3f);
     }
 
-    public static int lighten(final int color, float fraction) {
+    public int lighten(final int color, float fraction) {
         return blendColors(Color.WHITE, color, fraction);
     }
 
@@ -255,7 +276,7 @@ public class SelectorInjection {
      * @param ratio of which to blend. 1.0 will return {@code color1}, 0.5 will give an even blend,
      *              0.0 will return {@code color2}.
      */
-    private static int blendColors(int color1, int color2, float ratio) {
+    private int blendColors(int color1, int color2, float ratio) {
         final float inverseRatio = 1f - ratio;
         float r = (Color.red(color1) * ratio) + (Color.red(color2) * inverseRatio);
         float g = (Color.green(color1) * ratio) + (Color.green(color2) * inverseRatio);
@@ -264,8 +285,6 @@ public class SelectorInjection {
     }
 
     /**
-     * 设置不同状态时其文字颜色
-     *
      * @see "http://blog.csdn.net/sodino/article/details/6797821"
      */
     private ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {

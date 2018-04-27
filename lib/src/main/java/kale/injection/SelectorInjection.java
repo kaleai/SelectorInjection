@@ -1,7 +1,6 @@
 package kale.injection;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -183,8 +182,9 @@ public class SelectorInjection {
         } else {
             if (showRipple && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 RippleDrawable ripple = (RippleDrawable) view.getContext().getDrawable(R.drawable.si_ripple);
+                assert ripple != null;
                 ripple.setDrawableByLayerId(android.R.id.background, selector);
-                ripple.setColor(createColorStateList(pressed.color, pressed.color, pressed.color, pressed.color));
+                ripple.setColor(SelectorUtils.createColorStateList(pressed.color));
                 view.setBackground(ripple);
             } else {
                 view.setBackgroundDrawable(selector);
@@ -197,23 +197,6 @@ public class SelectorInjection {
      */
     protected int getPressedColor(int normalColor) {
         return SelectorUtils.darken(normalColor);
-    }
-
-    /**
-     * @see "http://blog.csdn.net/sodino/article/details/6797821"
-     */
-    private ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
-        int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
-
-        int[][] states = new int[6][];
-        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
-        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
-        states[2] = new int[]{android.R.attr.state_enabled};
-        states[3] = new int[]{android.R.attr.state_focused};
-        states[4] = new int[]{android.R.attr.state_window_focused};
-        states[5] = new int[]{};
-
-        return new ColorStateList(states, colors);
     }
 
 }

@@ -11,7 +11,6 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
@@ -33,9 +32,20 @@ public class SelectorInjection {
 
     public static int DEFAULT_COLOR = -1;
 
-    @Nullable
-    public Drawable normal, pressed, checked, disable;
 
+    /**
+     * 当前view的selector对象
+     */
+    private StateListDrawable selector = new StateListDrawable();
+
+    public SelectorBean normalBean = new SelectorBean();
+
+    public SelectorBean pressedBean = new SelectorBean();
+
+    public SelectorBean checkedBean = new SelectorBean();
+
+    public SelectorBean disableBean = new SelectorBean();
+    
     /**
      * 颜色
      */
@@ -74,10 +84,10 @@ public class SelectorInjection {
         inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
         showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, false);
 
-        normal = getDrawable(context, a, R.styleable.SelectorInjection_normalDrawable);
-        pressed = getDrawable(context, a, R.styleable.SelectorInjection_pressedDrawable);
-        checked = getDrawable(context, a, R.styleable.SelectorInjection_checkedDrawable);
-        disable = getDrawable(context, a, R.styleable.SelectorInjection_disableDrawable);
+        normalBean.drawable = getDrawable(context, a, R.styleable.SelectorInjection_normalDrawable);
+        pressedBean.drawable = getDrawable(context, a, R.styleable.SelectorInjection_pressedDrawable);
+        checkedBean.drawable = getDrawable(context, a, R.styleable.SelectorInjection_checkedDrawable);
+        disableBean.drawable = getDrawable(context, a, R.styleable.SelectorInjection_disableDrawable);
 
         normalColor = getColor(a, R.styleable.SelectorInjection_normalColor);
         pressedColor = getColor(a, R.styleable.SelectorInjection_pressedColor);
@@ -100,11 +110,9 @@ public class SelectorInjection {
     }
 
     public void injection(View view) {
-        StateListDrawable selector = new StateListDrawable();// 背景选择器
-
         // 如果是智能模式，那么自动处理按压效果
-        if (isSmart && normal != null && pressed == null) {
-            pressed = normal.getConstantState().newDrawable();
+        if (isSmart && normalBean.drawable != null && pressedBean.drawable == null) {
+            pressedBean.drawable = normalBean.drawable.getConstantState().newDrawable();
         }
 
         configPressedDrawable(selector);
@@ -120,7 +128,7 @@ public class SelectorInjection {
     }
 
     public void setEnabled(View view, boolean enabled) {
-        if (disable == null && isSmart) {
+        if (disableBean.drawable == null && isSmart) {
             // 如果是智能模式，那么自动处理不可用状态效果
             view.setAlpha(!enabled ? 0.3f : 1);
         }
@@ -130,54 +138,54 @@ public class SelectorInjection {
      * 开始设置普通状态时的样式（颜色，描边）
      */
     private void configNormalDrawable(StateListDrawable selector) {
-        if (normal == null) {
+        if (normalBean.drawable == null) {
             return;
         }
-        setColorAndStroke(normal, normalColor, normalStrokeColor, normalStrokeWidth, true);
-        selector.addState(new int[]{-android.R.attr.state_pressed, android.R.attr.state_enabled}, normal);
+        setColorAndStroke(normalBean.drawable, normalColor, normalStrokeColor, normalStrokeWidth, true);
+        selector.addState(new int[]{-android.R.attr.state_pressed, android.R.attr.state_enabled}, normalBean.drawable);
 //        selector.addState(new int[]{}, normal);
-        normal.mutate();
+        normalBean.drawable.mutate();
     }
 
     /**
      * 设置按下后的样式（颜色，描边）
      */
     private void configPressedDrawable(StateListDrawable selector) {
-        if (pressed == null) {
+        if (pressedBean.drawable == null) {
             return;
         }
         if (pressedColor == DEFAULT_COLOR) {
             pressedColor = isSmart ? getPressedColor(normalColor) : pressedColor;
         }
-        setColorAndStroke(pressed, pressedColor, pressedStrokeColor, pressedStrokeWidth, false);
+        setColorAndStroke(pressedBean.drawable, pressedColor, pressedStrokeColor, pressedStrokeWidth, false);
         // 给selector设置pressed的状态
-        selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_pressed}, pressed);
-        selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_focused}, pressed);
-        pressed.mutate();
+        selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_pressed}, pressedBean.drawable);
+        selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_focused}, pressedBean.drawable);
+        pressedBean.drawable.mutate();
     }
 
     /**
      * 设置选中状态下的样子
      */
     private void configCheckedDrawable(StateListDrawable selector) {
-        if (checked == null) {
+        if (checkedBean.drawable == null) {
             return;
         }
-        setColorAndStroke(checked, checkedColor, checkedStrokeColor, checkedStrokeWidth, false);
-        selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_checked}, checked);
-        checked.mutate();
+        setColorAndStroke(checkedBean.drawable, checkedColor, checkedStrokeColor, checkedStrokeWidth, false);
+        selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_checked}, checkedBean.drawable);
+        checkedBean.drawable.mutate();
     }
 
     /**
      * https://stackoverflow.com/questions/5092649/android-how-to-update-the-selectorstatelistdrawable-programmatically
      */
     private void configDisableDrawable(StateListDrawable selector) {
-        if (disable == null) {
+        if (disableBean.drawable == null) {
             return;
         }
-        setColorAndStroke(disable, disableColor, disableStrokeColor, disableStrokeWidth, false);
-        selector.addState(new int[]{-android.R.attr.state_enabled}, disable);
-        disable.mutate();
+        setColorAndStroke(disableBean.drawable, disableColor, disableStrokeColor, disableStrokeWidth, false);
+        selector.addState(new int[]{-android.R.attr.state_enabled}, disableBean.drawable);
+        disableBean.drawable.mutate();
     }
 
     /**

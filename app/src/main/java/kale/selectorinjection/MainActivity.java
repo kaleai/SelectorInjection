@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 injection.showRipple = checked;
                 break;
         }
-        injection.injection((View) view);
+        injection.injection();
     }
 
     private CompoundButton findCbAndSetListener(int id) {

@@ -26,7 +26,7 @@ public class SelectorImageButton extends AppCompatImageButton implements ISelect
 
     @Override
     public SelectorInjection initSelectorInjection(Context context, AttributeSet attr) {
-        return new SelectorInjection(context, attr);
+        return new SelectorInjection(this);
     }
 
     @Override
@@ -34,13 +34,6 @@ public class SelectorImageButton extends AppCompatImageButton implements ISelect
         return injection;
     }
 
-    @Override
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
-        if (injection != null) {
-            injection.setEnabled(this, enabled);
-        }
-    }
 
     ///////////////////////////////////////////////////////////////////////////
     // For checkable

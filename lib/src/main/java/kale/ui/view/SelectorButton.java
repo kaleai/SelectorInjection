@@ -33,20 +33,12 @@ public class SelectorButton extends AppCompatCheckBox implements ISelectorView {
 
     @Override
     public SelectorInjection initSelectorInjection(Context context, AttributeSet attrs) {
-        return new SelectorInjection(context, attrs);
+        return new SelectorInjection(this);
     }
 
     @Override
     public SelectorInjection getSelectorInjection() {
         return injection;
-    }
-
-    @Override
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
-        if (injection != null) {
-            injection.setEnabled(this, enabled);
-        }
     }
 
     @Override

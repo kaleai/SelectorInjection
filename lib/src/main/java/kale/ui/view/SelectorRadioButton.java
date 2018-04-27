@@ -32,7 +32,7 @@ public class SelectorRadioButton extends android.support.v7.widget.AppCompatRadi
 
     @Override
     public SelectorInjection initSelectorInjection(Context context, AttributeSet attrs) {
-        return new SelectorInjection(context, attrs);
+        return new SelectorInjection(this);
     }
 
     @SuppressLint("ClickableViewAccessibility")

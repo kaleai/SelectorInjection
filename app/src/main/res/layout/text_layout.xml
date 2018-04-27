@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
     >
 
 
@@ -11,14 +12,111 @@
         android:id="@+id/check_tv"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:button="@drawable/icon_robot"
         android:gravity="center"
+
         android:text="checked"
 
-        app:checkedDrawable="@drawable/shape_rectangle"
         app:checkedColor="@color/purple"
-        
+        app:checkedDrawable="@drawable/shape_rectangle"
+
         app:normalColor="@color/green"
         app:normalDrawable="@drawable/shape_oval"
         />
-    
+
+
+    <kale.ui.view.SelectorTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="checked"
+
+        app:button="@drawable/icon_robot"
+
+        app:checkedColor="@color/purple"
+        app:checkedDrawable="@drawable/shape_rectangle_with_shadow"
+
+        app:normalColor="@color/green"
+        app:normalDrawable="@drawable/shape_rectangle_with_shadow"
+
+        app:normalStrokeColor="@color/green"
+        app:normalStrokeWidth="4dp"
+        />
+
+    <kale.ui.view.SelectorTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="checked"
+
+        app:button="@drawable/icon_robot"
+
+        app:checkedColor="@color/purple"
+        app:checkedDrawable="@drawable/shape_rectangle_with_shadow"
+
+        app:normalColor="@color/green"
+        app:normalDrawable="@drawable/shape_rectangle_with_shadow"
+        />
+
+    <kale.ui.view.SelectorTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:gravity="center"
+        android:text="checked"
+        
+        app:button="@drawable/icon_vimeo_svg"
+        app:buttonTint="@color/red"
+
+        app:checkedColor="@color/purple"
+        app:checkedDrawable="@drawable/shape_rectangle"
+
+        app:normalColor="@color/green"
+        app:normalDrawable="@drawable/shape_rectangle"
+        />
+
+    <kale.ui.view.SelectorTextView
+        android:id="@+id/disable_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:text="disable"
+
+        app:disableColor="@color/gray"
+        app:disableDrawable="@drawable/shape_oval"
+
+        app:normalColor="@color/red"
+        app:normalDrawable="@drawable/shape_rectangle"
+        />
+
+    <kale.ui.view.SelectorTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:text="test button"
+
+        app:normalColor="@color/blue"
+        app:normalDrawable="@drawable/shape_rectangle"
+
+        app:normalStrokeColor="@color/green"
+        app:normalStrokeWidth="4dp"
+        />
+
+    <kale.ui.view.SelectorTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:contentDescription="测试共用shape描边是否会冲突"
+        android:padding="10dp"
+        android:text="test button"
+
+        app:normalColor="@color/blue"
+        app:normalDrawable="@drawable/shape_rectangle"
+        />
+
 </LinearLayout>

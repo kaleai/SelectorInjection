@@ -2,7 +2,6 @@ package kale.injection;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -10,6 +9,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.support.v7.widget.TintTypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
@@ -19,7 +19,6 @@ import kale.utils.SelectorUtils;
 
 import static kale.utils.SelectorUtils.getColor;
 import static kale.utils.SelectorUtils.getDimension;
-import static kale.utils.SelectorUtils.getDrawable;
 
 /**
  * View的一个selector注入装置，通过构造函数即可注入。之后调用{@link #injection()}即可.
@@ -68,16 +67,16 @@ public class SelectorInjection {
     public void loadFromAttributes(AttributeSet attrs, int defStyleAttr) {
         Context context = view.getContext();
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection, defStyleAttr, 0);
+        TintTypedArray a = TintTypedArray.obtainStyledAttributes(context, attrs, R.styleable.SelectorInjection, defStyleAttr, 0);
 
         isSmart = a.getBoolean(R.styleable.SelectorInjection_isSmart, true);
         inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
         showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, false);
 
-        normal.drawable = getDrawable(context, a, R.styleable.SelectorInjection_normalDrawable);
-        pressed.drawable = getDrawable(context, a, R.styleable.SelectorInjection_pressedDrawable);
-        checked.drawable = getDrawable(context, a, R.styleable.SelectorInjection_checkedDrawable);
-        disable.drawable = getDrawable(context, a, R.styleable.SelectorInjection_disableDrawable);
+        normal.drawable = a.getDrawable(R.styleable.SelectorInjection_normalDrawable);
+        pressed.drawable = a.getDrawable(R.styleable.SelectorInjection_pressedDrawable);
+        checked.drawable = a.getDrawable(R.styleable.SelectorInjection_checkedDrawable);
+        disable.drawable = a.getDrawable(R.styleable.SelectorInjection_disableDrawable);
 
         normal.color = getColor(a, R.styleable.SelectorInjection_normalColor);
         pressed.color = getColor(a, R.styleable.SelectorInjection_pressedColor);

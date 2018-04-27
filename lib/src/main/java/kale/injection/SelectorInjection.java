@@ -32,7 +32,6 @@ public class SelectorInjection {
 
     public static int DEFAULT_COLOR = -1;
 
-
     /**
      * 当前view的selector对象
      */
@@ -45,22 +44,6 @@ public class SelectorInjection {
     public SelectorBean checkedBean = new SelectorBean();
 
     public SelectorBean disableBean = new SelectorBean();
-    
-    /**
-     * 颜色
-     */
-    public int normalColor, pressedColor, checkedColor, disableColor;
-
-    /**
-     * 描边的宽度，如果不设置会根据默认的宽度（2px）进行描边
-     */
-    public int normalStrokeColor, normalStrokeWidth;
-
-    public int pressedStrokeColor, pressedStrokeWidth;
-
-    public int checkedStrokeColor, checkedStrokeWidth;
-
-    public int disableStrokeColor, disableStrokeWidth;
 
     /**
      * 是否将drawable设置到src中，如果不是那么默认是background
@@ -80,7 +63,7 @@ public class SelectorInjection {
     public SelectorInjection(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
 
-        isSmart = a.getBoolean(R.styleable.SelectorInjection_isSmart, false);
+        isSmart = a.getBoolean(R.styleable.SelectorInjection_isSmart, true);
         inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
         showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, false);
 
@@ -89,22 +72,22 @@ public class SelectorInjection {
         checkedBean.drawable = getDrawable(context, a, R.styleable.SelectorInjection_checkedDrawable);
         disableBean.drawable = getDrawable(context, a, R.styleable.SelectorInjection_disableDrawable);
 
-        normalColor = getColor(a, R.styleable.SelectorInjection_normalColor);
-        pressedColor = getColor(a, R.styleable.SelectorInjection_pressedColor);
-        checkedColor = getColor(a, R.styleable.SelectorInjection_checkedColor);
-        disableColor = getColor(a, R.styleable.SelectorInjection_disableColor);
+        normalBean.color = getColor(a, R.styleable.SelectorInjection_normalColor);
+        pressedBean.color = getColor(a, R.styleable.SelectorInjection_pressedColor);
+        checkedBean.color = getColor(a, R.styleable.SelectorInjection_checkedColor);
+        disableBean.color = getColor(a, R.styleable.SelectorInjection_disableColor);
 
-        normalStrokeColor = getColor(a, R.styleable.SelectorInjection_normalStrokeColor);
-        normalStrokeWidth = getDimension(a, R.styleable.SelectorInjection_normalStrokeWidth);
+        normalBean.strokeColor = getColor(a, R.styleable.SelectorInjection_normalStrokeColor);
+        normalBean.strokeWidth = getDimension(a, R.styleable.SelectorInjection_normalStrokeWidth);
 
-        pressedStrokeColor = getColor(a, R.styleable.SelectorInjection_pressedStrokeColor);
-        pressedStrokeWidth = getDimension(a, R.styleable.SelectorInjection_pressedStrokeWidth);
+        pressedBean.strokeColor = getColor(a, R.styleable.SelectorInjection_pressedStrokeColor);
+        pressedBean.strokeWidth = getDimension(a, R.styleable.SelectorInjection_pressedStrokeWidth);
 
-        checkedStrokeColor = getColor(a, R.styleable.SelectorInjection_checkedStrokeColor);
-        checkedStrokeWidth = getDimension(a, R.styleable.SelectorInjection_checkedStrokeWidth);
+        checkedBean.strokeColor = getColor(a, R.styleable.SelectorInjection_checkedStrokeColor);
+        checkedBean.strokeWidth = getDimension(a, R.styleable.SelectorInjection_checkedStrokeWidth);
 
-        disableStrokeColor = getColor(a, R.styleable.SelectorInjection_disableStrokeColor);
-        disableStrokeWidth = getDimension(a, R.styleable.SelectorInjection_disableStrokeWidth);
+        disableBean.strokeColor = getColor(a, R.styleable.SelectorInjection_disableStrokeColor);
+        disableBean.strokeWidth = getDimension(a, R.styleable.SelectorInjection_disableStrokeWidth);
 
         a.recycle();
     }
@@ -113,6 +96,9 @@ public class SelectorInjection {
         // 如果是智能模式，那么自动处理按压效果
         if (isSmart && normalBean.drawable != null && pressedBean.drawable == null) {
             pressedBean.drawable = normalBean.drawable.getConstantState().newDrawable();
+        }
+        if (pressedBean.drawable != null && pressedBean.color == DEFAULT_COLOR) {
+            pressedBean.color = isSmart ? getPressedColor(normalBean.color) : pressedBean.color;
         }
 
         configPressedDrawable(selector);
@@ -141,7 +127,7 @@ public class SelectorInjection {
         if (normalBean.drawable == null) {
             return;
         }
-        setColorAndStroke(normalBean.drawable, normalColor, normalStrokeColor, normalStrokeWidth, true);
+        setColorAndStroke(normalBean.drawable, normalBean.color, normalBean.strokeColor, normalBean.strokeWidth, true);
         selector.addState(new int[]{-android.R.attr.state_pressed, android.R.attr.state_enabled}, normalBean.drawable);
 //        selector.addState(new int[]{}, normal);
         normalBean.drawable.mutate();
@@ -154,10 +140,7 @@ public class SelectorInjection {
         if (pressedBean.drawable == null) {
             return;
         }
-        if (pressedColor == DEFAULT_COLOR) {
-            pressedColor = isSmart ? getPressedColor(normalColor) : pressedColor;
-        }
-        setColorAndStroke(pressedBean.drawable, pressedColor, pressedStrokeColor, pressedStrokeWidth, false);
+        setColorAndStroke(pressedBean.drawable, pressedBean.color, pressedBean.strokeColor, pressedBean.strokeWidth, false);
         // 给selector设置pressed的状态
         selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_pressed}, pressedBean.drawable);
         selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_focused}, pressedBean.drawable);
@@ -171,7 +154,7 @@ public class SelectorInjection {
         if (checkedBean.drawable == null) {
             return;
         }
-        setColorAndStroke(checkedBean.drawable, checkedColor, checkedStrokeColor, checkedStrokeWidth, false);
+        setColorAndStroke(checkedBean.drawable, checkedBean.color, checkedBean.strokeColor, checkedBean.strokeWidth, false);
         selector.addState(new int[]{android.R.attr.state_enabled, android.R.attr.state_checked}, checkedBean.drawable);
         checkedBean.drawable.mutate();
     }
@@ -183,7 +166,7 @@ public class SelectorInjection {
         if (disableBean.drawable == null) {
             return;
         }
-        setColorAndStroke(disableBean.drawable, disableColor, disableStrokeColor, disableStrokeWidth, false);
+        setColorAndStroke(disableBean.drawable, disableBean.color, disableBean.strokeColor, disableBean.strokeWidth, false);
         selector.addState(new int[]{-android.R.attr.state_enabled}, disableBean.drawable);
         disableBean.drawable.mutate();
     }
@@ -204,7 +187,7 @@ public class SelectorInjection {
                 RippleDrawable ripple = (RippleDrawable) view.getContext().getDrawable(R.drawable.si_ripple);
                 assert ripple != null;
                 ripple.setDrawableByLayerId(android.R.id.background, selector);
-                ripple.setColor(createColorStateList(pressedColor, pressedColor, pressedColor, pressedColor));
+                ripple.setColor(createColorStateList(pressedBean.color, pressedBean.color, pressedBean.color, pressedBean.color));
                 view.setBackground(ripple);
             } else {
                 view.setBackgroundDrawable(selector);
@@ -242,7 +225,7 @@ public class SelectorInjection {
      */
     private void setShape(GradientDrawable shape, int color, int strokeColor, int strokeWidth, boolean isNormal) {
         if (showRipple && !isNormal && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            shape.setColor(normalColor);
+            shape.setColor(normalBean.color);
         } else {
             shape.setColor(color);
         }

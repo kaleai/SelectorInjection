@@ -12,13 +12,10 @@ import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
-import android.widget.TextView;
 
 import kale.utils.SelectorUtils;
 
@@ -34,14 +31,10 @@ import static kale.utils.SelectorUtils.getDrawable;
  */
 public class SelectorInjection {
 
-    public static int DEFAULT_COLOR = 0x0106000d;
+    public static int DEFAULT_COLOR = -1;
 
     @Nullable
     public Drawable normal, pressed, checked, disable;
-
-    private Drawable btnDrawable, srcDrawable;
-
-    private Drawable[] textDrawables = new Drawable[4];
 
     /**
      * 颜色
@@ -74,8 +67,6 @@ public class SelectorInjection {
      */
     public boolean showRipple;
 
-    private boolean isPressedForPreview;
-
     public SelectorInjection(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SelectorInjection);
 
@@ -105,18 +96,6 @@ public class SelectorInjection {
         disableStrokeColor = getColor(a, R.styleable.SelectorInjection_disableStrokeColor);
         disableStrokeWidth = getDimension(a, R.styleable.SelectorInjection_disableStrokeWidth);
 
-        btnDrawable = getDrawable(context, a, R.styleable.SelectorInjection_button);
-        srcDrawable = getDrawable(context, a, R.styleable.SelectorInjection_src);
-
-        textDrawables[0] = getDrawable(context, a, R.styleable.SelectorInjection_drawableLeft);
-        textDrawables[1] = getDrawable(context, a, R.styleable.SelectorInjection_drawableTop);
-        textDrawables[2] = getDrawable(context, a, R.styleable.SelectorInjection_drawableRight);
-        textDrawables[3] = getDrawable(context, a, R.styleable.SelectorInjection_drawableBottom);
-
-        String string = a.getString(R.styleable.SelectorInjection_android_contentDescription);
-        isPressedForPreview = TextUtils.equals(string, "isPressed");
-        isPressedForPreview = a.getBoolean(R.styleable.SelectorInjection_isPressed, false);
-
         a.recycle();
     }
 
@@ -138,19 +117,6 @@ public class SelectorInjection {
 
         setSelectorToView(view, selector);
 
-        if (btnDrawable != null && view instanceof CompoundButton) {
-            ((CompoundButton) view).setButtonDrawable(btnDrawable);
-        }
-        if (view instanceof TextView) {
-            ((TextView) view).setCompoundDrawablesWithIntrinsicBounds(textDrawables[0], textDrawables[1], textDrawables[2], textDrawables[3]);
-        }
-
-        if (view.isInEditMode()) {
-            if (isPressedForPreview) {
-                // normal -> pressed
-                view.setPressed(true);
-            }
-        }
     }
 
     public void setEnabled(View view, boolean enabled) {
@@ -278,19 +244,8 @@ public class SelectorInjection {
     }
 
     /**
-     * Make a dark color to press effect
      * 自动计算得到按下的颜色，如果不满足需求可重写
      */
-    /*protected int getPressedColor(int normalColor) {
-        int alpha = 255;
-        int r = (normalColor >> 16) & 0xFF;
-        int g = (normalColor >> 8) & 0xFF;
-        int b = (normalColor >> 1) & 0xFF;
-        r = (r - 50 < 0) ? 0 : r - 50;
-        g = (g - 50 < 0) ? 0 : g - 50;
-        b = (b - 50 < 0) ? 0 : b - 50;
-        return Color.argb(alpha, r, g, b);
-    }*/
     private int getPressedColor(int normalColor) {
         return darken(normalColor);
     }

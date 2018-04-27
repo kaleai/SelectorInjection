@@ -10,9 +10,9 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.content.res.AppCompatResources;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
 
 import kale.injection.SelectorInjection;
+import kale.injection.SvgInjection;
 import kale.ui.view.ISelectorView;
 
 import static kale.injection.SelectorInjection.DEFAULT_COLOR;
@@ -41,13 +41,13 @@ public class SelectorUtils {
 
     public static SelectorInjection injectionToSelectorView(View view, AttributeSet attrs, int defStyle) {
         if (view instanceof ISelectorView) {
+
+            new SvgInjection(view).loadFromAttributes(attrs, defStyle).injection();
+
+            
             SelectorInjection injection = ((ISelectorView) view).initSelectorInjection(view.getContext(), attrs);
             injection.injection(view);
-            
-            if (view instanceof TextView) {
-                new AppCompatTextViewHelper(((TextView) view)).loadFromAttributes(attrs, defStyle);
-                view.setClickable(true);
-            }
+
             return injection;
         } else {
             return null;

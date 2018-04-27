@@ -29,8 +29,8 @@
             android:paddingLeft="5dp"
             android:text="Paris"
 
-            app:checkedDrawable="@drawable/icon_circle_checked"
-            app:normalDrawable="@drawable/icon_circle_uncheck"
+            app:checkedDrawable="@drawable/abc_btn_radio_to_on_mtrl_015"
+            app:normalDrawable="@drawable/abc_btn_radio_to_on_mtrl_000"
             />
 
         <kale.ui.view.SelectorRadioButton
@@ -41,8 +41,8 @@
             android:paddingLeft="5dp"
             android:text="London"
 
-            app:checkedDrawable="@drawable/icon_circle_checked"
-            app:normalDrawable="@drawable/icon_circle_uncheck"
+            app:checkedDrawable="@drawable/abc_btn_radio_to_on_mtrl_015"
+            app:normalDrawable="@drawable/abc_btn_radio_to_on_mtrl_000"
             />
 
         <kale.ui.view.SelectorRadioButton
@@ -53,8 +53,8 @@
             android:paddingLeft="5dp"
             android:text="Kabul"
 
-            app:checkedDrawable="@drawable/icon_circle_checked"
-            app:normalDrawable="@drawable/icon_circle_uncheck"
+            app:checkedDrawable="@drawable/abc_btn_radio_to_on_mtrl_015"
+            app:normalDrawable="@drawable/abc_btn_radio_to_on_mtrl_000"
             />
 
     </RadioGroup>

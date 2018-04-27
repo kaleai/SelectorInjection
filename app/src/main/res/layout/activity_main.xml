@@ -98,15 +98,15 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="svg"
         />
-    
+
     <Button
         android:id="@+id/radio_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="radio Button"
+        android:text="radio"
         />
-    
+
     <Button
         android:id="@+id/button_btn"
         android:layout_width="wrap_content"
@@ -114,12 +114,20 @@
         android:layout_gravity="right"
         android:text="button"
         />
-    
+
     <Button
         android:id="@+id/text_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:text="text"
+        />
+
+    <Button
+        android:id="@+id/ripple_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="ripple"
         />
 </LinearLayout>

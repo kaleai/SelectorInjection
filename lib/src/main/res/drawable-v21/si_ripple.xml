@@ -1,10 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- si = selector injection 用来避开资源冲突 -->
+<?xml version="1.0" encoding="utf-8"?><!-- si = selector injection 用来避开资源冲突 -->
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@android:color/transparent"
+    android:color="#ff0000"
     >
-    <!-- 按压的颜色 -->
-    <item android:id="@android:id/background">
-        <shape android:shape="rectangle" />
+    <item
+        android:id="@android:id/mask"
+        android:drawable="@color/default_color"
+        />
+
+    <item android:id="@android:id/content">
+        <selector>
+            <item android:state_pressed="true">
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/holo_blue_bright" />
+                </shape>
+            </item>
+            <item android:state_pressed="false">
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/holo_purple" />
+                </shape>
+            </item>
+        </selector>
     </item>
 </ripple>

@@ -1,6 +1,7 @@
 package kale.injection;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -71,7 +72,7 @@ public class SelectorInjection {
 
         isSmart = a.getBoolean(R.styleable.SelectorInjection_isSmart, true);
         inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
-        showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, false);
+        showRipple = a.getBoolean(R.styleable.SelectorInjection_ripple, false);
 
         normal.drawable = getDrawable(a, R.styleable.SelectorInjection_normalDrawable);
         pressed.drawable = getDrawable(a, R.styleable.SelectorInjection_pressedDrawable);
@@ -173,24 +174,37 @@ public class SelectorInjection {
      * 重要方法，最终通过这个给view设置selector效果
      */
     private void setSelectorDrawableToView() {
+        if (normal.drawable == null) {
+            return;
+        }
+
         selector.setEnterFadeDuration(10);
         selector.setExitFadeDuration(10);
 
+        // 为了可读性用了分段的return
+
         if (view instanceof RadioButton) {
             ((RadioButton) view).setButtonDrawable(selector);
-        } else if (view instanceof ImageButton && inSrc) {
-            ((ImageButton) view).setImageDrawable(selector);
-        } else {
-            if (showRipple && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                RippleDrawable ripple = (RippleDrawable) view.getContext().getDrawable(R.drawable.si_ripple);
-                assert ripple != null;
-                ripple.setDrawableByLayerId(android.R.id.background, selector);
-                ripple.setColor(SelectorUtils.createColorStateList(pressed.color));
-                view.setBackground(ripple);
-            } else {
-                view.setBackgroundDrawable(selector);
-            }
+            return;
         }
+
+        if (inSrc && view instanceof ImageButton) {
+            ((ImageButton) view).setImageDrawable(selector);
+            return;
+        }
+
+        if (showRipple && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            RippleDrawable ripple = (RippleDrawable) view.getResources().getDrawable(R.drawable.si_ripple);
+            assert ripple != null;
+
+            ripple.setColor(ColorStateList.valueOf(pressed.color));
+            ripple.setDrawableByLayerId(android.R.id.mask, normal.drawable); // 这里用的normal时的drawable做边界
+            ripple.setDrawableByLayerId(android.R.id.content, selector);
+            view.setBackground(ripple);
+            return;
+        }
+
+        view.setBackgroundDrawable(selector);
     }
 
     /**

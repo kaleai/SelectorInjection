@@ -21,6 +21,7 @@
         <activity android:name=".RadioActivity" />
         <activity android:name=".ButtonActivity" />
         <activity android:name=".TextActivity" />
+        <activity android:name=".RippleActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/blue"
+    >
+    <item android:id="@android:id/mask" android:drawable="@drawable/shape_oval"/>
+
+    <item>
+        <selector>
+            <item
+                android:drawable="@drawable/icon_robot"
+                android:state_pressed="true">
+            </item>
+            <item
+                android:drawable="@drawable/icon_renren_svg"
+                android:state_pressed="false">
+            </item>
+        </selector>
+    </item>
+</ripple>

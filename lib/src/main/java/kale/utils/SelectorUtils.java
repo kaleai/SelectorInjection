@@ -86,22 +86,4 @@ public class SelectorUtils {
         return Color.rgb((int) r, (int) g, (int) b);
     }
 
-    /**
-     * @see "http://blog.csdn.net/sodino/article/details/6797821"
-     *
-     * 将所有的按压效果都设置成一个颜色
-     */
-    public static ColorStateList createColorStateList(int color) {
-        int[] colors = new int[]{color, color, color, color, color, color};
-
-        int[][] states = new int[6][];
-        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
-        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
-        states[2] = new int[]{android.R.attr.state_enabled};
-        states[3] = new int[]{android.R.attr.state_focused};
-        states[4] = new int[]{android.R.attr.state_window_focused};
-        states[5] = new int[]{};
-
-        return new ColorStateList(states, colors);
-    }
 }

@@ -1,7 +1,6 @@
 package kale.selectorinjection;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -64,6 +63,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 startActivity(new Intent(MainActivity.this, TextActivity.class));
             }
         });
+        findViewById(R.id.ripple_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RippleActivity.class));
+            }
+        });
     }
 
     @Override
@@ -101,7 +106,4 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         return btn;
     }
 
-    public Drawable getDrawableCompat(int drawableResId) {
-        return getResources().getDrawable(drawableResId);
-    }
 }

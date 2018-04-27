@@ -18,6 +18,7 @@ import kale.utils.SelectorUtils;
 
 import static kale.utils.SelectorUtils.getColor;
 import static kale.utils.SelectorUtils.getDimension;
+import static kale.utils.SelectorUtils.getDrawable;
 
 /**
  * View的一个selector注入装置，通过构造函数即可注入。之后调用{@link #injection()}即可.
@@ -72,10 +73,10 @@ public class SelectorInjection {
         inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
         showRipple = a.getBoolean(R.styleable.SelectorInjection_showRipple, false);
 
-        normal.drawable = a.getDrawable(R.styleable.SelectorInjection_normalDrawable);
-        pressed.drawable = a.getDrawable(R.styleable.SelectorInjection_pressedDrawable);
-        checked.drawable = a.getDrawable(R.styleable.SelectorInjection_checkedDrawable);
-        disable.drawable = a.getDrawable(R.styleable.SelectorInjection_disableDrawable);
+        normal.drawable = getDrawable(a, R.styleable.SelectorInjection_normalDrawable);
+        pressed.drawable = getDrawable(a, R.styleable.SelectorInjection_pressedDrawable);
+        checked.drawable = getDrawable(a, R.styleable.SelectorInjection_checkedDrawable);
+        disable.drawable = getDrawable(a, R.styleable.SelectorInjection_disableDrawable);
 
         normal.color = getColor(a, R.styleable.SelectorInjection_normalColor);
         pressed.color = getColor(a, R.styleable.SelectorInjection_pressedColor);
@@ -120,7 +121,7 @@ public class SelectorInjection {
         }
         Drawable drawable = setColorAndStroke(bean, normalDrawable);
         selector.addState(stateSets, drawable);
-        bean.drawable.mutate();
+//        bean.drawable.mutate();
     }
 
     /**

@@ -3,6 +3,7 @@ package kale.utils;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.TintTypedArray;
 import android.util.AttributeSet;
@@ -44,6 +45,16 @@ public class SelectorUtils {
         return wrappedDrawable;
     }
 
+    @Nullable
+    public static Drawable getDrawable(TintTypedArray a, int resId) {
+        Drawable drawable = a.getDrawable(resId);
+        if (drawable != null) {
+            return drawable.mutate(); // 放置shape复用产生的问题
+        } else {
+            return null;
+        } 
+    }
+
     public static int getColor(TintTypedArray a, int resId) {
         return a.getColor(resId, DEFAULT_COLOR);
     }
@@ -62,8 +73,22 @@ public class SelectorUtils {
     }
 
     /**
+     * Blend {@code color1} and {@code color2} using the given ratio.
+     *
+     * @param ratio of which to blend. 1.0 will return {@code color1}, 0.5 will give an even blend,
+     *              0.0 will return {@code color2}.
+     */
+    private static int blendColors(int color1, int color2, float ratio) {
+        final float inverseRatio = 1f - ratio;
+        float r = (Color.red(color1) * ratio) + (Color.red(color2) * inverseRatio);
+        float g = (Color.green(color1) * ratio) + (Color.green(color2) * inverseRatio);
+        float b = (Color.blue(color1) * ratio) + (Color.blue(color2) * inverseRatio);
+        return Color.rgb((int) r, (int) g, (int) b);
+    }
+
+    /**
      * @see "http://blog.csdn.net/sodino/article/details/6797821"
-     * 
+     *
      * 将所有的按压效果都设置成一个颜色
      */
     public static ColorStateList createColorStateList(int color) {
@@ -78,19 +103,5 @@ public class SelectorUtils {
         states[5] = new int[]{};
 
         return new ColorStateList(states, colors);
-    }
-
-    /**
-     * Blend {@code color1} and {@code color2} using the given ratio.
-     *
-     * @param ratio of which to blend. 1.0 will return {@code color1}, 0.5 will give an even blend,
-     *              0.0 will return {@code color2}.
-     */
-    private static int blendColors(int color1, int color2, float ratio) {
-        final float inverseRatio = 1f - ratio;
-        float r = (Color.red(color1) * ratio) + (Color.red(color2) * inverseRatio);
-        float g = (Color.green(color1) * ratio) + (Color.green(color2) * inverseRatio);
-        float b = (Color.blue(color1) * ratio) + (Color.blue(color2) * inverseRatio);
-        return Color.rgb((int) r, (int) g, (int) b);
     }
 }

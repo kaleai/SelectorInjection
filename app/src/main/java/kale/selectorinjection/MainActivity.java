@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
         int id = compoundButton.getId();
         switch (id) {
-            /*case R.id.pressed_color_cb:
+            case R.id.pressed_color_cb:
                 injection.pressed.color = checked ? 0xff0097a7 : SelectorInjection.DEFAULT_COLOR;
                 break;
             case R.id.normal_stroke_cb:
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 if (!checked && !((CompoundButton) findViewById(R.id.pressed_color_cb)).isChecked()) {
                     injection.pressed.color = SelectorInjection.DEFAULT_COLOR;
                 }
-                break;*/
+                break;
             case R.id.show_ripple_cb:
                 injection.showRipple = checked;
                 break;

@@ -27,7 +27,7 @@ public class SelectorTextView extends AppCompatCheckBox implements ISelectorView
     public SelectorTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         injection = SelectorUtils.injectionToSelectorView(this, attrs, defStyle);
-        setClickable(true);
+//        setClickable(true);
     }
 
     @SuppressLint("ClickableViewAccessibility")

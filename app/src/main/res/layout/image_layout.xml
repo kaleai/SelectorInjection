@@ -1,0 +1,100 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:preview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
+    >
+    
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <kale.ui.view.SelectorTextView
+            android:id="@+id/stv"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:text="Click Me"
+
+            app:normalColor="#03a9f4"
+            app:normalDrawable="@drawable/shape_oval"
+            app:normalStrokeColor="#ff9800"
+            app:normalStrokeWidth="8dp"
+
+            app:pressedStrokeColor="#259b24"
+            app:pressedStrokeWidth="8dp"
+
+            preview:isPressed="false"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:orientation="vertical"
+                android:showDividers="middle"
+                >
+
+                <CheckBox
+                    android:id="@+id/pressed_color_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="has pressed color"
+                    />
+
+                <CheckBox
+                    android:id="@+id/pressed_drawable_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="has pressed Drawable"
+                    />
+
+                <CheckBox
+                    android:id="@+id/normal_stroke_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="has normal stoke"
+                    />
+
+                <CheckBox
+                    android:id="@+id/pressed_stroke_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="has pressed stroke"
+                    />
+
+                <CheckBox
+                    android:id="@+id/isSmart_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="isSmart"
+                    />
+
+                <CheckBox
+                    android:id="@+id/show_ripple_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="show ripple(>=Api21)"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        
+    </LinearLayout>
+    
+</FrameLayout>

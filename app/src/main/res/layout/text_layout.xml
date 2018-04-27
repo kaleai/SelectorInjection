@@ -68,7 +68,7 @@
         android:text="checked"
 
         app:button="@drawable/icon_vimeo_svg"
-        app:buttonTint="@color/red"
+        app:buttonTint="@color/blue"
 
         app:checkedColor="@color/purple"
         app:checkedDrawable="@drawable/shape_rectangle"

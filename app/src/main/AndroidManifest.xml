@@ -17,11 +17,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SvgTextActivity" />
-        <activity android:name=".RadioActivity" />
+        <activity android:name=".SvgFragment" />
+        <activity android:name=".RadioFragment" />
         <activity android:name=".ButtonActivity" />
-        <activity android:name=".TextActivity" />
-        <activity android:name=".RippleActivity" />
+        <activity android:name=".TextFragment" />
+        <activity android:name=".RippleFragment" />
     </application>
 
 </manifest>

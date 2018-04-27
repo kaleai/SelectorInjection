@@ -19,6 +19,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Ripple"
+        android:clickable="true"
 
         app:normalColor="@color/orange"
         app:normalDrawable="@drawable/shape_rectangle_with_shadow"
@@ -28,13 +29,15 @@
         app:ripple="true"
         />
 
-    <kale.ui.view.SelectorButton
+    <kale.ui.view.SelectorTextView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
         android:text="Ripple"
         android:textSize="30sp"
+        android:gravity="center"
         android:textColor="@color/white"
+        android:clickable="true"
 
         app:normalColor="@color/red"
         app:normalDrawable="@drawable/shape_oval_with_shadow"
@@ -80,6 +83,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:scaleType="center"
+        android:clickable="true"
         app:srcCompat="@drawable/icon_vimeo_svg"
         android:tint="@color/red"
         

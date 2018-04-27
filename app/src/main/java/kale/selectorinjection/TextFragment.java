@@ -7,40 +7,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import kale.ui.view.SelectorTextView;
 
 /**
  * @author Kale
- * @date 2018/4/25
+ * @date 2018/4/26
  */
-public class ButtonActivity extends BaseFragment {
+public class TextFragment extends BaseFragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.button_layout, null);
+        View root = inflater.inflate(R.layout.text_layout, null);
         setViews(root);
         return root;
     }
 
     private void setViews(View root) {
-        final CompoundButton button = root.findViewById(R.id.check_btn);
+        final SelectorTextView view = root.findViewById(R.id.check_tv);
 
-        button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        view.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    button.setText("is checked");
-                } else {
-                    button.setText("unchecked");
-                }
+                Toast.makeText(getActivity(), "checked? " + isChecked, Toast.LENGTH_SHORT).show();
             }
         });
 
-        root.findViewById(R.id.disable_btn).setOnClickListener(new View.OnClickListener() {
+        root.findViewById(R.id.disable_tv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((TextView) v).setText("disable");
                 v.setEnabled(false);
             }
         });
@@ -48,6 +45,6 @@ public class ButtonActivity extends BaseFragment {
 
     @Override
     public String getName() {
-        return "BUTTON";
+        return "TEXT";
     }
 }

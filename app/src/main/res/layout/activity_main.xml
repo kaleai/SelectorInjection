@@ -1,133 +1,24 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:preview="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     >
 
-    <kale.ui.view.SelectorTextView
-        android:id="@+id/stv"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:gravity="center"
-        android:text="Click Me"
-
-        app:checkedDrawable="@drawable/kale"
-
-        app:normalColor="#03a9f4"
-        app:normalDrawable="@drawable/shape_oval"
-        app:normalStrokeColor="#ff9800"
-        app:normalStrokeWidth="8dp"
-
-        app:pressedStrokeColor="#259b24"
-        app:pressedStrokeWidth="8dp"
-
-        preview:isPressed="false"
-        />
-
-    <LinearLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
         >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_vertical_margin"
-            android:orientation="vertical"
-            android:showDividers="middle"
-            >
+        <android.support.v4.view.PagerTitleStrip
+            android:id="@+id/pager_strip"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimaryDark"
+            />
+        
+    </android.support.v4.view.ViewPager>
 
-            <CheckBox
-                android:id="@+id/pressed_color_cb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="has pressed color"
-                />
-
-            <CheckBox
-                android:id="@+id/pressed_drawable_cb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="has pressed Drawable"
-                />
-
-            <CheckBox
-                android:id="@+id/normal_stroke_cb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="has normal stoke"
-                />
-
-            <CheckBox
-                android:id="@+id/pressed_stroke_cb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="has pressed stroke"
-                />
-
-            <CheckBox
-                android:id="@+id/isSmart_cb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="isSmart"
-                />
-
-            <CheckBox
-                android:id="@+id/show_ripple_cb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="show ripple(>=Api21)"
-                />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/svg_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="svg"
-        />
-
-    <Button
-        android:id="@+id/radio_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="radio"
-        />
-
-    <Button
-        android:id="@+id/button_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="button"
-        />
-
-    <Button
-        android:id="@+id/text_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="text"
-        />
-
-    <Button
-        android:id="@+id/ripple_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="ripple"
-        />
-</LinearLayout>
+</FrameLayout>

@@ -2,8 +2,11 @@ package kale.selectorinjection;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,18 +16,22 @@ import android.widget.Toast;
  * @author Kale
  * @date 2018/4/25
  */
-public class RadioActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class RadioFragment extends BaseFragment implements CompoundButton.OnCheckedChangeListener {
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.radio_layout);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.radio_layout, null);
+        setViews(root);
+        return root;
+    }
 
-        RadioGroup imageRg = findViewById(R.id.image_rg);
+    private void setViews(View root) {
+        RadioGroup imageRg = root.findViewById(R.id.image_rg);
         imageRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                Toast.makeText(RadioActivity.this, "checked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "checked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -39,5 +46,10 @@ public class RadioActivity extends AppCompatActivity implements CompoundButton.O
     @Override
     public void onCheckedChanged(CompoundButton button, boolean isChecked) {
         button.setTypeface(isChecked ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
+    }
+
+    @Override
+    public String getName() {
+        return "RADIO";
     }
 }

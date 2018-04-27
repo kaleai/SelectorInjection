@@ -194,6 +194,7 @@ public class SelectorInjection {
         }
 
         if (showRipple && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // https://blog.csdn.net/AwayEagle/article/details/52583913
             RippleDrawable ripple = (RippleDrawable) view.getResources().getDrawable(R.drawable.si_ripple);
             assert ripple != null;
 

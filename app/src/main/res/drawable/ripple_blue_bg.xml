@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape android:shape="rectangle"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
-    
-</shape>
+<!-- 低版本显示不了水波纹，这里用了一个形状来代替 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape
+            android:innerRadius="15px"
+            android:shape="ring"
+            android:thickness="4px"
+            android:useLevel="false"
+            >
+
+            <solid android:color="@color/colorAccent" />
+        </shape>
+    </item>
+
+    <item
+        android:bottom="20px"
+        android:left="20px"
+        android:right="20px"
+        android:top="20px"
+        >
+        <shape android:shape="oval">
+            <size
+                android:width="20px"
+                android:height="20px"
+                />
+
+            <solid android:color="@color/colorPrimary" />
+        </shape>
+    </item>
+</layer-list>

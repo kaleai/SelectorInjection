@@ -11,6 +11,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/ripple_blue_bg"
+        android:contentDescription="原生方式，低版本不显示水波纹"
         />
 
     <kale.ui.view.SelectorTextView

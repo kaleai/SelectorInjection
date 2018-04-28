@@ -28,7 +28,7 @@ public class SvgInjection {
         view = v;
     }
 
-    public SvgInjection loadFromAttributes(AttributeSet attrs, int defStyleAttr) {
+    public void loadFromAttributes(AttributeSet attrs, int defStyleAttr) {
         Context context = view.getContext();
         TintTypedArray a = TintTypedArray.obtainStyledAttributes(context, attrs, R.styleable.SelectorInjection, defStyleAttr, 0);
 
@@ -41,7 +41,6 @@ public class SvgInjection {
             ((CompoundButton) view).setButtonDrawable(btnDrawable);
         }
         a.recycle();
-        return this;
     }
 
     public void injection(){

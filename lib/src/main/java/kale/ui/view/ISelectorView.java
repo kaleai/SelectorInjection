@@ -14,7 +14,7 @@ public interface ISelectorView extends Checkable {
 
     int[] CHECKED_STATE_SET = {android.R.attr.state_checked};
 
-    SelectorInjection initSelectorInjection(Context context, AttributeSet attr);
+    SelectorInjection createSelectorInjection(Context context, AttributeSet attr);
 
     SelectorInjection getSelectorInjection();
 

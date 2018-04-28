@@ -32,7 +32,7 @@ public class SelectorButton extends AppCompatCheckBox implements ISelectorView {
     }
 
     @Override
-    public SelectorInjection initSelectorInjection(Context context, AttributeSet attrs) {
+    public SelectorInjection createSelectorInjection(Context context, AttributeSet attrs) {
         return new SelectorInjection(this);
     }
 

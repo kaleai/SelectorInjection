@@ -13,8 +13,6 @@ import kale.injection.SelectorInjection;
 import kale.injection.SvgInjection;
 import kale.ui.view.ISelectorView;
 
-import static kale.injection.SelectorInjection.DEFAULT_COLOR;
-
 /**
  * @author Kale
  * @date 2018/4/25
@@ -24,9 +22,11 @@ public class SelectorUtils {
     public static SelectorInjection injectionToSelectorView(View view, AttributeSet attrs, int defStyle) {
         if (view instanceof ISelectorView) {
 
-            new SvgInjection(view).loadFromAttributes(attrs, defStyle).injection();
-
-            SelectorInjection injection = ((ISelectorView) view).initSelectorInjection(view.getContext(), attrs);
+            SvgInjection svgInjection = new SvgInjection(view);
+            svgInjection.loadFromAttributes(attrs, defStyle);
+            svgInjection.injection();
+            
+            SelectorInjection injection = ((ISelectorView) view).createSelectorInjection(view.getContext(), attrs);
             injection.loadFromAttributes(attrs, defStyle);
             injection.injection();
             return injection;
@@ -38,11 +38,10 @@ public class SelectorUtils {
     /**
      * https://yifeng.studio/2017/03/30/android-tint/
      */
-    public static Drawable tintDrawable(Drawable drawable, int color) {
+    public static void tintDrawable(Drawable drawable, int color) {
         drawable.mutate();
         final Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
         DrawableCompat.setTintList(wrappedDrawable, ColorStateList.valueOf(color));
-        return wrappedDrawable;
     }
 
     @Nullable
@@ -53,15 +52,6 @@ public class SelectorUtils {
         } else {
             return null;
         } 
-    }
-
-    public static int getColor(TintTypedArray a, int resId) {
-        return a.getColor(resId, DEFAULT_COLOR);
-    }
-
-    public static int getDimension(TintTypedArray a, int resId) {
-        int defaultWidth = 2;
-        return a.getDimensionPixelSize(resId, defaultWidth);
     }
 
     public static int darken(final int color) {
@@ -78,7 +68,7 @@ public class SelectorUtils {
      * @param ratio of which to blend. 1.0 will return {@code color1}, 0.5 will give an even blend,
      *              0.0 will return {@code color2}.
      */
-    private static int blendColors(int color1, int color2, float ratio) {
+    public static int blendColors(int color1, int color2, float ratio) {
         final float inverseRatio = 1f - ratio;
         float r = (Color.red(color1) * ratio) + (Color.red(color2) * inverseRatio);
         float g = (Color.green(color1) * ratio) + (Color.green(color2) * inverseRatio);

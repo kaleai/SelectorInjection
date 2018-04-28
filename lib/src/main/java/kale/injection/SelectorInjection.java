@@ -17,10 +17,6 @@ import android.widget.RadioButton;
 
 import kale.utils.SelectorUtils;
 
-import static kale.utils.SelectorUtils.getColor;
-import static kale.utils.SelectorUtils.getDimension;
-import static kale.utils.SelectorUtils.getDrawable;
-
 /**
  * View的一个selector注入装置，通过构造函数即可注入。之后调用{@link #injection()}即可.
  *
@@ -36,15 +32,17 @@ public class SelectorInjection {
      */
     private StateListDrawable selector = new StateListDrawable();
 
-    public SelectorBean normal = new SelectorBean();
+    public SelectorBean normal;
 
-    public SelectorBean pressed = new SelectorBean();
+    public SelectorBean pressed;
 
-    public SelectorBean checked = new SelectorBean();
+    public SelectorBean checked;
 
-    public SelectorBean disable = new SelectorBean();
+    public SelectorBean disable;
 
     private View view;
+
+    private Drawable src;
 
     /**
      * 是否将drawable设置到src中，如果不是那么默认是background
@@ -74,37 +72,43 @@ public class SelectorInjection {
         inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
         showRipple = a.getBoolean(R.styleable.SelectorInjection_ripple, false);
 
-        normal.drawable = getDrawable(a, R.styleable.SelectorInjection_normalDrawable);
-        pressed.drawable = getDrawable(a, R.styleable.SelectorInjection_pressedDrawable);
-        checked.drawable = getDrawable(a, R.styleable.SelectorInjection_checkedDrawable);
-        disable.drawable = getDrawable(a, R.styleable.SelectorInjection_disableDrawable);
+        src = a.getDrawable(R.styleable.SelectorInjection_src);
 
-        normal.color = getColor(a, R.styleable.SelectorInjection_normalColor);
-        pressed.color = getColor(a, R.styleable.SelectorInjection_pressedColor);
-        checked.color = getColor(a, R.styleable.SelectorInjection_checkedColor);
-        disable.color = getColor(a, R.styleable.SelectorInjection_disableColor);
-
-        normal.strokeColor = getColor(a, R.styleable.SelectorInjection_normalStrokeColor);
-        normal.strokeWidth = getDimension(a, R.styleable.SelectorInjection_normalStrokeWidth);
-
-        pressed.strokeColor = getColor(a, R.styleable.SelectorInjection_pressedStrokeColor);
-        pressed.strokeWidth = getDimension(a, R.styleable.SelectorInjection_pressedStrokeWidth);
-
-        checked.strokeColor = getColor(a, R.styleable.SelectorInjection_checkedStrokeColor);
-        checked.strokeWidth = getDimension(a, R.styleable.SelectorInjection_checkedStrokeWidth);
-
-        disable.strokeColor = getColor(a, R.styleable.SelectorInjection_disableStrokeColor);
-        disable.strokeWidth = getDimension(a, R.styleable.SelectorInjection_disableStrokeWidth);
+        normal = SelectorBean.create(a,
+                R.styleable.SelectorInjection_normalDrawable,
+                R.styleable.SelectorInjection_normalColor,
+                R.styleable.SelectorInjection_normalStrokeColor,
+                R.styleable.SelectorInjection_normalStrokeWidth
+        );
+        pressed = SelectorBean.create(a,
+                R.styleable.SelectorInjection_pressedDrawable,
+                R.styleable.SelectorInjection_pressedColor,
+                R.styleable.SelectorInjection_pressedStrokeColor,
+                R.styleable.SelectorInjection_pressedStrokeWidth
+        );
+        checked = SelectorBean.create(a,
+                R.styleable.SelectorInjection_checkedDrawable,
+                R.styleable.SelectorInjection_checkedColor,
+                R.styleable.SelectorInjection_checkedStrokeColor,
+                R.styleable.SelectorInjection_checkedStrokeWidth
+        );
+        disable = SelectorBean.create(a,
+                R.styleable.SelectorInjection_disableDrawable,
+                R.styleable.SelectorInjection_disableColor,
+                R.styleable.SelectorInjection_disableStrokeColor,
+                R.styleable.SelectorInjection_disableStrokeWidth
+        );
 
         a.recycle();
     }
 
     public void injection() {
-        // 如果是智能模式，那么自动处理按压效果
-        if (isSmart && normal.drawable != null && pressed.drawable == null) {
+        if (pressed.drawable == null && isSmart && normal.drawable != null) {
+            // 如果是智能模式，会自动根据normal生成按压时的drawable
             pressed.drawable = normal.drawable.getConstantState().newDrawable();
         }
         if (pressed.drawable != null && pressed.color == DEFAULT_COLOR) {
+            // 如果没有设置按压效果，那么会自动计算出按压的色值
             pressed.color = isSmart ? getPressedColor(normal.color) : pressed.color;
         }
 
@@ -129,7 +133,7 @@ public class SelectorInjection {
      * 设置背景颜色和描边的颜色/宽度
      */
     private Drawable setColorAndStroke(SelectorBean bean, boolean isNormal) {
-        Drawable drawable = bean.drawable;
+        final Drawable drawable = bean.drawable;
         int color = bean.color;
         int strokeColor = bean.strokeColor;
         int strokeWidth = bean.strokeWidth;

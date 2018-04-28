@@ -26,7 +26,7 @@ public class SelectorImageButton extends AppCompatImageButton implements ISelect
     }
 
     @Override
-    public SelectorInjection initSelectorInjection(Context context, AttributeSet attr) {
+    public SelectorInjection createSelectorInjection(Context context, AttributeSet attr) {
         return new SelectorInjection(this);
     }
 

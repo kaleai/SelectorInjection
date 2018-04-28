@@ -33,12 +33,12 @@ public class SelectorTextView extends AppCompatCheckBox implements ISelectorView
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        performClick();
+        performClick(); // for check state
         return super.onTouchEvent(event);
     }
     
     @Override
-    public SelectorInjection initSelectorInjection(Context context, AttributeSet attr) {
+    public SelectorInjection createSelectorInjection(Context context, AttributeSet attr) {
         return new SelectorInjection(this);
     }
     

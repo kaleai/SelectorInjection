@@ -13,8 +13,8 @@ import android.support.v7.widget.TintTypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
 
+import kale.ui.view.SelectorTextView;
 import kale.utils.SelectorUtils;
 
 /**
@@ -187,9 +187,9 @@ public class SelectorInjection {
 
         // 为了可读性用了分段的return
 
-        if (view instanceof RadioButton) {
-            ((RadioButton) view).setButtonDrawable(selector);
-            return;
+        if (view instanceof SelectorTextView) {
+//            ((RadioButton) view).setButtonDrawable(selector);
+//            return;
         }
 
         if (inSrc && view instanceof ImageButton) {

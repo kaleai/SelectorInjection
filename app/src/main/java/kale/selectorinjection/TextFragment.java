@@ -34,6 +34,13 @@ public class TextFragment extends BaseFragment {
                 Toast.makeText(getActivity(), "checked? " + isChecked, Toast.LENGTH_SHORT).show();
             }
         });
+        
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.toggleCompat();
+            }
+        });
 
         root.findViewById(R.id.disable_tv).setOnClickListener(new View.OnClickListener() {
             @Override

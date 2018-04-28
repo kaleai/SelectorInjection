@@ -78,7 +78,7 @@
         app:ripple="true"
         />
 
-    <kale.ui.view.SelectorImageButton
+    <kale.ui.view.SelectorImageView
         android:layout_width="120dp"
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
@@ -96,7 +96,7 @@
         app:ripple="true"
         />
 
-    <kale.ui.view.SelectorRadioButton
+    <kale.ui.view.SelectorTextView
         android:id="@+id/radio_btn"
         android:layout_width="wrap_content"
         android:layout_height="80dp"

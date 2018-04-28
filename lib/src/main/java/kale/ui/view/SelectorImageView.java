@@ -7,19 +7,19 @@ import android.util.AttributeSet;
 import kale.injection.SelectorInjection;
 import kale.utils.SelectorUtils;
 
-public class SelectorImageButton extends AppCompatImageButton implements ISelectorView {
+public class SelectorImageView extends AppCompatImageButton implements ISelectorView {
 
     private SelectorInjection injection;
 
-    public SelectorImageButton(Context context) {
+    public SelectorImageView(Context context) {
         this(context, null);
     }
 
-    public SelectorImageButton(Context context, AttributeSet attrs) {
+    public SelectorImageView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SelectorImageButton(Context context, AttributeSet attrs, int defStyle) {
+    public SelectorImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         injection = SelectorUtils.injectionToSelectorView(this, attrs, defStyle);
 //        setClickable(true);

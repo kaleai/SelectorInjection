@@ -28,15 +28,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="checked"
+        android:text="click me"
+        android:clickable="true"
 
         app:button="@drawable/icon_robot"
 
-        app:checkedColor="@color/purple"
-        app:checkedDrawable="@drawable/shape_rectangle_with_shadow"
+        app:pressedColor="@color/purple"
+        app:pressedDrawable="@drawable/shape_rectangle"
 
         app:normalColor="@color/green"
-        app:normalDrawable="@drawable/shape_rectangle_with_shadow"
+        app:normalDrawable="@drawable/shape_rectangle"
 
         app:normalStrokeColor="@color/green"
         app:normalStrokeWidth="4dp"
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="checked"
+        android:text="checked not work"
 
         app:button="@drawable/icon_robot"
 
@@ -65,7 +66,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:padding="20dp"
-        android:text="checked"
+        android:text="with button"
 
         app:button="@drawable/icon_vimeo_svg"
         app:buttonTint="@color/blue"
@@ -76,7 +77,6 @@
         app:normalColor="@color/green"
         app:normalDrawable="@drawable/shape_rectangle"
         />
-
 
     <kale.ui.view.SelectorTextView
         android:id="@+id/disable_tv"

@@ -62,12 +62,6 @@ public class SelectorInjection {
 
         TintTypedArray a = TintTypedArray.obtainStyledAttributes(context, attrs, R.styleable.SelectorInjection, defStyleAttr, 0);
 
-        smartColor = a.getBoolean(R.styleable.SelectorInjection_smartColor, true);
-        inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
-        showRipple = a.getBoolean(R.styleable.SelectorInjection_ripple, false);
-
-        Drawable src = a.getDrawable(R.styleable.SelectorInjection_src);
-
         normal = SelectorBean.create(a,
                 R.styleable.SelectorInjection_normalDrawable,
                 R.styleable.SelectorInjection_normalColor,
@@ -93,11 +87,24 @@ public class SelectorInjection {
                 R.styleable.SelectorInjection_disableStrokeWidth
         );
 
-        a.recycle();
+        inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
+        smartColor = a.getBoolean(R.styleable.SelectorInjection_smartColor, true);
+        showRipple = a.getBoolean(R.styleable.SelectorInjection_ripple, false);
 
+        Drawable src = a.getDrawable(R.styleable.SelectorInjection_src);
         if (src != null && view instanceof ImageView) {
             ((ImageView) view).setImageDrawable(src);
         }
+
+        Drawable background = a.getDrawable(R.styleable.SelectorInjection_background);
+        int backgroundTint = a.getColor(R.styleable.SelectorInjection_backgroundTint, DEFAULT_COLOR);
+        
+        if (backgroundTint != DEFAULT_COLOR && background != null) {
+            SelectorUtils.tintDrawable(background, backgroundTint);
+            view.setBackground(background);
+        }
+
+        a.recycle();
     }
 
     public void injection() {
@@ -202,7 +209,7 @@ public class SelectorInjection {
             return;
         }
 
-        view.setBackgroundDrawable(selector);
+        view.setBackground(selector);
     }
 
     public void configButtonDrawable() {

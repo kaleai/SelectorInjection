@@ -101,7 +101,6 @@
             app:src="@drawable/icon_facebook_svg"
             />
 
-
         <kale.ui.view.SelectorImageView
             android:layout_width="100dp"
             android:layout_height="100dp"

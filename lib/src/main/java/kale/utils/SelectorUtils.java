@@ -23,7 +23,7 @@ public class SelectorUtils {
             SvgInjection svgInjection = new SvgInjection(view);
             svgInjection.loadFromAttributes(attrs, defStyle);
             svgInjection.injection();
-            
+
             SelectorInjection injection = ((ISelectorView) view).createSelectorInjection(view.getContext(), attrs);
             injection.loadFromAttributes(attrs, defStyle);
             injection.injection();

@@ -45,13 +45,11 @@
         <attr name="android:drawableTop" />
         <attr name="android:drawableBottom" />
         <attr name="src" format="reference" />
+        <attr name="button" format="reference"/>
         <attr name="background" format="reference" />
 
-        <!-- svg & tint support -->
+        <!-- tint support -->
 
-        <attr name="button" format="reference"/>
-        <attr name="buttonTint" format="color" />
-        
         <attr name="drawableLeftTint" format="color" />
         <attr name="drawableTopTint" format="color" />
         <attr name="drawableRightTint" format="color" />
@@ -61,7 +59,10 @@
         <attr name="drawableBottom" format="reference" />
         <attr name="drawableLeft" format="reference" />
         <attr name="drawableRight" format="reference" />
-        
+
+        <attr name="buttonTint" format="color" />
+        <attr name="backgroundTint" format="color" />
+
         <!-- 事件控制 -->
         <attr name="isClicked" format="boolean" />
         <attr name="android:contentDescription" />
@@ -100,6 +101,7 @@
         <attr name="drawableLeft"/>
         <attr name="drawableRight"/>
         <attr name="background"/>
+        <attr name="backgroundTint"/>
     </declare-styleable>
 
     <declare-styleable name="SelectorImageView">
@@ -124,6 +126,7 @@
         <attr name="ripple"/>
         <attr name="src"/>
         <attr name="background"/>
+        <attr name="backgroundTint"/>
     </declare-styleable>
 
 

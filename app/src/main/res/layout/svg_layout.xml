@@ -125,23 +125,25 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
+
             android:gravity="center_vertical"
 
             android:tint="@color/blue"
-
             app:srcCompat="@drawable/icon_facebook_svg"
             />
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:contentDescription="控件小于SVG的大小"
-            android:gravity="center_vertical"
 
+            android:gravity="center_vertical"
             android:tint="@color/orange"
             app:srcCompat="@drawable/icon_facebook_svg"
             />
@@ -161,10 +163,11 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:scaleType="center"
 
+            android:scaleType="center"
             android:tint="@color/green"
             app:srcCompat="@drawable/icon_facebook_svg"
             />
@@ -179,18 +182,61 @@
         android:contentDescription="上下左右icon分别着色"
         android:gravity="center_vertical"
         android:padding="@dimen/activity_horizontal_margin"
-        
+
         app:drawableBottom="@drawable/icon_facebook_svg"
         app:drawableBottomTint="@color/green"
-        
+
         app:drawableLeft="@drawable/icon_facebook_svg"
         app:drawableLeftTint="@color/red"
 
         app:drawableRight="@drawable/icon_facebook_svg"
         app:drawableRightTint="@color/green"
-        
+
         app:drawableTop="@drawable/icon_vimeo_svg"
         app:drawableTopTint="@color/blue"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/white"
+        android:padding="@dimen/activity_horizontal_margin"
+        >
+
+        <kale.ui.view.SelectorButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+
+            app:background="@drawable/icon_renren_svg"
+            app:backgroundTint="@color/blue"
+            />
+
+        <kale.ui.view.SelectorButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+
+            app:background="@drawable/icon_robot"
+            app:backgroundTint="@color/orange"
+            />
+
+        <kale.ui.view.SelectorButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+
+            app:background="@drawable/kale_mask"
+            app:backgroundTint="@color/green"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

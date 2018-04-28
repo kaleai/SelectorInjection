@@ -59,7 +59,6 @@
         app:normalDrawable="@drawable/shape_rectangle_with_shadow"
         />
 
-
     <kale.ui.view.SelectorTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,7 +92,6 @@
         app:normalDrawable="@drawable/shape_rectangle"
         />
 
-
     <kale.ui.view.SelectorTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,6 +117,5 @@
         app:normalColor="@color/blue"
         app:normalDrawable="@drawable/shape_rectangle"
         />
-
 
 </LinearLayout>

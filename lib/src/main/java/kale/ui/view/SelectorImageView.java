@@ -1,6 +1,7 @@
 package kale.ui.view;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 
@@ -10,6 +11,8 @@ import kale.utils.SelectorUtils;
 public class SelectorImageView extends AppCompatImageButton implements ISelectorView {
 
     private SelectorInjection injection;
+
+    private OnCheckedChangeListener mOnCheckedChangeListener;
 
     public SelectorImageView(Context context) {
         this(context, null);
@@ -48,23 +51,36 @@ public class SelectorImageView extends AppCompatImageButton implements ISelector
         return drawableState;
     }
 
-    private boolean mIsChecked = false;
+    private boolean mChecked = false;
 
     @Override
     public void setChecked(boolean checked) {
-        if (mIsChecked != checked) {
-            mIsChecked = checked;
-            refreshDrawableState();
+        if (mChecked != checked) {
+            mChecked = checked;
+
+            if (mOnCheckedChangeListener != null) {
+                mOnCheckedChangeListener.onCheckedChanged(this, mChecked);
+            }
+//            refreshDrawableState();
         }
     }
 
     @Override
     public boolean isChecked() {
-        return mIsChecked;
+        return mChecked;
     }
 
     @Override
     public void toggle() {
-        setChecked(!mIsChecked);
+        setChecked(!mChecked);
+    }
+
+    public void setOnCheckedChangeListener(@Nullable OnCheckedChangeListener listener) {
+        mOnCheckedChangeListener = listener;
+    }
+
+    public interface OnCheckedChangeListener {
+
+        void onCheckedChanged(SelectorImageView view, boolean isChecked);
     }
 }

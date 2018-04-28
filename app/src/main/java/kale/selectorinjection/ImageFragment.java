@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import kale.injection.SelectorInjection;
 import kale.ui.view.ISelectorView;
+import kale.ui.view.SelectorImageView;
 
 /**
  * @author Kale
@@ -48,6 +49,22 @@ public class ImageFragment extends BaseFragment implements CompoundButton.OnChec
         findCbAndSetListener(root, R.id.pressed_stroke_cb);
         findCbAndSetListener(root, R.id.isSmart_cb);
         findCbAndSetListener(root, R.id.show_ripple_cb);
+
+        final SelectorImageView imageView = root.findViewById(R.id.check_iv);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageView.toggle();
+            }
+        });
+
+        imageView.setOnCheckedChangeListener(new SelectorImageView.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SelectorImageView view, boolean isChecked) {
+                Toast.makeText(getActivity(), "" + isChecked, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

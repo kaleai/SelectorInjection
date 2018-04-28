@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/activity_horizontal_margin"
     >
-    
+
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:orientation="vertical"
         >
 
-        <kale.ui.view.SelectorTextView
+        <kale.ui.view.SelectorImageView
             android:id="@+id/stv"
             android:layout_width="200dp"
             android:layout_height="200dp"
@@ -91,16 +91,49 @@
             </LinearLayout>
 
         </LinearLayout>
-        
+
         <kale.ui.view.SelectorImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
-            app:src="@drawable/icon_facebook_svg"
+            android:layout_marginTop="20dp"
+
             android:tint="@color/orange"
+            app:src="@drawable/icon_facebook_svg"
             />
 
-        
+
+        <kale.ui.view.SelectorImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_oval_with_shadow"
+            android:scaleType="center"
+            android:clickable="true"
+
+            app:inSrc="true"
+            app:normalDrawable="@drawable/icon_vimeo_svg"
+            app:normalColor="@color/green"
+            app:pressedDrawable="@drawable/icon_renren_svg"
+            app:pressedColor="@color/blue"
+            />
+
+
+        <kale.ui.view.SelectorImageView
+            android:id="@+id/check_iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+
+            app:normalDrawable="@drawable/icon_vimeo_svg"
+            app:normalColor="@color/green"
+            
+            app:pressedDrawable="@drawable/icon_renren_svg"
+            app:pressedColor="@color/blue"
+            
+            app:checkedDrawable="@drawable/icon_facebook_svg"
+            app:checkedColor="@color/red"
+            />
+
     </LinearLayout>
-    
+
 </FrameLayout>

@@ -14,7 +14,7 @@
         android:orientation="vertical"
         >
 
-        <kale.ui.view.SelectorImageView
+        <kale.ui.view.SelectorImageButton
             android:id="@+id/stv"
             android:layout_width="200dp"
             android:layout_height="200dp"
@@ -92,7 +92,7 @@
 
         </LinearLayout>
 
-        <kale.ui.view.SelectorImageView
+        <kale.ui.view.SelectorImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -101,7 +101,7 @@
             app:src="@drawable/icon_facebook_svg"
             />
 
-        <kale.ui.view.SelectorImageView
+        <kale.ui.view.SelectorImageButton
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
@@ -117,7 +117,7 @@
             />
 
 
-        <kale.ui.view.SelectorImageView
+        <kale.ui.view.SelectorImageButton
             android:id="@+id/check_iv"
             android:layout_width="100dp"
             android:layout_height="100dp"

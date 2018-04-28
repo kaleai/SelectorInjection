@@ -104,7 +104,7 @@
         <attr name="backgroundTint"/>
     </declare-styleable>
 
-    <declare-styleable name="SelectorImageView">
+    <declare-styleable name="SelectorImageButton">
         <attr name="normalColor" />
         <attr name="pressedColor"/>
         <attr name="checkedColor"/>

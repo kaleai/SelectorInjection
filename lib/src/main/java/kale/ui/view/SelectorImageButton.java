@@ -8,21 +8,21 @@ import android.util.AttributeSet;
 import kale.injection.SelectorInjection;
 import kale.utils.SelectorUtils;
 
-public class SelectorImageView extends AppCompatImageButton implements ISelectorView {
+public class SelectorImageButton extends AppCompatImageButton implements ISelectorView {
 
     private SelectorInjection injection;
 
     private OnCheckedChangeListener mOnCheckedChangeListener;
 
-    public SelectorImageView(Context context) {
+    public SelectorImageButton(Context context) {
         this(context, null);
     }
 
-    public SelectorImageView(Context context, AttributeSet attrs) {
+    public SelectorImageButton(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SelectorImageView(Context context, AttributeSet attrs, int defStyle) {
+    public SelectorImageButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         injection = SelectorUtils.injectionToSelectorView(this, attrs, defStyle);
 //        setClickable(true);
@@ -81,6 +81,6 @@ public class SelectorImageView extends AppCompatImageButton implements ISelector
 
     public interface OnCheckedChangeListener {
 
-        void onCheckedChanged(SelectorImageView view, boolean isChecked);
+        void onCheckedChanged(SelectorImageButton view, boolean isChecked);
     }
 }

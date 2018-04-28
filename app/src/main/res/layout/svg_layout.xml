@@ -76,7 +76,7 @@
         android:padding="@dimen/activity_horizontal_margin"
         >
 
-        <kale.ui.view.SelectorImageView
+        <kale.ui.view.SelectorImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="15dp"
@@ -88,7 +88,7 @@
             app:srcCompat="@drawable/icon_facebook_svg"
             />
 
-        <kale.ui.view.SelectorImageView
+        <kale.ui.view.SelectorImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="15dp"
@@ -100,7 +100,7 @@
             app:srcCompat="@drawable/icon_renren_svg"
             />
 
-        <kale.ui.view.SelectorImageView
+        <kale.ui.view.SelectorImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="15dp"

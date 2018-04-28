@@ -30,7 +30,7 @@
         <attr name="disableStrokeColor" format="color" />
         <attr name="disableStrokeWidth" format="dimension" />
         
-        <!-- 是否是自动计算按下颜色的的 -->
+        <!-- 是否是自动计算按下时的颜色 -->
         <attr name="smartColor" format="boolean" />
 
         <!-- 是否将图片设置到src中（仅仅对ImageButton有效） -->
@@ -44,6 +44,8 @@
         <attr name="android:drawableRight" />
         <attr name="android:drawableTop" />
         <attr name="android:drawableBottom" />
+        <attr name="src" format="reference" />
+        <attr name="background" format="reference" />
 
         <!-- svg & tint support -->
 
@@ -59,8 +61,6 @@
         <attr name="drawableBottom" format="reference" />
         <attr name="drawableLeft" format="reference" />
         <attr name="drawableRight" format="reference" />
-
-        <attr name="src" format="reference" />
         
         <!-- 事件控制 -->
         <attr name="isClicked" format="boolean" />
@@ -68,6 +68,64 @@
 
         <attr name="isPressed" format="boolean" />
     </declare-styleable>
+
+
+    <declare-styleable name="SelectorTextView">
+        <attr name="normalColor" />
+        <attr name="pressedColor"/>
+        <attr name="checkedColor"/>
+        <attr name="disableColor"/>
+        <attr name="normalDrawable"/>
+        <attr name="pressedDrawable"/>
+        <attr name="checkedDrawable"/>
+        <attr name="disableDrawable"/>
+        <attr name="normalStrokeColor"/>
+        <attr name="normalStrokeWidth"/>
+        <attr name="pressedStrokeColor"/>
+        <attr name="pressedStrokeWidth"/>
+        <attr name="checkedStrokeColor"/>
+        <attr name="checkedStrokeWidth"/>
+        <attr name="disableStrokeColor"/>
+        <attr name="disableStrokeWidth"/>
+        <attr name="smartColor"/>
+        <attr name="ripple"/>
+        <attr name="button"/>
+        <attr name="buttonTint"/>
+        <attr name="drawableLeftTint"/>
+        <attr name="drawableTopTint"/>
+        <attr name="drawableRightTint"/>
+        <attr name="drawableBottomTint"/>
+        <attr name="drawableTop"/>
+        <attr name="drawableBottom"/>
+        <attr name="drawableLeft"/>
+        <attr name="drawableRight"/>
+        <attr name="background"/>
+    </declare-styleable>
+
+    <declare-styleable name="SelectorImageView">
+        <attr name="normalColor" />
+        <attr name="pressedColor"/>
+        <attr name="checkedColor"/>
+        <attr name="disableColor"/>
+        <attr name="normalDrawable"/>
+        <attr name="pressedDrawable"/>
+        <attr name="checkedDrawable"/>
+        <attr name="disableDrawable"/>
+        <attr name="normalStrokeColor"/>
+        <attr name="normalStrokeWidth"/>
+        <attr name="pressedStrokeColor"/>
+        <attr name="pressedStrokeWidth"/>
+        <attr name="checkedStrokeColor"/>
+        <attr name="checkedStrokeWidth"/>
+        <attr name="disableStrokeColor"/>
+        <attr name="disableStrokeWidth"/>
+        <attr name="smartColor"/>
+        <attr name="inSrc"/>
+        <attr name="ripple"/>
+        <attr name="src"/>
+        <attr name="background"/>
+    </declare-styleable>
+
 
 </resources>
 

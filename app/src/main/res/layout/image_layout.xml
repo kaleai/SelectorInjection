@@ -28,8 +28,6 @@
 
             app:pressedStrokeColor="#259b24"
             app:pressedStrokeWidth="8dp"
-
-            preview:isPressed="false"
             />
 
         <LinearLayout

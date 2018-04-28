@@ -31,7 +31,7 @@
         <attr name="disableStrokeWidth" format="dimension" />
         
         <!-- 是否是自动计算按下颜色的的 -->
-        <attr name="isSmart" format="boolean" />
+        <attr name="smartColor" format="boolean" />
 
         <!-- 是否将图片设置到src中（仅仅对ImageButton有效） -->
         <attr name="inSrc" format="boolean" />

@@ -34,15 +34,9 @@ public class SelectorInjection {
      */
     private StateListDrawable selector = new StateListDrawable();
 
-    public SelectorBean normal;
-
-    public SelectorBean pressed;
-
-    public SelectorBean checked;
-
-    public SelectorBean disable;
-
     private View view;
+
+    public SelectorBean normal, pressed, checked, disable;
 
     /**
      * 是否将drawable设置到src中，如果不是那么默认是background
@@ -52,7 +46,7 @@ public class SelectorInjection {
     /**
      * 是否是智能模式，如果是的那么会自动计算按下后的颜色
      */
-    public boolean isSmart;
+    public boolean smartColor;
 
     /**
      * 是否展示水波纹
@@ -68,7 +62,7 @@ public class SelectorInjection {
 
         TintTypedArray a = TintTypedArray.obtainStyledAttributes(context, attrs, R.styleable.SelectorInjection, defStyleAttr, 0);
 
-        isSmart = a.getBoolean(R.styleable.SelectorInjection_isSmart, true);
+        smartColor = a.getBoolean(R.styleable.SelectorInjection_smartColor, true);
         inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
         showRipple = a.getBoolean(R.styleable.SelectorInjection_ripple, false);
 
@@ -107,13 +101,13 @@ public class SelectorInjection {
     }
 
     public void injection() {
-        if (pressed.drawable == null && isSmart && normal.drawable != null) {
+        if (pressed.drawable == null && smartColor && normal.drawable != null) {
             // 如果是智能模式，会自动根据normal生成按压时的drawable
             pressed.drawable = normal.drawable.getConstantState().newDrawable();
         }
         if (pressed.drawable != null && pressed.color == DEFAULT_COLOR) {
             // 如果没有设置按压效果，那么会自动计算出按压的色值
-            pressed.color = isSmart ? getPressedColor(normal.color) : pressed.color;
+            pressed.color = smartColor ? getPressedColor(normal.color) : pressed.color;
         }
 
         configDrawable(pressed, false, new int[]{android.R.attr.state_enabled, android.R.attr.state_pressed});

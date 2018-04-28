@@ -66,7 +66,7 @@ public class ImageFragment extends BaseFragment implements CompoundButton.OnChec
                 injection.pressed.strokeWidth = 10;
                 break;
             case R.id.isSmart_cb:
-                injection.isSmart = checked;
+                injection.smartColor = checked;
                 // 如果不是smart模式，并且没有设置按下的颜色
                 if (!checked && !((CompoundButton) getView().findViewById(R.id.pressed_color_cb)).isChecked()) {
                     injection.pressed.color = SelectorInjection.DEFAULT_COLOR;

@@ -250,8 +250,11 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="30dp"
-
         android:layout_marginTop="10dp"
+
+        android:checked="true"
+
+        android:contentDescription="textview默认不支持点击自动选中"
         app:checkedColor="@color/green"
         app:checkedDrawable="@drawable/shape_oval"
         app:checkedStrokeColor="@color/purple"

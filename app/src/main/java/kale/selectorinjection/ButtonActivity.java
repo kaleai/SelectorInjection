@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import kale.ui.view.SelectorTextView;
+
 /**
  * @author Kale
  * @date 2018/4/25
@@ -24,7 +26,7 @@ public class ButtonActivity extends BaseFragment {
     }
 
     private void setViews(View root) {
-        final CompoundButton button = root.findViewById(R.id.check_btn);
+        final SelectorTextView button = root.findViewById(R.id.check_btn);
 
         button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -34,6 +36,12 @@ public class ButtonActivity extends BaseFragment {
                 } else {
                     button.setText("unchecked");
                 }
+            }
+        });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button.toggleCompat();
             }
         });
 

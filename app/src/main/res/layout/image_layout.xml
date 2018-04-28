@@ -93,6 +93,14 @@
             </LinearLayout>
 
         </LinearLayout>
+        
+        <kale.ui.view.SelectorImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            app:src="@drawable/icon_facebook_svg"
+            android:tint="@color/orange"
+            />
 
         
     </LinearLayout>

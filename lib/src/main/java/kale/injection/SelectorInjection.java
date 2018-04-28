@@ -13,6 +13,8 @@ import android.support.v7.widget.TintTypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import kale.ui.view.SelectorTextView;
 import kale.utils.SelectorUtils;
@@ -42,8 +44,6 @@ public class SelectorInjection {
 
     private View view;
 
-    private Drawable src;
-
     /**
      * 是否将drawable设置到src中，如果不是那么默认是background
      */
@@ -72,7 +72,7 @@ public class SelectorInjection {
         inSrc = a.getBoolean(R.styleable.SelectorInjection_inSrc, false);
         showRipple = a.getBoolean(R.styleable.SelectorInjection_ripple, false);
 
-        src = a.getDrawable(R.styleable.SelectorInjection_src);
+        Drawable src = a.getDrawable(R.styleable.SelectorInjection_src);
 
         normal = SelectorBean.create(a,
                 R.styleable.SelectorInjection_normalDrawable,
@@ -100,6 +100,10 @@ public class SelectorInjection {
         );
 
         a.recycle();
+
+        if (src != null && view instanceof ImageView) {
+            ((ImageView) view).setImageDrawable(src);
+        }
     }
 
     public void injection() {
@@ -187,11 +191,6 @@ public class SelectorInjection {
 
         // 为了可读性用了分段的return
 
-        if (view instanceof SelectorTextView) {
-//            ((RadioButton) view).setButtonDrawable(selector);
-//            return;
-        }
-
         if (inSrc && view instanceof ImageButton) {
             ((ImageButton) view).setImageDrawable(selector);
             return;
@@ -210,6 +209,14 @@ public class SelectorInjection {
         }
 
         view.setBackgroundDrawable(selector);
+    }
+
+    public void configButtonDrawable() {
+        if (view instanceof SelectorTextView) {
+            if (((SelectorTextView) view).isInRadioGroup()) {
+                ((RadioButton) view).setButtonDrawable(selector);
+            }
+        }
     }
 
     /**

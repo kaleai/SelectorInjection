@@ -36,6 +36,12 @@ public class SelectorTextView extends android.support.v7.widget.AppCompatRadioBu
     }
 
     @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        injection.configButtonDrawable();
+    }
+
+    @Override
     public SelectorInjection createSelectorInjection(Context context, AttributeSet attrs) {
         return new SelectorInjection(this);
     }

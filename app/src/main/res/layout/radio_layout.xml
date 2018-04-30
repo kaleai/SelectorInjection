@@ -21,37 +21,40 @@
         android:orientation="horizontal"
         >
 
-        <kale.ui.view.SelectorTextView
+        <kale.ui.view.SelectorRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:paddingLeft="5dp"
             android:text="Paris"
+            app:buttonTint="@color/orange"
 
             app:checkedDrawable="@drawable/abc_btn_radio_to_on_mtrl_015"
             app:normalDrawable="@drawable/abc_btn_radio_to_on_mtrl_000"
             />
 
-        <kale.ui.view.SelectorTextView
+        <kale.ui.view.SelectorRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:paddingLeft="5dp"
             android:text="London"
+            app:buttonTint="@color/orange"
 
             app:checkedDrawable="@drawable/abc_btn_radio_to_on_mtrl_015"
             app:normalDrawable="@drawable/abc_btn_radio_to_on_mtrl_000"
             />
 
-        <kale.ui.view.SelectorTextView
+        <kale.ui.view.SelectorRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:paddingLeft="5dp"
             android:text="Kabul"
+            app:buttonTint="@color/orange"
 
             app:checkedDrawable="@drawable/abc_btn_radio_to_on_mtrl_015"
             app:normalDrawable="@drawable/abc_btn_radio_to_on_mtrl_000"
@@ -75,7 +78,7 @@
         android:orientation="horizontal"
         >
 
-        <kale.ui.view.SelectorTextView
+        <kale.ui.view.SelectorRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -87,7 +90,7 @@
             app:normalDrawable="@drawable/icon_circle_uncheck_shape"
             />
 
-        <kale.ui.view.SelectorTextView
+        <kale.ui.view.SelectorRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -99,7 +102,7 @@
             app:normalDrawable="@drawable/icon_circle_uncheck_shape"
             />
 
-        <kale.ui.view.SelectorTextView
+        <kale.ui.view.SelectorRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -128,7 +131,7 @@
         android:orientation="horizontal"
         >
 
-        <kale.ui.view.SelectorTextView
+        <kale.ui.view.SelectorRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -142,7 +145,7 @@
             app:normalDrawable="@drawable/icon_circle_uncheck_svg"
             />
 
-        <kale.ui.view.SelectorTextView
+        <kale.ui.view.SelectorRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -156,7 +159,7 @@
             app:normalDrawable="@drawable/icon_circle_uncheck_svg"
             />
 
-        <kale.ui.view.SelectorTextView
+        <kale.ui.view.SelectorRadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -253,6 +256,9 @@
         android:layout_marginTop="10dp"
 
         android:checked="true"
+        
+        app:button="@drawable/icon_renren_svg"
+        app:buttonTint="@color/red"
 
         android:contentDescription="textview默认不支持点击自动选中"
         app:checkedColor="@color/green"

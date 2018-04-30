@@ -16,7 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
-import kale.ui.view.SelectorTextView;
+import kale.ui.view.SelectorRadioButton;
 import kale.utils.SelectorUtils;
 
 /**
@@ -98,7 +98,7 @@ public class SelectorInjection {
 
         Drawable background = a.getDrawable(R.styleable.SelectorInjection_background);
         int backgroundTint = a.getColor(R.styleable.SelectorInjection_backgroundTint, DEFAULT_COLOR);
-        
+
         if (backgroundTint != DEFAULT_COLOR && background != null) {
             SelectorUtils.tintDrawable(background, backgroundTint);
             view.setBackground(background);
@@ -192,6 +192,11 @@ public class SelectorInjection {
 
         // 为了可读性用了分段的return
 
+        if (view instanceof SelectorRadioButton) {
+            ((RadioButton) view).setButtonDrawable(selector);
+            return;
+        }
+
         if (inSrc && view instanceof ImageButton) {
             ((ImageButton) view).setImageDrawable(selector);
             return;
@@ -210,14 +215,6 @@ public class SelectorInjection {
         }
 
         view.setBackground(selector);
-    }
-
-    public void configButtonDrawable() {
-        if (view instanceof SelectorTextView) {
-            if (((SelectorTextView) view).isInRadioGroup()) {
-                ((RadioButton) view).setButtonDrawable(selector);
-            }
-        }
     }
 
     /**

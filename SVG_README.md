@@ -1,6 +1,4 @@
----
-style: candy
----
+
 # SelectorInjection
 [![](https://jitpack.io/v/tianzhijiexian/SelectorInjection.svg)](https://jitpack.io/#tianzhijiexian/SelectorInjection)
 ![](https://img.shields.io/badge/minSdk-16-blue.svg)
@@ -11,7 +9,7 @@ style: candy
 
 ---
 
-## 依赖方式
+### 依赖方式
 
 1.添加JitPack仓库
 

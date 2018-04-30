@@ -7,8 +7,6 @@
 
 本项目提供了 Android 中按钮的 SVG (vectorDrawable) 支持，可以支持在 Android 5.0 以下使用 SVG 图片和 Tint 着色方案。
 
----
-
 ### 依赖方式
 
 1.添加JitPack仓库

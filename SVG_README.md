@@ -21,8 +21,7 @@ repositories {
 
 2.添加依赖
 
->
-implementation 'com.github.tianzhijiexian:SelectorInjection:Latest [Latest release](https://github.com/tianzhijiexian/SelectorInjection/releases) (*click it*)'
+> implementation 'com.github.tianzhijiexian:SelectorInjection:Latest [Latest release](https://github.com/tianzhijiexian/SelectorInjection/releases) (*click it*)'
 
 ### 属性介绍
 

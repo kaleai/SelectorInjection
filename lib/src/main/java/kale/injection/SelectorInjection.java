@@ -119,8 +119,8 @@ public class SelectorInjection {
 
         configDrawable(pressed, false, new int[]{android.R.attr.state_enabled, android.R.attr.state_pressed});
         configDrawable(checked, false, new int[]{android.R.attr.state_enabled, android.R.attr.state_checked});
-        configDrawable(normal, true, new int[]{-android.R.attr.state_pressed, android.R.attr.state_enabled});
         configDrawable(disable, false, new int[]{-android.R.attr.state_enabled});
+        configDrawable(normal, true, new int[]{android.R.attr.state_enabled});
 
         setSelectorDrawableToView();
     }

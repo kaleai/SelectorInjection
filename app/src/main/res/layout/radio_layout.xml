@@ -272,4 +272,19 @@
         app:normalStrokeWidth="5dp"
         />
 
+    <kale.ui.view.SelectorRadioButton
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/red"
+        android:gravity="center"
+
+        app:normalColor="@color/red"
+        app:normalDrawable="@drawable/shape_oval_center"
+        app:normalStrokeColor="#00ffff"
+        app:normalStrokeWidth="3dp"
+        />
+
+
 </LinearLayout>

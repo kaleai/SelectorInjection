@@ -1,5 +1,5 @@
-
 # SelectorInjection
+
 [![](https://jitpack.io/v/tianzhijiexian/SelectorInjection.svg)](https://jitpack.io/#tianzhijiexian/SelectorInjection)
 ![](https://img.shields.io/badge/minSdk-16-blue.svg)
 [![](https://img.shields.io/github/stars/tianzhijiexian/SelectorInjection.svg)](https://github.com/tianzhijiexian/SelectorInjection)
@@ -33,6 +33,7 @@ repositories {
 app:drawableLeft="@drawable/icon_facebook_svg"  
 app:drawableLeftTint="@color/red"
 ```
+
 属性格式：
 
 - drawable(Top/Left/Right/Bottom)
@@ -42,7 +43,7 @@ app:drawableLeftTint="@color/red"
 
 ```
 app:src="@drawable/icon_facebook_svg"
-android:tint="@color/orange" 
+android:tint="@color/orange"
 ```
 
 **SelectorRadioButton：**
@@ -56,35 +57,36 @@ app:buttonTint="@color/red"
 
 ### 示例
 
-View| Explain | Attribute
---- | --- | ---
-SelectorTextView   | <div><img src="http://static.zybuluo.com/shark0017/o06fq4tk0dk35kznk965vf96/image_1cca7nhgh1khc1e6o1v8fjtqosb3h.png" width="300"></div>| app:drawableBottom="@drawable/icon_facebook_svg"<br>app:drawableBottomTint="@color/green"
-SelectorImageButton | <div><img src="http://static.zybuluo.com/shark0017/idhyn2508hqtl7kulwqykod8/image_1cca8953dav3b2n1ork1hjnlh24b.png" width="300"></div>| app:src="@drawable/icon_robot_svg" <br>  android:tint="@color/orange" 
-SelectorRadioButton | <div><img src="http://static.zybuluo.com/shark0017/c460uqsb4vd4dzoogmsk9lnp/image_1cca780lu12dcp0a1nhc16jcpfl1t.png" width="300"></div>| app:button="@drawable/icon_check_selector"  <br>  app:buttonTint="@color/orange"	
+| View                | Explain                                                                                                                                 | Attribute                                                                                 |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| SelectorTextView    | <div><img src="http://static.zybuluo.com/shark0017/o06fq4tk0dk35kznk965vf96/image_1cca7nhgh1khc1e6o1v8fjtqosb3h.png" width="300"></div> | app:drawableBottom="@drawable/icon_facebook_svg"<br>app:drawableBottomTint="@color/green" |
+| SelectorImageButton | <div><img src="http://static.zybuluo.com/shark0017/idhyn2508hqtl7kulwqykod8/image_1cca8953dav3b2n1ork1hjnlh24b.png" width="300"></div>  | app:src="@drawable/icon_robot_svg" <br>  android:tint="@color/orange"                     |
+| SelectorRadioButton | <div><img src="http://static.zybuluo.com/shark0017/p6pb1env5fgzdu7xzxomta3x/image_1ccn4i44p1pv163hq4bngn6oj2d.png" width="300"></div>   | app:button="@drawable/icon_check_selector"  <br>  app:buttonTint="@color/orange"          |
 
 ### 支持自动提示
 
-![](http://static.zybuluo.com/shark0017/7zwuwmpqt8277pij1y0n9ujx/image_1cca9etom4krs9a89a1mpd1in355.png)
+![](http://static.zybuluo.com/shark0017/th0lv91decf13hjeoj24zkie/image_1ccn108d3lmh1fktcu615s411r316.png)
 
-### 开发者 
+### 开发者
 
-![](https://avatars3.githubusercontent.com/u/9552155?v=3&s=460)
+![](https://avatars3.githubusercontent.com/u/9552155?v=3&s=460.png)
 
 Jack Tony: <developer_kale@foxmail.com>  
 
 ### License
 
-    Copyright 2016-2019 Jack Tony
+```
+Copyright 2016-2019 Jack Tony
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+   http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```

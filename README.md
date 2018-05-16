@@ -132,4 +132,4 @@ Jack Tony: <developer_kale@foxmail.com>
 
 ### License
 
-SelectorInjection is licensed under Apache License 2. View [license](https://github.com/tianzhijiexian/SelectorInjection/edit/master/LICENSE).
+SelectorInjection is licensed under Apache License 2. View [license](https://github.com/tianzhijiexian/SelectorInjection/blob/master/LICENSE).

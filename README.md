@@ -1,26 +1,23 @@
 # SelectorInjection    
+
 [![](https://jitpack.io/v/tianzhijiexian/SelectorInjection.svg)](https://jitpack.io/#tianzhijiexian/SelectorInjection)
+[![Platform](https://img.shields.io/badge/platform-Android-yellow.svg)](https://www.android.com)
+[![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
 
-<img align="right" src='./demoPic/logo.png' width='100' height='100'/>
+<img align="center" src='http://static.zybuluo.com/shark0017/04dghwh7em5xovrjjsis16zj/selection_hearer.png'/>
 
-SelectorInjection是一个强大的selector注入器。它可以给view注入selector状态，免去了大量的selecor文件。  
+SelectorInjection是一个强大的selector注入器。它可以给view注入selector状态，免去了大量的selecor文件。
 
-如果你的需求很简单，不妨试试这篇文章讲到的一张图片实现selector的方法：[http://www.cnblogs.com/tianzhijiexian/p/4505190.html](http://www.cnblogs.com/tianzhijiexian/p/4505190.html)
+- 可以根据shape来着色产生selector状态
+- 可根据普通情况下的颜色（normalColor）来自动生成按压态的颜色
+- 支持normal、pressed、checked、disabled状态的效果
+- 支持[SVG](https://developer.android.com/reference/android/graphics/drawable/VectorDrawable)和TINT，并且二者可以配合使用
+- 可以开启水波纹（ripple）按压效果
 
---  
+> 如果你的需求很简单，不妨试试[「这篇文章」](http://www.cnblogs.com/tianzhijiexian/p/4505190.html)提到的一张图片实现selector的方案。
 
-###前言   
-selector的写法比较复杂，我借鉴了[SelectorButton](https://github.com/hanks-zyh/SelectorButton)和[MaterialDesignLibrary](https://github.com/navasmdc/MaterialDesignLibrary)的写法，最终产生了能将颜色和形状两两组合的selector注入器。  
+### 引入 
 
-本注入器支持且**不仅仅**支持下列的按钮，你还可以通过layer-list和shape的组合产生更多的按钮。  
-
-![image](./demoPic/view.png)
-
-###效果   
-
-![](./demoPic/demo.gif)
-
-###引入方式  
 1.添加JitPack仓库
 
 ```  
@@ -34,16 +31,23 @@ repositories {
 2.添加依赖  
 > compile 'com.github.tianzhijiexian:SelectorInjection:[Latest release](https://github.com/tianzhijiexian/SelectorInjection/releases)（<-click）'
 
-###使用方式  
-我们可以根据需要将其注入到任何一个view中去，库中已经给出了ImageButton、TextView、Button的实现。
+### 使用
 
-在xml中使用：  
+我们可以根据需要将`SelectorInjection`注入到任何一个View中去，产生一个新的自定义View。
+
+库中已经给出了ImageButton、TextView、Button等view的实现，已经提供的控件如下：
+
+- SelectorTextView
+- SelectorButton
+- SelectorRadioButton
+- SelectorImageButton （配合`app:inSrc=true`设置是否将selector效果作用于src，不设置则作用于background）
+
+书写示例：
+  
 ```xml   
 <kale.ui.view.SelectorTextView
-  android:layout_width="300dp"
-  android:layout_height="300dp"
-  android:text="Click Me"
-  android:textColor="@android:color/white"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
 
   app:normalColor="#03a9f4"
   app:normalDrawable="@drawable/btn_oval_shape"
@@ -52,80 +56,74 @@ repositories {
   />
 ```   
 
-###还有更多  
-你以为它仅仅是干掉了selector么？当然不是，它还对shape有着完整的支持。我们定义一个shape，然后传入一个normalColor，它会自动将normalColor填充到shape的背景中并自动产生按下后的效果。  
-而在shape中我们可以做的事情就多了，比如添加个边框、加个虚线什么的。但shape仅仅能画的是简单且扁平化的形状，能不能让它支持阴影呢？当然可以，SelectorInjection还支持了layer-list。你可以将阴影的边框和shape进行叠加，借此来产生很多其他的效果。  
-需要注意的是，如果你要用layer-list，你需要给要填充的item定一个固定id，即`@android:id/background`，它会自动去找到这个id下的shape进行颜色的填充。  
+### 效果
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <!-- other item -->
-    <item android:drawable="@drawable/btn_oval_shadow_mask"/>
-    <!-- target item -->
-    <item
-        android:id="@android:id/background"
-        >
-        <shape android:shape="oval" >
-            <solid android:color="@android:color/transparent" />
-        </shape>
-    </item>
+| Type                | Explain                                                                                                                                 | Attribute                                                                                 |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Color    | <div><img src="http://static.zybuluo.com/shark0017/cyopawvs9x6rnim8nyrnc4et/image_1cdknaur915241gprbh41o9dojk3i.png" width="300"></div> | app:normalColor="@color/green"<br>app:normalDrawable="@drawable/shape_round_rectangle" |
+| Stroke | <div><img src="http://static.zybuluo.com/shark0017/nf6j1obx141qs4pry6u5cq06/image_1cdkni1vepri1opf1mok7s6quq56.png" width="300"></div>  | app:normalStrokeColor="#eeeeee" <br> app:normalStrokeWidth="3dp"                    |
 
-</layer-list>
-```
+相应控件支持normal、pressed、checked、disabled四种状态，属性格式为：
 
-具体的做法和更加详细的api见demo。
+- xxxDrawable
+- xxxColor
+- xxxStrokeColor
+- xxxStrokeWidth
 
-###支持的属性   
-https://github.com/tianzhijiexian/SelectorInjection/blob/master/injection/src/main/res/values/attrs.xml   
+### 高级用法
 
-```xml
-<!-- 普通状态的颜色 -->
-<attr name="normalColor" format="color" />
-<!-- 按下后的颜色 -->
-<attr name="pressedColor" format="color" />
-<!-- 选中后的颜色 -->
-<attr name="checkedColor" format="color" />
+1. 自动计算按压颜色
 
-<!-- 常规状态下-->
-<attr name="normalDrawable" format="reference" />
-<!-- 按下/获得焦点 -->
-<attr name="pressedDrawable" format="reference" />
-<!-- 选中时 -->
-<attr name="checkedDrawable" format="reference" />
+    提供的控件**默认**会在没有指定`app:pressedColor`的情况向下自动计算出按下后的颜色。如果你不希望开启是个功能，那么可以将`app:smartColor`设置为false。
 
-<!-- 正常的描边 -->
-<attr name="normalStrokeColor" format="color" />
-<attr name="normalStrokeWidth" format="dimension" />
-<!-- 按下后的描边 -->
-<attr name="pressedStrokeColor" format="color" />
-<attr name="pressedStrokeWidth" format="dimension" />
-<!-- 选中后的描边 -->
-<attr name="checkedStrokeColor" format="color" />
-<attr name="checkedStrokeWidth" format="dimension" />
+1. 支持shape
 
-<!-- 是否是自动计算按下颜色的的 -->
-<attr name="isSmart" format="boolean" />
+    将shape对象作为drawable后，会自动将normalColor填充到shape的背景中并自动产生按下后的效果。
 
-<!-- 是否将图片设置到src中（仅仅对ImageButton有效） -->
-<attr name="isSrc" format="boolean" />
+1. 支持layer-list
 
-<!-- 是否显示水波纹（Android5.0以上有效）-->
-<attr name="showRipple" format="boolean" />
+    normalColor、pressedColor等属性会作用于layer-list中标注有`@android:id/background`的item中。 
 
+        <?xml version="1.0" encoding="utf-8"?>
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+            <!-- other item -->
+            <item android:drawable="@drawable/btn_oval_shadow_mask"/>
 
-<!-- svg support -->
-<attr name="android:drawableLeft" />
-<attr name="android:drawableRight" />
-<attr name="android:drawableTop" />
-<attr name="android:drawableBottom" />
+            <!-- target item -->
+            <item
+                android:id="@android:id/background"
+                >
+                <shape android:shape="oval" >
+                    <solid android:color="@android:color/transparent" />
+                </shape>
+            </item>
 
-<!-- tint support -->
-<attr name="drawableLeftTint" format="color" />
-<attr name="drawableTopTint" format="color" />
-<attr name="drawableRightTint" format="color" />
-<attr name="drawableBottomTint" format="color" />
-```  
+        </layer-list>
+
+1. 支持水波纹
+
+    在Android5.0以上支持了水波纹效果，可以通过`app:ripple = "true"`来开启：
+
+    ![](http://static.zybuluo.com/shark0017/3k2zfdlcbj5js0lfhpk9g7gx/image_1cdk9n9e41nk5sbn1jm71a9614d51e.png)
+
+    水波纹效果和其他属性不冲突，可以随意开关，但需要注意版本兼容问题。
+
+1. 支持SVG
+
+    目前全版本兼容SVG图片（VectorDrawable），详细文档可以查看：[SVG和Tint应如何结合](https://github.com/tianzhijiexian/SelectorInjection/blob/master/SVG_README.md)。
+
+1. 代码自动提示
+
+    支持Android Studio的代码提示，一般通过输入normal、check、disable等关键字就可以提示代码：
+    ![](http://static.zybuluo.com/shark0017/2nvdk2sygf5ozeo423sufw6j/image_1cdk9el3l5hmvuk1qpjqs21vkg11.png)
+
+### 目标
+
+Selector的写法比较复杂，做业务开发的过程中我们在需求按压效果的时候必须要离开编写的ui界面转而定义selector，打断了代码的编写流程。而增加的这些selector文件其实大多都是一次性使用，但数量众多，维护麻烦。
+
+开发时借鉴了[SelectorButton](https://github.com/hanks-zyh/SelectorButton)和[MaterialDesignLibrary](https://github.com/navasmdc/MaterialDesignLibrary)的写法，最终产生了能将颜色和形状两两组合的selector注入器。它支持且**不仅仅**支持下列的按钮，你还可以通过layer-list和shape的组合产生更多的按钮。  
+
+![image](./demoPic/view.png)
 
 ### 开发者
 ![](https://avatars3.githubusercontent.com/u/9552155?v=3&s=460)
@@ -134,16 +132,4 @@ Jack Tony: <developer_kale@foxmail.com>
 
 ### License
 
-    Copyright 2016-2019 Jack Tony
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+SelectorInjection is licensed under MIT license. View [license](https://github.com/tianzhijiexian/SelectorInjection/edit/master/LICENSE.md).

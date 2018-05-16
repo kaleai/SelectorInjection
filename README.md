@@ -22,9 +22,9 @@ SelectorInjection是一个强大的selector注入器。它可以给view注入sel
 
 ```  
 repositories {
-	maven {
-		url "https://jitpack.io"
-	}
+    maven {
+	url "https://jitpack.io"
+    }
 }
 ```   
 

@@ -45,6 +45,7 @@
         <attr name="android:drawableTop" />
         <attr name="android:drawableBottom" />
         <attr name="src" format="reference" />
+        <attr name="image" format="reference" />
         <attr name="button" format="reference"/>
         <attr name="background" format="reference" />
 

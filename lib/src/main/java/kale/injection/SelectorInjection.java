@@ -92,6 +92,9 @@ public class SelectorInjection {
         showRipple = a.getBoolean(R.styleable.SelectorInjection_ripple, false);
 
         Drawable src = a.getDrawable(R.styleable.SelectorInjection_src);
+        if (src == null) {
+            src = a.getDrawable(R.styleable.SelectorInjection_image);
+        }
         if (src != null && view instanceof ImageView) {
             ((ImageView) view).setImageDrawable(src);
         }

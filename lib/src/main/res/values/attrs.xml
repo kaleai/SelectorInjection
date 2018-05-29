@@ -130,6 +130,7 @@
         <attr name="backgroundTint"/>
     </declare-styleable>
 
-
+    <style name="AppThemeCompatV7" parent="Theme.AppCompat.Light.NoActionBar"/>
+    
 </resources>
 

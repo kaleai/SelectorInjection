@@ -74,7 +74,7 @@ repositories {
 
 1. 自动计算按压颜色
 
-    提供的控件**默认**会在没有指定`app:pressedColor`的情况向下自动计算出按下后的颜色。如果你不希望开启是个功能，那么可以将`app:smartColor`设置为false。
+    提供的控件**默认**会在没有指定`app:pressedColor`的情况向下自动计算出按下后的颜色。如果你不希望开启这个功能，那么可以将`app:smartColor`设置为false。
 
 1. 支持shape
 

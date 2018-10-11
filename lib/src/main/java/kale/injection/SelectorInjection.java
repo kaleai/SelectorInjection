@@ -212,8 +212,15 @@ public class SelectorInjection {
 
             ripple.setColor(ColorStateList.valueOf(pressed.color));
             ripple.setDrawableByLayerId(android.R.id.mask, normal.drawable); // 这里用的normal时的drawable做边界
-            ripple.setDrawableByLayerId(android.R.id.content, selector);
-            view.setBackground(ripple);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                view.setForeground(ripple);
+                view.setBackground(selector);
+            } else {
+                ripple.setDrawableByLayerId(android.R.id.content, selector);
+                view.setBackground(ripple);
+            }
+            
             return;
         }
 

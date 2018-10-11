@@ -28,6 +28,8 @@
 
             app:pressedStrokeColor="#259b24"
             app:pressedStrokeWidth="8dp"
+            
+            app:ripple="true"
             />
 
         <LinearLayout

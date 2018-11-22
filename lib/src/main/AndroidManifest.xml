@@ -1,7 +1,3 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="kale.injection">
-
-    <application>
-
-    </application>
-
+<manifest package="kale.injection">
+    <application/>
 </manifest>

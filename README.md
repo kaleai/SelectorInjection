@@ -29,7 +29,7 @@ repositories {
 ```   
 
 2.添加依赖  
-> compile 'com.github.tianzhijiexian:SelectorInjection:[Latest release](https://github.com/tianzhijiexian/SelectorInjection/releases)（<-click）'
+> compile 'com.github.tianzhijiexian:SelectorInjection:[1.1.6](https://github.com/tianzhijiexian/SelectorInjection/releases)'
 
 ### 使用
 
